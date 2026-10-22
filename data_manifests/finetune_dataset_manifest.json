@@ -1,0 +1,427 @@
+{
+  "dataset_name": "Controlled Food Fine-Tuning Dataset (5 Classes)",
+  "total_images": 32,
+  "classes": [
+    "rice_white_cooked",
+    "chicken_breast_grilled",
+    "broccoli_steamed",
+    "apple_fresh_raw",
+    "banana_raw"
+  ],
+  "split_summary": {
+    "train": 22,
+    "val": 10,
+    "smoke_test_independent": 17
+  },
+  "per_class_summary": {
+    "rice_white_cooked": {
+      "train": 3,
+      "val": 2
+    },
+    "chicken_breast_grilled": {
+      "train": 6,
+      "val": 2
+    },
+    "broccoli_steamed": {
+      "train": 8,
+      "val": 2
+    },
+    "apple_fresh_raw": {
+      "train": 3,
+      "val": 2
+    },
+    "banana_raw": {
+      "train": 2,
+      "val": 2
+    }
+  },
+  "license_breakdown": {
+    "CC0 / Public Domain / CC-BY / CC-BY-SA": 32
+  },
+  "images": [
+    {
+      "image_id": "ft_rice_white_cooked_train_01",
+      "file_path": "datasets/finetune/train/rice_white_cooked_train_01.jpg",
+      "canonical_id": "rice_white_cooked",
+      "split": "train",
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/c/ce/Harmony_bowl.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "wikimedia_title": "File:Harmony bowl.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "<a rel=\"mw:WikiLink\" href=\"https://commons.wikimedia.org/wik",
+      "session_id": "session_rice_white_cooked_train_01",
+      "sha256": "f700e1e7d6c703a34dfe5bd4a38714cc17c279f0061695beffed6b2e41c0ac7e"
+    },
+    {
+      "image_id": "ft_rice_white_cooked_train_02",
+      "file_path": "datasets/finetune/train/rice_white_cooked_train_02.jpg",
+      "canonical_id": "rice_white_cooked",
+      "split": "train",
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/4/46/Liat_Portal_for_Foodie_Disorder_-_Roasted_chicken_with_cauliflower_broccoli_potatoes_rice_and_salad.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "wikimedia_title": "File:Liat Portal for Foodie Disorder - Roasted chicken with cauliflower broccoli potatoes rice and salad.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "<a href=\"//commons.wikimedia.org/w/index.php?title=User:HaJu",
+      "session_id": "session_rice_white_cooked_train_02",
+      "sha256": "3020278182fe200ca7f8b7d00cf904b103da048f634f9cd7838b8dd26168e624"
+    },
+    {
+      "image_id": "ft_rice_white_cooked_train_03",
+      "file_path": "datasets/finetune/train/rice_white_cooked_train_03.jpg",
+      "canonical_id": "rice_white_cooked",
+      "split": "train",
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/4/49/Majadra_haystack_%28on_the_plate%29_%284291546125%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "wikimedia_title": "File:Majadra haystack (on the plate) (4291546125).jpg",
+      "license": "CC BY 2.0",
+      "author": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.fl",
+      "session_id": "session_rice_white_cooked_train_03",
+      "sha256": "fc8bfa3e750afae71f7ca552dafe4702b6094909d7c16e2832093d34a39a5b32"
+    },
+    {
+      "image_id": "ft_rice_white_cooked_val_01",
+      "file_path": "datasets/finetune/val/rice_white_cooked_val_01.jpg",
+      "canonical_id": "rice_white_cooked",
+      "split": "val",
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/3/3e/Rice_plate_Jharkhand.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "wikimedia_title": "File:Rice plate Jharkhand.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "<a href=\"//commons.wikimedia.org/wiki/User:Sureshkhole\" clas",
+      "session_id": "session_rice_white_cooked_train_04",
+      "sha256": "64429246198be1b5b9d149e47fb44f5ab08e744251b2259b64e99295ced6b5fd"
+    },
+    {
+      "image_id": "ft_rice_white_cooked_val_02",
+      "file_path": "datasets/finetune/val/rice_white_cooked_val_02.jpg",
+      "canonical_id": "rice_white_cooked",
+      "split": "val",
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/d/de/Steamed_Rice_with_Chicken_and_Chinese_Sausage_-_Soup_Restaurant_%282500744954%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "wikimedia_title": "File:Steamed Rice with Chicken and Chinese Sausage - Soup Restaurant (2500744954).jpg",
+      "license": "CC BY-SA 2.0",
+      "author": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.fl",
+      "session_id": "session_rice_white_cooked_train_05",
+      "sha256": "abc390f133988f498d47d3e4afe82820aa7f7c2aa8ad89a0d92aeb444664a11e"
+    },
+    {
+      "image_id": "ft_chicken_breast_grilled_train_01",
+      "file_path": "datasets/finetune/train/chicken_breast_grilled_train_01.jpg",
+      "canonical_id": "chicken_breast_grilled",
+      "split": "train",
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/d/d0/Burger_and_fries_on_a_wooden_plate.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "wikimedia_title": "File:Burger and fries on a wooden plate.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "Pattaya Patrol",
+      "session_id": "session_chicken_breast_grilled_train_01",
+      "sha256": "d764f2bf888cbe4bdd6068e2bdfc7cffca96982d27200cd09bb9416e4f82fe60"
+    },
+    {
+      "image_id": "ft_chicken_breast_grilled_train_02",
+      "file_path": "datasets/finetune/train/chicken_breast_grilled_train_02.jpg",
+      "canonical_id": "chicken_breast_grilled",
+      "split": "train",
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/b/b2/Chicken_and_pork_kebab_Pitta_Corner_Wood_Green_High_Road_Haringey_London_England_01.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "wikimedia_title": "File:Chicken and pork kebab Pitta Corner Wood Green High Road Haringey London England 01.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "<a href=\"//commons.wikimedia.org/wiki/User:Acabashi\" title=\"",
+      "session_id": "session_chicken_breast_grilled_train_02",
+      "sha256": "2bbc86b1cc55d0ed8fa9fb99181cbbe31abc15e48acf91feb0705b8235ee27ab"
+    },
+    {
+      "image_id": "ft_chicken_breast_grilled_train_03",
+      "file_path": "datasets/finetune/train/chicken_breast_grilled_train_03.jpg",
+      "canonical_id": "chicken_breast_grilled",
+      "split": "train",
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/4/40/DFC_1493_Hearty_plate_of_skewered_grilled_meat_and_veggies_draped_in_a_rich_tomato_sauce_served_with_golden_fries_and_a_side_of_coleslaw.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "wikimedia_title": "File:DFC 1493 Hearty plate of skewered grilled meat and veggies draped in a rich tomato sauce served with golden fries and a side of coleslaw.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.fl",
+      "session_id": "session_chicken_breast_grilled_train_03",
+      "sha256": "974061af01e57ae5102432c99e0be5f5c8a6fc2a1c85646f79e4f1cdd7619418"
+    },
+    {
+      "image_id": "ft_chicken_breast_grilled_train_04",
+      "file_path": "datasets/finetune/train/chicken_breast_grilled_train_04.jpg",
+      "canonical_id": "chicken_breast_grilled",
+      "split": "train",
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/4/4e/DFC_2256_Savory_grilled_chicken_smothered_in_brown_gravy_served_with_crinkle-cut_fries_a_fresh_corn-topped_salad_and_creamy_mashed_potatoes.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "wikimedia_title": "File:DFC 2256 Savory grilled chicken smothered in brown gravy served with crinkle-cut fries a fresh corn-topped salad and creamy mashed potatoes.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "<a rel=\"mw:ExtLink nofollow\" href=\"https://www.flickr.com/pe",
+      "session_id": "session_chicken_breast_grilled_train_04",
+      "sha256": "034f4e6ff5067834d2ee680e549f5094a13c4c667d0b8bf6b34a16feffd12222"
+    },
+    {
+      "image_id": "ft_chicken_breast_grilled_train_05",
+      "file_path": "datasets/finetune/train/chicken_breast_grilled_train_05.jpg",
+      "canonical_id": "chicken_breast_grilled",
+      "split": "train",
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/2/2a/DSCF0868_Street_vendor_serving_a_tray_of_colorful_grilled_skewers_to_a_customer_at_a_busy_outdoor_market.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "wikimedia_title": "File:DSCF0868 Street vendor serving a tray of colorful grilled skewers to a customer at a busy outdoor market.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.fl",
+      "session_id": "session_chicken_breast_grilled_train_05",
+      "sha256": "8632d928f8eb842cec20b38dbba85eaf0c5e837a5e6fedadfe0062b50ffbf3d5"
+    },
+    {
+      "image_id": "ft_chicken_breast_grilled_train_06",
+      "file_path": "datasets/finetune/train/chicken_breast_grilled_train_06.jpg",
+      "canonical_id": "chicken_breast_grilled",
+      "split": "train",
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/d/d3/Grilled_chicken_placed_on_a_plate_with_herbs_and_citrus_fruit.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "wikimedia_title": "File:Grilled chicken placed on a plate with herbs and citrus fruit.jpg",
+      "license": "CC BY 2.0",
+      "author": "<a rel=\"mw:WikiLink\" href=\"https://commons.wikimedia.org/wik",
+      "session_id": "session_chicken_breast_grilled_train_06",
+      "sha256": "d735f44637fee73f20338040f19c990291b0deb3fc5dcfa6559f661f47c492e2"
+    },
+    {
+      "image_id": "ft_chicken_breast_grilled_val_01",
+      "file_path": "datasets/finetune/val/chicken_breast_grilled_val_01.jpg",
+      "canonical_id": "chicken_breast_grilled",
+      "split": "val",
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/a/a3/Pork_and_chicken_doner_kebab_with_salad_Pitta_Corner_Wood_Green_High_Road_Haringey_London_England.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "wikimedia_title": "File:Pork and chicken doner kebab with salad Pitta Corner Wood Green High Road Haringey London England.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "<a href=\"//commons.wikimedia.org/wiki/User:Acabashi\" title=\"",
+      "session_id": "session_chicken_breast_grilled_train_07",
+      "sha256": "e381d6b258cd28ae83ad0741830cdca825e0deed7291062b78b8e855744e17d6"
+    },
+    {
+      "image_id": "ft_chicken_breast_grilled_val_02",
+      "file_path": "datasets/finetune/val/chicken_breast_grilled_val_02.jpg",
+      "canonical_id": "chicken_breast_grilled",
+      "split": "val",
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/3/35/Special_Broken_Rice_-_Vietnamese_Grill_Bar_%282462154829%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "wikimedia_title": "File:Special Broken Rice - Vietnamese Grill Bar (2462154829).jpg",
+      "license": "CC BY-SA 2.0",
+      "author": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.fl",
+      "session_id": "session_chicken_breast_grilled_train_08",
+      "sha256": "795347f5d6854771426df8f4dacffbd96c11bced4babf3cbed7fa46eb46a18f1"
+    },
+    {
+      "image_id": "ft_broccoli_steamed_train_01",
+      "file_path": "datasets/finetune/train/broccoli_steamed_train_01.jpg",
+      "canonical_id": "broccoli_steamed",
+      "split": "train",
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/f/fd/BroccoliSalad.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "wikimedia_title": "File:BroccoliSalad.JPG",
+      "license": "CC BY-SA 3.0",
+      "author": "<a rel=\"mw:WikiLink\" href=\"https://commons.wikimedia.org/wik",
+      "session_id": "session_broccoli_steamed_train_01",
+      "sha256": "d634c326de4850af83e31ac695d3f8cd012e51d5a2c906feb4bda476bdcf8b83"
+    },
+    {
+      "image_id": "ft_broccoli_steamed_train_02",
+      "file_path": "datasets/finetune/train/broccoli_steamed_train_02.jpg",
+      "canonical_id": "broccoli_steamed",
+      "split": "train",
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/8/87/Dinner_at_home_-_October_2023_-_Sarah_Stierch_01.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "wikimedia_title": "File:Dinner at home - October 2023 - Sarah Stierch 01.jpg",
+      "license": "CC BY 4.0",
+      "author": "<a rel=\"mw:WikiLink\" href=\"https://commons.wikimedia.org/wik",
+      "session_id": "session_broccoli_steamed_train_02",
+      "sha256": "c2103f3a986bfe52c0d044694dc5b795298808afd5a55dbf3ff60001066e8f20"
+    },
+    {
+      "image_id": "ft_broccoli_steamed_train_03",
+      "file_path": "datasets/finetune/train/broccoli_steamed_train_03.jpg",
+      "canonical_id": "broccoli_steamed",
+      "split": "train",
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/2/2e/Dish_of_stewed_pork%2C_Romanesco_and_broccoli%2C_and_steamed_egg%2C_Singapore_-_20150129.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "wikimedia_title": "File:Dish of stewed pork, Romanesco and broccoli, and steamed egg, Singapore - 20150129.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "<a href=\"//commons.wikimedia.org/wiki/User:Smuconlaw\" class=",
+      "session_id": "session_broccoli_steamed_train_03",
+      "sha256": "8785ecc3f292f334e87fd196eeb68ee64531f0b3ea8a9f473bfc7b22304149e8"
+    },
+    {
+      "image_id": "ft_broccoli_steamed_train_04",
+      "file_path": "datasets/finetune/train/broccoli_steamed_train_04.jpg",
+      "canonical_id": "broccoli_steamed",
+      "split": "train",
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/8/85/Liat_Portal_for_Foodie_Disorder_-_Home_cooked_seafood_and_vegetable_meal.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "wikimedia_title": "File:Liat Portal for Foodie Disorder - Home cooked seafood and vegetable meal.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "<a href=\"//commons.wikimedia.org/w/index.php?title=User:HaJu",
+      "session_id": "session_broccoli_steamed_train_04",
+      "sha256": "d0e68cfdfc0c3470171c155d8471781d4b5f8422b7edd29d7bcd9f2b591ec663"
+    },
+    {
+      "image_id": "ft_broccoli_steamed_train_05",
+      "file_path": "datasets/finetune/train/broccoli_steamed_train_05.jpg",
+      "canonical_id": "broccoli_steamed",
+      "split": "train",
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/c/c9/Liat_Portal_for_Foodie_Disorder_-_Homemade_chicken_thighs_with_majadra_and_broccoli.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "wikimedia_title": "File:Liat Portal for Foodie Disorder - Homemade chicken thighs with majadra and broccoli.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "<a href=\"//commons.wikimedia.org/w/index.php?title=User:HaJu",
+      "session_id": "session_broccoli_steamed_train_05",
+      "sha256": "767bde7038b520d4c5bb9bbb153bc220ca3cc06570135ff604d010024e7f1099"
+    },
+    {
+      "image_id": "ft_broccoli_steamed_train_06",
+      "file_path": "datasets/finetune/train/broccoli_steamed_train_06.jpg",
+      "canonical_id": "broccoli_steamed",
+      "split": "train",
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/3/39/Liat_Portal_for_Foodie_Disorder_-_Homemade_chicken_thighs_with_vegetables_and_rice.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "wikimedia_title": "File:Liat Portal for Foodie Disorder - Homemade chicken thighs with vegetables and rice.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "<a href=\"//commons.wikimedia.org/w/index.php?title=User:HaJu",
+      "session_id": "session_broccoli_steamed_train_06",
+      "sha256": "e1ae4099830ba3ff745e27215c6f9d732512b2f8588e07b3988f23d368e32859"
+    },
+    {
+      "image_id": "ft_broccoli_steamed_train_07",
+      "file_path": "datasets/finetune/train/broccoli_steamed_train_07.jpg",
+      "canonical_id": "broccoli_steamed",
+      "split": "train",
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/5/52/Liat_Portal_for_Foodie_Disorder_-_Homemade_schnitzel_with_majadra_green_beans_and_broccoli.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "wikimedia_title": "File:Liat Portal for Foodie Disorder - Homemade schnitzel with majadra green beans and broccoli.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "<a rel=\"mw:WikiLink\" href=\"https://commons.wikimedia.org/wik",
+      "session_id": "session_broccoli_steamed_train_07",
+      "sha256": "54c9d7571b1d17c7c86a131b77f989b356dd7e410f839235b5fac66d1c0cbb76"
+    },
+    {
+      "image_id": "ft_broccoli_steamed_train_08",
+      "file_path": "datasets/finetune/train/broccoli_steamed_train_08.jpg",
+      "canonical_id": "broccoli_steamed",
+      "split": "train",
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/6/61/Liat_Portal_for_Foodie_Disorder_-_Roasted_Chicken_with_Seasonal_Vegetables.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "wikimedia_title": "File:Liat Portal for Foodie Disorder - Roasted Chicken with Seasonal Vegetables.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "<a href=\"//commons.wikimedia.org/w/index.php?title=User:HaJu",
+      "session_id": "session_broccoli_steamed_train_08",
+      "sha256": "748386a125541c29bb38192c55985802a3fafafb600ca978dac1451f09909e4a"
+    },
+    {
+      "image_id": "ft_broccoli_steamed_val_01",
+      "file_path": "datasets/finetune/val/broccoli_steamed_val_01.jpg",
+      "canonical_id": "broccoli_steamed",
+      "split": "val",
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/4/46/Liat_Portal_for_Foodie_Disorder_-_Roasted_chicken_with_cauliflower_broccoli_potatoes_rice_and_salad.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "wikimedia_title": "File:Liat Portal for Foodie Disorder - Roasted chicken with cauliflower broccoli potatoes rice and salad.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "<a href=\"//commons.wikimedia.org/w/index.php?title=User:HaJu",
+      "session_id": "session_broccoli_steamed_val_01",
+      "sha256": "3020278182fe200ca7f8b7d00cf904b103da048f634f9cd7838b8dd26168e624"
+    },
+    {
+      "image_id": "ft_broccoli_steamed_val_02",
+      "file_path": "datasets/finetune/val/broccoli_steamed_val_02.jpg",
+      "canonical_id": "broccoli_steamed",
+      "split": "val",
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/6/62/Liat_Portal_for_Foodie_Disorder_-_Roasted_chicken_with_vegetables_and_white_rice.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "wikimedia_title": "File:Liat Portal for Foodie Disorder - Roasted chicken with vegetables and white rice.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "<a href=\"//commons.wikimedia.org/w/index.php?title=User:HaJu",
+      "session_id": "session_broccoli_steamed_val_02",
+      "sha256": "18295c430bae9d5a7c7b4984197490b51312a479d3278ae20a0f651dd7e07f27"
+    },
+    {
+      "image_id": "ft_apple_fresh_raw_train_01",
+      "file_path": "datasets/finetune/train/apple_fresh_raw_train_01.jpg",
+      "canonical_id": "apple_fresh_raw",
+      "split": "train",
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/7/75/A_plate_serving_of_cheese_%2Ckiwi_%2Cgrapes%2Csalami_with_a_glass_of_apple_juice.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "wikimedia_title": "File:A plate serving of cheese ,kiwi ,grapes,salami with a glass of apple juice.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "<a href=\"//commons.wikimedia.org/wiki/User:Olgatladi2020\" ti",
+      "session_id": "session_apple_fresh_raw_train_01",
+      "sha256": "8268bf3099b6bf195f26b30e1417e6279b646d3e5db209d88044c316e53469cc"
+    },
+    {
+      "image_id": "ft_apple_fresh_raw_train_02",
+      "file_path": "datasets/finetune/train/apple_fresh_raw_train_02.jpg",
+      "canonical_id": "apple_fresh_raw",
+      "split": "train",
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/0/00/Exotic_Fruit_Plate%2C_Thorn_Tree_Cafe%2C_2025_%2801%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "wikimedia_title": "File:Exotic Fruit Plate, Thorn Tree Cafe, 2025 (01).jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "<a href=\"//commons.wikimedia.org/wiki/User:Bahnfrend\" title=",
+      "session_id": "session_apple_fresh_raw_train_02",
+      "sha256": "47495432fd7d2ba2bd23bbe85baf862787b9f15704c52aed9465473f4b2323ed"
+    },
+    {
+      "image_id": "ft_apple_fresh_raw_train_03",
+      "file_path": "datasets/finetune/train/apple_fresh_raw_train_03.jpg",
+      "canonical_id": "apple_fresh_raw",
+      "split": "train",
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/a/a1/Osias_Beert_-_Still_life_of_grapes_in_a_dish%2C_apples_in_a_silver_tazza_and_hazelnuts_and_medlars_on_pewter_plates%2C_on_a_wooden_table.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "wikimedia_title": "File:Osias Beert - Still life of grapes in a dish, apples in a silver tazza and hazelnuts and medlars on pewter plates, on a wooden table.jpg",
+      "license": "Public domain",
+      "author": "<bdi><a href=\"https://en.wikipedia.org/wiki/en:Osias_Beert\" ",
+      "session_id": "session_apple_fresh_raw_train_03",
+      "sha256": "107162a3a53ad005062710de802337a0c1a134d80637c1c623572ccf34b74c67"
+    },
+    {
+      "image_id": "ft_apple_fresh_raw_val_01",
+      "file_path": "datasets/finetune/val/apple_fresh_raw_val_01.jpg",
+      "canonical_id": "apple_fresh_raw",
+      "split": "val",
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/c/ce/Person_cuts_fresh_fruit_on_a_pink_plate_in_a_kitchen_setting.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "wikimedia_title": "File:Person cuts fresh fruit on a pink plate in a kitchen setting.jpg",
+      "license": "CC BY 2.0",
+      "author": "<a href=\"//commons.wikimedia.org/wiki/User:Shixart1985\" titl",
+      "session_id": "session_apple_fresh_raw_train_04",
+      "sha256": "85e269ad8275ab990d35de608533fecb2900d846ab2bfcf977e805b4256f3c17"
+    },
+    {
+      "image_id": "ft_apple_fresh_raw_val_02",
+      "file_path": "datasets/finetune/val/apple_fresh_raw_val_02.jpg",
+      "canonical_id": "apple_fresh_raw",
+      "split": "val",
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/2/2b/Person_peeling_a_green_apple_by_hand_at_a_table_during_food_preparation.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "wikimedia_title": "File:Person peeling a green apple by hand at a table during food preparation.jpg",
+      "license": "CC BY 2.0",
+      "author": "<a href=\"//commons.wikimedia.org/wiki/User:Shixart1985\" titl",
+      "session_id": "session_apple_fresh_raw_train_05",
+      "sha256": "6c4f711946b918976e9a9dd8a37aafda3859ca471d5afc92d445d31f6ed2b757"
+    },
+    {
+      "image_id": "ft_banana_raw_train_01",
+      "file_path": "datasets/finetune/train/banana_raw_train_01.jpg",
+      "canonical_id": "banana_raw",
+      "split": "train",
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/2/28/DFC_1274_Two_vendors_chat_behind_a_stall_piled_high_with_ripe_bananas_at_a_local_market.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "wikimedia_title": "File:DFC 1274 Two vendors chat behind a stall piled high with ripe bananas at a local market.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "<a rel=\"mw:ExtLink nofollow\" href=\"https://www.flickr.com/pe",
+      "session_id": "session_banana_raw_train_01",
+      "sha256": "f1e394b4889c7851a90c1b56faf20e0a396649fb0504a676ae9bf4054d824108"
+    },
+    {
+      "image_id": "ft_banana_raw_train_02",
+      "file_path": "datasets/finetune/train/banana_raw_train_02.jpg",
+      "canonical_id": "banana_raw",
+      "split": "train",
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/2/28/Fresh_Pomelos_Stacked_at_the_Local_Market.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "wikimedia_title": "File:Fresh Pomelos Stacked at the Local Market.jpg",
+      "license": "CC BY-SA 4.0",
+      "author": "<a href=\"//commons.wikimedia.org/wiki/User:PAULIX04\" title=\"",
+      "session_id": "session_banana_raw_train_02",
+      "sha256": "61d2b52ce29698c07dbbf871a65b4bc98ce841a01b3dd9c0f2557b9998fd1945"
+    },
+    {
+      "image_id": "ft_banana_raw_val_01",
+      "file_path": "datasets/finetune/val/banana_raw_val_01.jpg",
+      "canonical_id": "banana_raw",
+      "split": "val",
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/7/7c/Preparing_fresh_fruit_for_a_smoothie_in_a_bright_kitchen_space_with_colorful_ingredients_spread_across_a_countertop.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "wikimedia_title": "File:Preparing fresh fruit for a smoothie in a bright kitchen space with colorful ingredients spread across a countertop.jpg",
+      "license": "CC BY 2.0",
+      "author": "<a href=\"//commons.wikimedia.org/wiki/User:Shixart1985\" titl",
+      "session_id": "session_banana_raw_train_03",
+      "sha256": "b6bb19128df2b8ddd72fa9de922fd977ef2b50cdf8561ce099cff5c0f348b422"
+    },
+    {
+      "image_id": "ft_banana_raw_val_02",
+      "file_path": "datasets/finetune/val/banana_raw_val_02.jpg",
+      "canonical_id": "banana_raw",
+      "split": "val",
+      "source_url": "https://upload.wikimedia.org/wikipedia/commons/b/bc/Slices_of_ripe_peaches%2C_bananas%2C_and_green_melon_are_neatly_arranged_on_a_pink_plate%2C_showcasing_a_colorful_and_healthy_snack_ideal_for_a_warm_day.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "wikimedia_title": "File:Slices of ripe peaches, bananas, and green melon are neatly arranged on a pink plate, showcasing a colorful and healthy snack ideal for a warm day.jpg",
+      "license": "CC BY 2.0",
+      "author": "<a href=\"//commons.wikimedia.org/wiki/User:Shixart1985\" titl",
+      "session_id": "session_banana_raw_train_04",
+      "sha256": "4a37910680483ca1f01be04d86ed8110fa780358b1c342e12d5bf96b6bc9ec0e"
+    }
+  ]
+}

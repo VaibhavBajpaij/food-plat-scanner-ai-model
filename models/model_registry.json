@@ -97,6 +97,64 @@
       },
       "status": "rejected_commercial_and_vram_incompatible",
       "audit_notes": "Rejected: Violates commercial redistribution requirements and exceeds VRAM/RAM constraints for 2GB Android target."
+    },
+    {
+      "id": "mobilenet_v3_food_head_only",
+      "canonical_name": "MobileNetV3-Small (5-Class Food Classifier Head-Only)",
+      "official_source": "models/checkpoints/mobilenet_v3_food_head_only.pth",
+      "task": "food_classification_5class_head_only",
+      "license": "Apache-2.0 (Derived from Torchvision MobileNetV3-Small)",
+      "commercial_use_allowed": true,
+      "redistribution_allowed": true,
+      "parameters_count": 1523317,
+      "trainable_parameters": 5125,
+      "frozen_parameters": 1518192,
+      "file_size_mb": 5.94,
+      "classes": [
+        "apple_fresh_raw",
+        "banana_raw",
+        "broccoli_steamed",
+        "chicken_breast_grilled",
+        "rice_white_cooked"
+      ],
+      "training_split": "train: 22 images, val: 10 images",
+      "best_val_accuracy": 0.50,
+      "mobile_target_compatibility": {
+        "onnx_exportable": true,
+        "litert_tflite_exportable": true,
+        "int8_quantization_supported": true,
+        "fits_2gb_android_ram": true
+      },
+      "status": "trained_experimental_checkpoint"
+    },
+    {
+      "id": "mobilenet_v3_food_finetuned",
+      "canonical_name": "MobileNetV3-Small (5-Class Food Classifier Upper-Bottleneck Fine-Tuned)",
+      "official_source": "models/checkpoints/mobilenet_v3_food_finetuned.pth",
+      "task": "food_classification_5class_staged_finetuned",
+      "license": "Apache-2.0 (Derived from Torchvision MobileNetV3-Small)",
+      "commercial_use_allowed": true,
+      "redistribution_allowed": true,
+      "parameters_count": 1523317,
+      "trainable_parameters": 560613,
+      "frozen_parameters": 962704,
+      "file_size_mb": 5.94,
+      "classes": [
+        "apple_fresh_raw",
+        "banana_raw",
+        "broccoli_steamed",
+        "chicken_breast_grilled",
+        "rice_white_cooked"
+      ],
+      "training_split": "train: 22 images, val: 10 images",
+      "best_val_accuracy": 0.40,
+      "mobile_target_compatibility": {
+        "onnx_exportable": true,
+        "litert_tflite_exportable": true,
+        "int8_quantization_supported": true,
+        "fits_2gb_android_ram": true
+      },
+      "status": "trained_experimental_checkpoint"
     }
   ]
 }
