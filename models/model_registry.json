@@ -1,0 +1,102 @@
+{
+  "version": "1.0.0",
+  "generated_at": "2026-10-23T02:20:00Z",
+  "models": [
+    {
+      "id": "mobilenet_v3_small",
+      "canonical_name": "MobileNetV3-Small (ImageNet-1k)",
+      "official_source": "torchvision.models.mobilenet_v3_small(weights='DEFAULT')",
+      "task": "food_classification_baseline",
+      "license": "Apache-2.0",
+      "commercial_use_allowed": true,
+      "redistribution_allowed": true,
+      "parameters_count": 2542856,
+      "file_size_mb": 10.2,
+      "peak_vram_mb": 140,
+      "mobile_target_compatibility": {
+        "onnx_exportable": true,
+        "litert_tflite_exportable": true,
+        "int8_quantization_supported": true,
+        "fits_2gb_android_ram": true
+      },
+      "status": "selected_primary_mobile_baseline"
+    },
+    {
+      "id": "dinov2_small",
+      "canonical_name": "DINOv2-Small (ViT-S/14)",
+      "official_source": "torch.hub.load('facebookresearch/dinov2', 'dinov2_vits14')",
+      "task": "dense_visual_representation_and_few_shot_classification",
+      "license": "Apache-2.0",
+      "commercial_use_allowed": true,
+      "redistribution_allowed": true,
+      "parameters_count": 21671424,
+      "file_size_mb": 86.7,
+      "peak_vram_mb": 520,
+      "mobile_target_compatibility": {
+        "onnx_exportable": true,
+        "litert_tflite_exportable": true,
+        "int8_quantization_supported": true,
+        "fits_2gb_android_ram": true
+      },
+      "status": "selected_primary_feature_extractor"
+    },
+    {
+      "id": "mobilesam_tinyvit",
+      "canonical_name": "MobileSAM (TinyViT Image Encoder + SAM Decoder)",
+      "official_source": "https://github.com/ChaoningZhang/MobileSAM",
+      "task": "promptable_food_segmentation",
+      "license": "Apache-2.0",
+      "commercial_use_allowed": true,
+      "redistribution_allowed": true,
+      "parameters_count": 9800000,
+      "file_size_mb": 40.0,
+      "peak_vram_mb": 650,
+      "mobile_target_compatibility": {
+        "onnx_exportable": true,
+        "litert_tflite_exportable": true,
+        "int8_quantization_supported": true,
+        "fits_2gb_android_ram": true
+      },
+      "status": "selected_primary_segmenter"
+    },
+    {
+      "id": "depth_anything_v2_small",
+      "canonical_name": "Depth Anything V2 Small (ViT-Small Depth)",
+      "official_source": "https://github.com/DepthAnything/Depth-Anything-V2",
+      "task": "monocular_depth_estimation_fusion",
+      "license": "Apache-2.0",
+      "commercial_use_allowed": true,
+      "redistribution_allowed": true,
+      "parameters_count": 24800000,
+      "file_size_mb": 99.2,
+      "peak_vram_mb": 580,
+      "mobile_target_compatibility": {
+        "onnx_exportable": true,
+        "litert_tflite_exportable": true,
+        "int8_quantization_supported": true,
+        "fits_2gb_android_ram": true
+      },
+      "status": "selected_primary_depth_model"
+    },
+    {
+      "id": "foodsam_mmseg",
+      "canonical_name": "FoodSAM (MMLab / Academic)",
+      "official_source": "https://github.com/Xiong-Z/FoodSAM",
+      "task": "food_instance_segmentation_research",
+      "license": "GPL-3.0 / Academic Non-Commercial",
+      "commercial_use_allowed": false,
+      "redistribution_allowed": false,
+      "parameters_count": 350000000,
+      "file_size_mb": 1400.0,
+      "peak_vram_mb": 3800,
+      "mobile_target_compatibility": {
+        "onnx_exportable": false,
+        "litert_tflite_exportable": false,
+        "int8_quantization_supported": false,
+        "fits_2gb_android_ram": false
+      },
+      "status": "rejected_commercial_and_vram_incompatible",
+      "audit_notes": "Rejected: Violates commercial redistribution requirements and exceeds VRAM/RAM constraints for 2GB Android target."
+    }
+  ]
+}

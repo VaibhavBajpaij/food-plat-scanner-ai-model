@@ -1,0 +1,82 @@
+{
+  "version": "1.0.0",
+  "generated_at": "2026-10-23T02:20:00Z",
+  "governance_policy": "Dual-Track License Isolation (Strict Quarantine of Academic Datasets from Deployable Commercial Components)",
+  "datasets": [
+    {
+      "id": "usda_fooddata_central",
+      "canonical_name": "USDA FoodData Central Foundation Foods & FNDDS",
+      "official_source": "https://fdc.nal.usda.gov/",
+      "license": "Public Domain (U.S. Government Work / 17 U.S.C. § 105)",
+      "commercial_use_allowed": true,
+      "redistribution_allowed": true,
+      "annotation_types": ["chemical_analysis_nutrients", "portion_weights", "bulk_densities"],
+      "geographic_coverage": ["United States", "Global food commodities"],
+      "cuisine_coverage": ["General", "Western", "Global staple commodities"],
+      "entry_count": 8200,
+      "local_path": "data_manifests/fdc_foundation_foods.json",
+      "status": "active_deployable",
+      "provenance_notes": "Official public domain nutritional ground truth produced by the USDA Agricultural Research Service."
+    },
+    {
+      "id": "empirical_food_density_registry",
+      "canonical_name": "USDA & FAO Food Density and Portion Registry",
+      "official_source": "https://data.nal.usda.gov/dataset/food-and-nutrient-database-dietary-studies-fndds",
+      "license": "Public Domain (U.S. Government Work)",
+      "commercial_use_allowed": true,
+      "redistribution_allowed": true,
+      "annotation_types": ["density_distributions_g_per_cm3", "standard_uncertainty_sigma"],
+      "geographic_coverage": ["Global"],
+      "cuisine_coverage": ["Global staples: grains, legumes, proteins, produce, liquids, baked goods"],
+      "entry_count": 120,
+      "local_path": "data_manifests/density_registry.json",
+      "status": "active_deployable",
+      "provenance_notes": "Compiled from verified USDA FNDDS volume-to-weight conversions and FAO food composition guidelines."
+    },
+    {
+      "id": "food101_benchmark_subset",
+      "canonical_name": "Food-101 Benchmark (ETH Zurich)",
+      "official_source": "https://data.vision.ee.ethz.ch/cvl/datasets_extra/food-101/",
+      "license": "Non-Commercial / Academic Research Only (Photographer copyrights apply)",
+      "commercial_use_allowed": false,
+      "redistribution_allowed": false,
+      "annotation_types": ["image_level_classification_labels"],
+      "geographic_coverage": ["North America", "Europe", "Asia"],
+      "cuisine_coverage": ["101 food classes"],
+      "entry_count": 1000,
+      "local_path": "datasets/raw/food101_subset/",
+      "status": "quarantined_academic_benchmark",
+      "provenance_notes": "Images scraped from foodspotting.com for ECCV 2014 paper. Commercial use is explicitly prohibited."
+    },
+    {
+      "id": "nutrition5k_benchmark_subset",
+      "canonical_name": "Nutrition5k (Google Research)",
+      "official_source": "https://github.com/google-research-datasets/Nutrition5k",
+      "license": "CC BY-NC 4.0 (Creative Commons Non-Commercial 4.0)",
+      "commercial_use_allowed": false,
+      "redistribution_allowed": false,
+      "annotation_types": ["overhead_video", "depth_map", "mass_grams", "calories_kcal", "macronutrients"],
+      "geographic_coverage": ["United States cafeteria dishes"],
+      "cuisine_coverage": ["5000 real prepared dishes"],
+      "entry_count": 50,
+      "local_path": "datasets/raw/nutrition5k_subset/",
+      "status": "quarantined_academic_benchmark",
+      "provenance_notes": "Real plate scans with industrial scale measurements. Quarantined for offline validation only."
+    },
+    {
+      "id": "foodseg103_benchmark",
+      "canonical_name": "FoodSeg103 Ingredient Segmentation Benchmark",
+      "official_source": "https://github.com/LARC-CMU-SMU/FoodSeg103-Benchmark-v1",
+      "license": "Academic Research Use Only",
+      "commercial_use_allowed": false,
+      "redistribution_allowed": false,
+      "annotation_types": ["pixel_level_semantic_segmentation_masks"],
+      "geographic_coverage": ["Global"],
+      "cuisine_coverage": ["103 ingredient categories"],
+      "entry_count": 100,
+      "local_path": "datasets/raw/foodseg103_subset/",
+      "status": "quarantined_academic_benchmark",
+      "provenance_notes": "Used solely for calculating baseline mIoU segmentation metrics."
+    }
+  ]
+}

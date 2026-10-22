@@ -1,0 +1,109 @@
+{
+  "version": "1.0.0",
+  "citation": "USDA National Nutrient Database & FAO Agricultural Services Bulletin No. 106",
+  "description": "Bulk empirical density values (mean ± standard deviation) in g/cm3 for food mass estimation",
+  "density_records": {
+    "apple_fresh_raw": {
+      "mean_g_per_cm3": 0.81,
+      "std_g_per_cm3": 0.04,
+      "edible_fraction": 0.90,
+      "notes": "Red Delicious / Gala / Fuji raw whole fruit bulk density with air pockets."
+    },
+    "banana_raw": {
+      "mean_g_per_cm3": 0.94,
+      "std_g_per_cm3": 0.05,
+      "edible_fraction": 0.68,
+      "notes": "Peeled edible flesh density."
+    },
+    "orange_raw": {
+      "mean_g_per_cm3": 0.87,
+      "std_g_per_cm3": 0.05,
+      "edible_fraction": 0.73,
+      "notes": "Raw orange flesh bulk density."
+    },
+    "rice_white_cooked": {
+      "mean_g_per_cm3": 0.82,
+      "std_g_per_cm3": 0.07,
+      "edible_fraction": 1.00,
+      "notes": "Cooked medium/long grain white rice packed on plate with interstitial voids."
+    },
+    "rice_brown_cooked": {
+      "mean_g_per_cm3": 0.80,
+      "std_g_per_cm3": 0.06,
+      "edible_fraction": 1.00,
+      "notes": "Cooked whole grain brown rice."
+    },
+    "bread_white_sliced": {
+      "mean_g_per_cm3": 0.28,
+      "std_g_per_cm3": 0.04,
+      "edible_fraction": 1.00,
+      "notes": "Porous cellular crumb structure."
+    },
+    "roti_chapati": {
+      "mean_g_per_cm3": 0.65,
+      "std_g_per_cm3": 0.08,
+      "edible_fraction": 1.00,
+      "notes": "Whole wheat flatbread cooked on griddle."
+    },
+    "chicken_breast_grilled": {
+      "mean_g_per_cm3": 1.04,
+      "std_g_per_cm3": 0.05,
+      "edible_fraction": 1.00,
+      "notes": "Boneless, skinless cooked lean muscle tissue."
+    },
+    "egg_boiled": {
+      "mean_g_per_cm3": 1.05,
+      "std_g_per_cm3": 0.03,
+      "edible_fraction": 1.00,
+      "notes": "Hard boiled whole egg without shell."
+    },
+    "salmon_cooked": {
+      "mean_g_per_cm3": 1.02,
+      "std_g_per_cm3": 0.04,
+      "edible_fraction": 1.00,
+      "notes": "Cooked fillet."
+    },
+    "potato_boiled": {
+      "mean_g_per_cm3": 0.92,
+      "std_g_per_cm3": 0.06,
+      "edible_fraction": 1.00,
+      "notes": "Cooked without skin."
+    },
+    "broccoli_steamed": {
+      "mean_g_per_cm3": 0.46,
+      "std_g_per_cm3": 0.06,
+      "edible_fraction": 1.00,
+      "notes": "Cooked florets with substantial interstitial air voids."
+    },
+    "carrot_raw": {
+      "mean_g_per_cm3": 0.89,
+      "std_g_per_cm3": 0.05,
+      "edible_fraction": 1.00,
+      "notes": "Raw sliced/chopped root tissue."
+    },
+    "soup_vegetable_broth": {
+      "mean_g_per_cm3": 1.03,
+      "std_g_per_cm3": 0.03,
+      "edible_fraction": 1.00,
+      "notes": "Liquid aqueous broth with dissolved solids."
+    },
+    "yogurt_plain": {
+      "mean_g_per_cm3": 1.08,
+      "std_g_per_cm3": 0.03,
+      "edible_fraction": 1.00,
+      "notes": "Semi-solid dairy emulsion."
+    },
+    "dal_lentil_curry": {
+      "mean_g_per_cm3": 0.98,
+      "std_g_per_cm3": 0.06,
+      "edible_fraction": 1.00,
+      "notes": "Cooked yellow/red lentils in spiced gravy."
+    },
+    "unknown_solid_food": {
+      "mean_g_per_cm3": 0.85,
+      "std_g_per_cm3": 0.20,
+      "edible_fraction": 1.00,
+      "notes": "Uncertain prior for unclassified solid food composite."
+    }
+  }
+}

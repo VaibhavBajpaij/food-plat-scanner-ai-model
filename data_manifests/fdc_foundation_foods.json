@@ -1,0 +1,131 @@
+{
+  "source": "USDA FoodData Central (Agricultural Research Service)",
+  "terms": "Public Domain (17 U.S.C. § 105)",
+  "reference_basis": "100g edible portion",
+  "foods": {
+    "apple_fresh_raw": {
+      "fdc_id": 171688,
+      "description": "Apples, raw, with skin (Includes foods for USDA's Food Distribution Program)",
+      "nutrients_per_100g": {
+        "energy_kcal": 52.0,
+        "protein_g": 0.26,
+        "total_fat_g": 0.17,
+        "saturated_fat_g": 0.028,
+        "trans_fat_g": "NOT_MEASURABLE_VISUALLY",
+        "carbohydrates_g": 13.81,
+        "dietary_fiber_g": 2.4,
+        "total_sugars_g": 10.39,
+        "sodium_mg": 1.0,
+        "potassium_mg": 107.0,
+        "vitamin_c_mg": 4.6
+      },
+      "preparation_assumptions": "Raw, whole fruit with skin; no added sugars or cooking fats."
+    },
+    "banana_raw": {
+      "fdc_id": 173944,
+      "description": "Bananas, raw",
+      "nutrients_per_100g": {
+        "energy_kcal": 89.0,
+        "protein_g": 1.09,
+        "total_fat_g": 0.33,
+        "saturated_fat_g": 0.112,
+        "trans_fat_g": "NOT_MEASURABLE_VISUALLY",
+        "carbohydrates_g": 22.84,
+        "dietary_fiber_g": 2.6,
+        "total_sugars_g": 12.23,
+        "sodium_mg": 1.0,
+        "potassium_mg": 358.0,
+        "vitamin_c_mg": 8.7
+      },
+      "preparation_assumptions": "Raw peeled edible flesh; no added ingredients."
+    },
+    "orange_raw": {
+      "fdc_id": 169097,
+      "description": "Oranges, raw, all commercial varieties",
+      "nutrients_per_100g": {
+        "energy_kcal": 47.0,
+        "protein_g": 0.94,
+        "total_fat_g": 0.12,
+        "saturated_fat_g": 0.015,
+        "trans_fat_g": "NOT_MEASURABLE_VISUALLY",
+        "carbohydrates_g": 11.75,
+        "dietary_fiber_g": 2.4,
+        "total_sugars_g": 9.35,
+        "sodium_mg": 0.0,
+        "potassium_mg": 181.0,
+        "vitamin_c_mg": 53.2
+      },
+      "preparation_assumptions": "Raw peeled orange segments."
+    },
+    "rice_white_cooked": {
+      "fdc_id": 168878,
+      "description": "Rice, white, long-grain, regular, unenriched, cooked without salt",
+      "nutrients_per_100g": {
+        "energy_kcal": 130.0,
+        "protein_g": 2.69,
+        "total_fat_g": 0.28,
+        "saturated_fat_g": 0.077,
+        "trans_fat_g": "NOT_MEASURABLE_VISUALLY",
+        "carbohydrates_g": 28.17,
+        "dietary_fiber_g": 0.4,
+        "total_sugars_g": 0.05,
+        "sodium_mg": 1.0,
+        "potassium_mg": 35.0,
+        "vitamin_c_mg": 0.0
+      },
+      "preparation_assumptions": "Boiled in water without added fat or butter; add recipe adjustment if fried."
+    },
+    "chicken_breast_grilled": {
+      "fdc_id": 171477,
+      "description": "Chicken, broilers or fryers, breast, meat only, cooked, roasted",
+      "nutrients_per_100g": {
+        "energy_kcal": 165.0,
+        "protein_g": 31.02,
+        "total_fat_g": 3.57,
+        "saturated_fat_g": 1.01,
+        "trans_fat_g": "NOT_MEASURABLE_VISUALLY",
+        "carbohydrates_g": 0.0,
+        "dietary_fiber_g": 0.0,
+        "total_sugars_g": 0.0,
+        "sodium_mg": 74.0,
+        "potassium_mg": 256.0,
+        "iron_mg": 1.04
+      },
+      "preparation_assumptions": "Lean grilled muscle without skin; unmeasured cooking oil requires user recipe prompt."
+    },
+    "broccoli_steamed": {
+      "fdc_id": 170379,
+      "description": "Broccoli, cooked, boiled, drained, without salt",
+      "nutrients_per_100g": {
+        "energy_kcal": 35.0,
+        "protein_g": 2.38,
+        "total_fat_g": 0.41,
+        "saturated_fat_g": 0.048,
+        "trans_fat_g": "NOT_MEASURABLE_VISUALLY",
+        "carbohydrates_g": 7.18,
+        "dietary_fiber_g": 3.3,
+        "total_sugars_g": 1.39,
+        "sodium_mg": 41.0,
+        "potassium_mg": 293.0,
+        "vitamin_c_mg": 64.9
+      },
+      "preparation_assumptions": "Steamed florets without added butter or cheese sauce."
+    },
+    "unknown_solid_food": {
+      "fdc_id": null,
+      "description": "Generic solid food composite baseline",
+      "nutrients_per_100g": {
+        "energy_kcal": 150.0,
+        "protein_g": "MISSING_DATA",
+        "total_fat_g": "MISSING_DATA",
+        "saturated_fat_g": "MISSING_DATA",
+        "trans_fat_g": "MISSING_DATA",
+        "carbohydrates_g": "MISSING_DATA",
+        "dietary_fiber_g": "MISSING_DATA",
+        "total_sugars_g": "MISSING_DATA",
+        "sodium_mg": "MISSING_DATA"
+      },
+      "preparation_assumptions": "Uncertain composite; detailed nutrients require confirmed classification."
+    }
+  }
+}

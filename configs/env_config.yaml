@@ -1,0 +1,35 @@
+# System and Hardware Budget Configuration
+environment:
+  device_name: "NVIDIA GeForce RTX 2050 Laptop GPU"
+  total_vram_mb: 4096
+  safety_vram_limit_mb: 3500
+  driver_version: "617.14"
+  cuda_version: "12.4"
+  python_version: "3.13"
+  workspace_drive: "D:"
+  min_disk_free_gb: 15.0
+
+mlops_governance:
+  dual_track_licensing: true
+  allow_academic_benchmarks: true
+  commercial_export_only_clean: true
+
+execution_budget:
+  default_batch_size: 8
+  gradient_accumulation_steps: 4
+  mixed_precision: true
+  amp_dtype: "float16"
+  max_image_resolution: 512
+
+reconstruction:
+  keyframe_laplacian_threshold: 100.0
+  optical_flow_min_magnitude: 2.5
+  default_plate_diameter_cm: 24.0
+  fallback_camera_height_cm: 35.0
+
+mobile_target:
+  target_ram_mb: 2048
+  max_model_ram_mb: 150
+  preferred_formats:
+    - "onnx_int8"
+    - "litert_tflite_int8"

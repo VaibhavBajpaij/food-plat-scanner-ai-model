@@ -1,0 +1,31 @@
+# Python Virtual Environments
+.venv/
+venv/
+ENV/
+env/
+
+# Byte-compiled / optimized files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# PyTorch checkpoints and large model weights (keep these out of Git)
+models/checkpoints/*.pt
+models/checkpoints/*.pth
+models/checkpoints/*.bin
+models/checkpoints/*.onnx
+models/checkpoints/*.tflite
+
+# Large raw datasets
+datasets/raw/*
+!datasets/raw/sample_plate_apple.png
+datasets/processed/*
+
+# OS generated files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs and temporary files
+*.log
+outputs/reconstructions/*

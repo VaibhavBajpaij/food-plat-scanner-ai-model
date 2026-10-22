@@ -1,0 +1,116 @@
+{
+  "version": "1.0.0",
+  "taxonomy_name": "Unified Multi-Regional Food Taxonomy",
+  "classes": [
+    {
+      "canonical_id": "apple_fresh_raw",
+      "canonical_name_en": "Fresh Apple (Raw)",
+      "scientific_name": "Malus domestica",
+      "regional_aliases": {
+        "en": ["apple", "red apple", "green apple", "gala apple"],
+        "hi": ["seb", "सेब"],
+        "zh": ["pingguo", "苹果"],
+        "es": ["manzana"]
+      },
+      "cuisine_origin": "Global",
+      "food_group": "fruits_and_fruit_juices",
+      "fdc_foundation_id": 171688,
+      "density_ref_id": "apple_fresh_raw",
+      "food101_class_name": "apple_pie"
+    },
+    {
+      "canonical_id": "banana_raw",
+      "canonical_name_en": "Fresh Banana (Raw)",
+      "scientific_name": "Musa acuminata",
+      "regional_aliases": {
+        "en": ["banana", "yellow banana", "cavendish banana"],
+        "hi": ["kela", "केला"],
+        "zh": ["xiangjiao", "香蕉"],
+        "es": ["platano", "banana"]
+      },
+      "cuisine_origin": "Global",
+      "food_group": "fruits_and_fruit_juices",
+      "fdc_foundation_id": 173944,
+      "density_ref_id": "banana_raw",
+      "food101_class_name": null
+    },
+    {
+      "canonical_id": "orange_raw",
+      "canonical_name_en": "Orange (Raw)",
+      "scientific_name": "Citrus sinensis",
+      "regional_aliases": {
+        "en": ["orange", "sweet orange", "navel orange"],
+        "hi": ["santara", "संतरा", "narangi"],
+        "zh": ["chengzi", "橙子"],
+        "es": ["naranja"]
+      },
+      "cuisine_origin": "Global",
+      "food_group": "fruits_and_fruit_juices",
+      "fdc_foundation_id": 169097,
+      "density_ref_id": "orange_raw",
+      "food101_class_name": null
+    },
+    {
+      "canonical_id": "rice_white_cooked",
+      "canonical_name_en": "Steamed White Rice",
+      "scientific_name": "Oryza sativa",
+      "regional_aliases": {
+        "en": ["steamed rice", "white rice", "boiled rice", "jasmine rice"],
+        "hi": ["chawal", "चावल", "bhat"],
+        "zh": ["mifan", "米饭", "bai fan"],
+        "ja": ["gohan", "ご飯"],
+        "es": ["arroz blanco"]
+      },
+      "cuisine_origin": "Asian / Global Staple",
+      "food_group": "cereal_grains_and_pasta",
+      "fdc_foundation_id": 168878,
+      "density_ref_id": "rice_white_cooked",
+      "food101_class_name": "fried_rice"
+    },
+    {
+      "canonical_id": "chicken_breast_grilled",
+      "canonical_name_en": "Grilled Chicken Breast",
+      "scientific_name": "Gallus gallus domesticus",
+      "regional_aliases": {
+        "en": ["grilled chicken", "roasted chicken breast", "chicken fillet"],
+        "hi": ["murgh tikka", "चिकन", "roast chicken"],
+        "zh": ["kaoji", "烤鸡胸肉"],
+        "es": ["pechuga de pollo a la plancha"]
+      },
+      "cuisine_origin": "Global",
+      "food_group": "poultry_products",
+      "fdc_foundation_id": 171477,
+      "density_ref_id": "chicken_breast_grilled",
+      "food101_class_name": null
+    },
+    {
+      "canonical_id": "broccoli_steamed",
+      "canonical_name_en": "Steamed Broccoli",
+      "scientific_name": "Brassica oleracea var. italica",
+      "regional_aliases": {
+        "en": ["broccoli", "steamed broccoli", "cooked broccoli"],
+        "hi": ["hari gobhi", "ब्रोकोली"],
+        "zh": ["xilanhua", "西兰花"],
+        "es": ["brocoli al vapor"]
+      },
+      "cuisine_origin": "Global",
+      "food_group": "vegetables_and_vegetable_products",
+      "fdc_foundation_id": 170379,
+      "density_ref_id": "broccoli_steamed",
+      "food101_class_name": null
+    },
+    {
+      "canonical_id": "unknown_solid_food",
+      "canonical_name_en": "Unidentified Food Component",
+      "scientific_name": null,
+      "regional_aliases": {
+        "en": ["unknown food", "food item", "unclassified dish"]
+      },
+      "cuisine_origin": "Unknown",
+      "food_group": "unclassified",
+      "fdc_foundation_id": null,
+      "density_ref_id": "unknown_solid_food",
+      "food101_class_name": null
+    }
+  ]
+}
