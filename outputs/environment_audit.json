@@ -1,0 +1,23 @@
+{
+  "status": "PASS",
+  "python_version": "3.13.9 (tags/v3.13.9:8183fa5, Oct 14 2025, 14:09:13) [MSC v.1944 64 bit (AMD64)]",
+  "platform": "win32",
+  "cuda_available": true,
+  "device_count": 1,
+  "devices": [
+    {
+      "device_id": 0,
+      "name": "NVIDIA GeForce RTX 2050",
+      "total_vram_mb": 4095.56,
+      "compute_capability": "8.6",
+      "multi_processor_count": 16
+    }
+  ],
+  "disk_info_d_drive": {
+    "total_gb": 97.25,
+    "used_gb": 16.43,
+    "free_gb": 80.82
+  },
+  "errors": [],
+  "torch_version": "2.6.0+cu124"
+}

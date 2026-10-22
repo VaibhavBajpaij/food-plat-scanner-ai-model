@@ -1,0 +1,218 @@
+{
+  "timestamp": "2026-10-22T21:16:33Z",
+  "phase": "Phase 0 - Pre-training Baseline & Audit",
+  "environment": {
+    "status": "PASS",
+    "python_version": "3.13.9 (tags/v3.13.9:8183fa5, Oct 14 2025, 14:09:13) [MSC v.1944 64 bit (AMD64)]",
+    "platform": "win32",
+    "cuda_available": true,
+    "device_count": 1,
+    "devices": [
+      {
+        "device_id": 0,
+        "name": "NVIDIA GeForce RTX 2050",
+        "total_vram_mb": 4095.56,
+        "compute_capability": "8.6",
+        "multi_processor_count": 16
+      }
+    ],
+    "disk_info_d_drive": {
+      "total_gb": 97.25,
+      "used_gb": 16.43,
+      "free_gb": 80.82
+    },
+    "errors": [],
+    "torch_version": "2.6.0+cu124"
+  },
+  "sample_ground_truth": {
+    "output_path": "D:\\health app\\plat scaning ml mode\\datasets\\raw\\sample_plate_apple.png",
+    "nominal_plate_diameter_cm": 24.0,
+    "measured_plate_diameter_px": 380,
+    "ground_truth_food": "apple_fresh_raw",
+    "ground_truth_diameter_cm": 7.6,
+    "ground_truth_volume_cm3": 229.85,
+    "license": "Public Domain (Procedurally Generated)"
+  },
+  "classification": {
+    "model_name": "mobilenet_v3_small",
+    "device": "cuda",
+    "image_path": "D:\\health app\\plat scaning ml mode\\datasets\\raw\\sample_plate_apple.png",
+    "latency_ms": 21.29,
+    "peak_vram_mb": 20.42,
+    "top5_predictions": [
+      {
+        "rank": 1,
+        "category_id": 605,
+        "category_name": "iPod",
+        "probability": 0.4359
+      },
+      {
+        "rank": 2,
+        "category_id": 923,
+        "category_name": "plate",
+        "probability": 0.1217
+      },
+      {
+        "rank": 3,
+        "category_id": 868,
+        "category_name": "tray",
+        "probability": 0.0332
+      },
+      {
+        "rank": 4,
+        "category_id": 861,
+        "category_name": "toilet seat",
+        "probability": 0.0323
+      },
+      {
+        "rank": 5,
+        "category_id": 778,
+        "category_name": "scale",
+        "probability": 0.0293
+      }
+    ]
+  },
+  "scale_and_volume": {
+    "plate_diameter_nominal_cm": 24.0,
+    "plate_diameter_measured_px": 380,
+    "scale_px_per_cm": 15.833,
+    "measured_food_diameter_cm": 7.58,
+    "estimated_volume_cm3": 227.94,
+    "volume_std_cm3": 13.68,
+    "volume_error_vs_ground_truth_pct": 0.83
+  },
+  "nutrition_and_mass": {
+    "query": "apple",
+    "canonical_id": "apple_fresh_raw",
+    "canonical_name": "Fresh Apple (Raw)",
+    "classification_confidence": 0.436,
+    "estimated_volume_cm3": {
+      "mean": 227.94,
+      "std": 13.68
+    },
+    "density_g_per_cm3": {
+      "mean": 0.81,
+      "std": 0.04
+    },
+    "estimated_mass_grams": {
+      "mean": 184.6,
+      "std": 14.3,
+      "95_ci": [
+        156.5,
+        212.8
+      ]
+    },
+    "nutrients_per_100g": {
+      "energy_kcal": 52.0,
+      "protein_g": 0.26,
+      "total_fat_g": 0.17,
+      "saturated_fat_g": 0.028,
+      "trans_fat_g": "NOT_MEASURABLE_VISUALLY",
+      "carbohydrates_g": 13.81,
+      "dietary_fiber_g": 2.4,
+      "total_sugars_g": 10.39,
+      "sodium_mg": 1.0,
+      "potassium_mg": 107.0,
+      "vitamin_c_mg": 4.6
+    },
+    "estimated_portion_nutrients": {
+      "energy_kcal": {
+        "estimate": 96.01,
+        "uncertainty_std": 7.46,
+        "95_ci": [
+          81.39,
+          110.63
+        ],
+        "unit": "kcal"
+      },
+      "protein_g": {
+        "estimate": 0.48,
+        "uncertainty_std": 0.04,
+        "95_ci": [
+          0.4,
+          0.56
+        ],
+        "unit": "g"
+      },
+      "total_fat_g": {
+        "estimate": 0.31,
+        "uncertainty_std": 0.02,
+        "95_ci": [
+          0.27,
+          0.35
+        ],
+        "unit": "g"
+      },
+      "saturated_fat_g": {
+        "estimate": 0.05,
+        "uncertainty_std": 0.0,
+        "95_ci": [
+          0.05,
+          0.05
+        ],
+        "unit": "g"
+      },
+      "trans_fat_g": {
+        "estimate": "NOT_MEASURABLE_VISUALLY",
+        "status": "UNMEASURED_OR_HIDDEN_FACTOR"
+      },
+      "carbohydrates_g": {
+        "estimate": 25.5,
+        "uncertainty_std": 1.98,
+        "95_ci": [
+          21.62,
+          29.38
+        ],
+        "unit": "g"
+      },
+      "dietary_fiber_g": {
+        "estimate": 4.43,
+        "uncertainty_std": 0.34,
+        "95_ci": [
+          3.76,
+          5.1
+        ],
+        "unit": "g"
+      },
+      "total_sugars_g": {
+        "estimate": 19.18,
+        "uncertainty_std": 1.49,
+        "95_ci": [
+          16.26,
+          22.1
+        ],
+        "unit": "g"
+      },
+      "sodium_mg": {
+        "estimate": 1.85,
+        "uncertainty_std": 0.14,
+        "95_ci": [
+          1.58,
+          2.12
+        ],
+        "unit": "mg"
+      },
+      "potassium_mg": {
+        "estimate": 197.56,
+        "uncertainty_std": 15.35,
+        "95_ci": [
+          167.47,
+          227.65
+        ],
+        "unit": "mg"
+      },
+      "vitamin_c_mg": {
+        "estimate": 8.49,
+        "uncertainty_std": 0.66,
+        "95_ci": [
+          7.2,
+          9.78
+        ],
+        "unit": "mg"
+      }
+    },
+    "preparation_assumptions": "Raw, whole fruit with skin; no added sugars or cooking fats.",
+    "uncertainty_model": "Analytical Gaussian propagation: sigma_M = sqrt(V^2*sigma_rho^2 + rho^2*sigma_V^2)"
+  },
+  "audit_pass": true
+}
