@@ -1,0 +1,36 @@
+{
+  "status": "VERIFIED_REPRODUCIBLE",
+  "device": "cuda",
+  "split_counts": {
+    "train": 80,
+    "val": 20,
+    "test": 25
+  },
+  "leakage_audit": {
+    "hash_collisions": 0,
+    "url_collisions": 0,
+    "session_collisions": 0
+  },
+  "metrics": {
+    "Candidate_A_Original_Pretrained": {
+      "accuracy": 0.12,
+      "macro_f1": 0.1333,
+      "rice_recall": 0.0
+    },
+    "Candidate_B_Existing_Head_Only": {
+      "accuracy": 0.28,
+      "macro_f1": 0.2271,
+      "rice_recall": 0.0
+    },
+    "Candidate_C_Improved_Head_Only": {
+      "accuracy": 0.48,
+      "macro_f1": 0.46,
+      "rice_recall": 0.0
+    },
+    "Candidate_D_Staged_Fine_Tuned": {
+      "accuracy": 0.48,
+      "macro_f1": 0.46,
+      "rice_recall": 0.0
+    }
+  }
+}

@@ -77,6 +77,36 @@
       "local_path": "datasets/raw/foodseg103_subset/",
       "status": "quarantined_academic_benchmark",
       "provenance_notes": "Used solely for calculating baseline mIoU segmentation metrics."
+    },
+    {
+      "id": "food_recognition_dataset_v2",
+      "canonical_name": "Food Recognition Dataset V2 (5 Balanced Classes)",
+      "official_source": "Wikimedia Commons (Audited Permissive Media)",
+      "license": "CC BY, CC BY-SA, Public Domain / CC0 (Audited Open Licenses)",
+      "commercial_use_allowed": true,
+      "redistribution_allowed": true,
+      "annotation_types": ["image_level_classification_labels", "capture_session_id", "provenance_urls"],
+      "geographic_coverage": ["Global"],
+      "cuisine_coverage": ["Cooked white rice, grilled chicken breast, steamed broccoli, raw apple, raw banana"],
+      "entry_count": 125,
+      "local_path": "data_manifests/food_dataset_v2_manifest.json",
+      "status": "active_deployable",
+      "provenance_notes": "Curated with 100% split and session isolation, 0% cross-split leakage, 25 held-out test images."
+    },
+    {
+      "id": "food_recognition_dataset_v3",
+      "canonical_name": "Food Recognition Dataset V3 (Targeted Rice Strengthening)",
+      "official_source": "Wikimedia Commons (Audited Permissive Media)",
+      "license": "CC BY, CC BY-SA, Public Domain / CC0 (Audited Open Licenses, with separate CC0 commercial subset)",
+      "commercial_use_allowed": true,
+      "redistribution_allowed": true,
+      "annotation_types": ["image_level_classification_labels", "capture_session_id", "provenance_urls", "is_cc0_or_public_domain"],
+      "geographic_coverage": ["Global"],
+      "cuisine_coverage": ["Cooked white rice (basmati, jasmine, bowls, plates), grilled chicken, steamed broccoli, raw apple, raw banana"],
+      "entry_count": 172,
+      "local_path": "data_manifests/food_dataset_v3_manifest.json",
+      "status": "active_deployable",
+      "provenance_notes": "Phase 3 dataset with expanded cooked rice variation, 100% immutable held-out test set (25 images) and separate CC0 commercial manifest."
     }
   ]
 }

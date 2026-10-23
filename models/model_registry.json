@@ -153,7 +153,7 @@
         "litert_tflite_exportable": true,
         "int8_quantization_supported": true,
         "fits_2gb_android_ram": true
-      },
+      }
     },
     {
       "id": "mobilenet_v3_food_head_only_v2",
@@ -215,7 +215,103 @@
         "int8_quantization_supported": true,
         "fits_2gb_android_ram": true
       },
-      "status": "trained_staged_checkpoint"
+      "status": "superseded_by_v3"
+    },
+    {
+      "id": "mobilenet_v3_food_head_only_v3",
+      "canonical_name": "MobileNetV3-Small (5-Class Food Classifier Head-Only V3)",
+      "official_source": "models/checkpoints/mobilenet_v3_food_head_only_v3.pth",
+      "task": "food_classification_5class_head_only_v3",
+      "license": "Apache-2.0 (Derived from Torchvision MobileNetV3-Small)",
+      "commercial_use_allowed": true,
+      "redistribution_allowed": true,
+      "parameters_count": 1523317,
+      "trainable_parameters": 595973,
+      "frozen_parameters": 927008,
+      "file_size_mb": 5.94,
+      "classes": [
+        "apple_fresh_raw",
+        "banana_raw",
+        "broccoli_steamed",
+        "chicken_breast_grilled",
+        "rice_white_cooked"
+      ],
+      "training_split": "train: 119 images, val: 28 images, test: 25 images (Food Dataset V3)",
+      "best_val_accuracy": 0.75,
+      "held_out_test_accuracy": 0.44,
+      "macro_f1": 0.4292,
+      "rice_recall": 0.20,
+      "mobile_target_compatibility": {
+        "onnx_exportable": true,
+        "litert_tflite_exportable": true,
+        "int8_quantization_supported": true,
+        "fits_2gb_android_ram": true
+      },
+      "status": "trained_v3_head_checkpoint"
+    },
+    {
+      "id": "mobilenet_v3_food_finetuned_v3",
+      "canonical_name": "MobileNetV3-Small (5-Class Food Classifier Staged Fine-Tuned V3)",
+      "official_source": "models/checkpoints/mobilenet_v3_food_finetuned_v3.pth",
+      "task": "food_classification_5class_staged_finetuned_v3",
+      "license": "Apache-2.0 (Derived from Torchvision MobileNetV3-Small)",
+      "commercial_use_allowed": true,
+      "redistribution_allowed": true,
+      "parameters_count": 1523317,
+      "trainable_parameters": 946517,
+      "frozen_parameters": 576464,
+      "file_size_mb": 5.94,
+      "classes": [
+        "apple_fresh_raw",
+        "banana_raw",
+        "broccoli_steamed",
+        "chicken_breast_grilled",
+        "rice_white_cooked"
+      ],
+      "training_split": "train: 119 images, val: 28 images, test: 25 images (Food Dataset V3)",
+      "best_val_accuracy": 0.75,
+      "held_out_test_accuracy": 0.48,
+      "macro_f1": 0.4838,
+      "rice_recall": 0.20,
+      "mobile_target_compatibility": {
+        "onnx_exportable": true,
+        "litert_tflite_exportable": true,
+        "int8_quantization_supported": true,
+        "fits_2gb_android_ram": true
+      },
+      "status": "selected_best_performing_checkpoint"
+    },
+    {
+      "id": "mobilenet_v3_food_linear_probe_v3",
+      "canonical_name": "MobileNetV3-Small (5-Class Food Linear Probe Diagnostic Baseline V3)",
+      "official_source": "models/checkpoints/mobilenet_v3_food_linear_probe_v3.pth",
+      "task": "food_classification_5class_linear_probe_v3",
+      "license": "Apache-2.0 (Derived from Torchvision MobileNetV3-Small)",
+      "commercial_use_allowed": true,
+      "redistribution_allowed": true,
+      "parameters_count": 932778,
+      "trainable_parameters": 2885,
+      "frozen_parameters": 927008,
+      "file_size_mb": 3.68,
+      "classes": [
+        "apple_fresh_raw",
+        "banana_raw",
+        "broccoli_steamed",
+        "chicken_breast_grilled",
+        "rice_white_cooked"
+      ],
+      "training_split": "train: 119 images, val: 28 images, test: 25 images (Food Dataset V3)",
+      "best_val_accuracy": 0.6786,
+      "held_out_test_accuracy": 0.44,
+      "macro_f1": 0.4333,
+      "rice_recall": 0.00,
+      "mobile_target_compatibility": {
+        "onnx_exportable": true,
+        "litert_tflite_exportable": true,
+        "int8_quantization_supported": true,
+        "fits_2gb_android_ram": true
+      },
+      "status": "diagnostic_linear_probe"
     }
   ]
 }
