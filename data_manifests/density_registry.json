@@ -99,6 +99,48 @@
       "edible_fraction": 1.00,
       "notes": "Cooked yellow/red lentils in spiced gravy."
     },
+    "dal_cooked": {
+      "mean_g_per_cm3": 0.98,
+      "std_g_per_cm3": 0.06,
+      "edible_fraction": 1.00,
+      "notes": "Cooked yellow/red lentils in spiced gravy (dal tadka / dal fry / sambar)."
+    },
+    "roti_cooked": {
+      "mean_g_per_cm3": 0.65,
+      "std_g_per_cm3": 0.08,
+      "edible_fraction": 1.00,
+      "notes": "Whole wheat flatbread cooked on griddle (roti / chapati / phulka)."
+    },
+    "dosa_cooked": {
+      "mean_g_per_cm3": 0.45,
+      "std_g_per_cm3": 0.08,
+      "edible_fraction": 1.00,
+      "notes": "Crisp fermented rice-black gram crepe with porous air voids."
+    },
+    "idli_cooked": {
+      "mean_g_per_cm3": 0.68,
+      "std_g_per_cm3": 0.06,
+      "edible_fraction": 1.00,
+      "notes": "Steamed fermented rice-black gram savory cake with spongy texture."
+    },
+    "paneer_curry": {
+      "mean_g_per_cm3": 1.02,
+      "std_g_per_cm3": 0.05,
+      "edible_fraction": 1.00,
+      "notes": "Cottage cheese cubes in spiced spinach or tomato-onion gravy."
+    },
+    "chicken_cooked": {
+      "mean_g_per_cm3": 1.05,
+      "std_g_per_cm3": 0.06,
+      "edible_fraction": 0.95,
+      "notes": "Cooked chicken pieces (grilled breast or curry)."
+    },
+    "vegetables_cooked": {
+      "mean_g_per_cm3": 0.72,
+      "std_g_per_cm3": 0.08,
+      "edible_fraction": 1.00,
+      "notes": "Cooked mixed vegetable dishes (sabzi, stir-fry, steamed florets)."
+    },
     "unknown_solid_food": {
       "mean_g_per_cm3": 0.85,
       "std_g_per_cm3": 0.20,

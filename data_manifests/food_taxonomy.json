@@ -100,6 +100,117 @@
       "food101_class_name": null
     },
     {
+      "canonical_id": "dal_cooked",
+      "canonical_name_en": "Cooked Lentils / Dal",
+      "scientific_name": "Lens culinaris / Cajanus cajan",
+      "regional_aliases": {
+        "en": ["dal", "lentil soup", "dal tadka", "dal fry", "sambar", "yellow dal"],
+        "hi": ["dal", "दाल", "dal tadka", "dal fry", "sambar"],
+        "ta": ["paruppu", "sambar"],
+        "es": ["lentejas cocidas"]
+      },
+      "cuisine_origin": "Indian / South Asian",
+      "food_group": "legumes_and_legume_products",
+      "fdc_foundation_id": 172421,
+      "density_ref_id": "dal_cooked",
+      "food101_class_name": null
+    },
+    {
+      "canonical_id": "roti_cooked",
+      "canonical_name_en": "Roti / Chapati Flatbread",
+      "scientific_name": "Triticum aestivum",
+      "regional_aliases": {
+        "en": ["roti", "chapati", "phulka", "indian flatbread", "flatbread"],
+        "hi": ["roti", "रोटी", "chapati", "चपाती", "phulka"],
+        "ur": ["roti", "chapati"],
+        "es": ["pan plano indio"]
+      },
+      "cuisine_origin": "Indian / South Asian",
+      "food_group": "baked_products",
+      "fdc_foundation_id": 168928,
+      "density_ref_id": "roti_cooked",
+      "food101_class_name": null
+    },
+    {
+      "canonical_id": "dosa_cooked",
+      "canonical_name_en": "Crisp Dosa",
+      "scientific_name": null,
+      "regional_aliases": {
+        "en": ["dosa", "masala dosa", "plain dosa", "crispy crepe"],
+        "hi": ["dosa", "डोसा", "masala dosa"],
+        "ta": ["dosai", "தோசை"],
+        "kn": ["dose", "ದೋಸೆ"]
+      },
+      "cuisine_origin": "South Indian",
+      "food_group": "cereal_grains_and_pasta",
+      "fdc_foundation_id": 173430,
+      "density_ref_id": "dosa_cooked",
+      "food101_class_name": null
+    },
+    {
+      "canonical_id": "idli_cooked",
+      "canonical_name_en": "Steamed Idli",
+      "scientific_name": null,
+      "regional_aliases": {
+        "en": ["idli", "idly", "steamed rice cake"],
+        "hi": ["idli", "इडली"],
+        "ta": ["idli", "இட்லி"],
+        "kn": ["idli", "ಇಡ್ಲಿ"]
+      },
+      "cuisine_origin": "South Indian",
+      "food_group": "cereal_grains_and_pasta",
+      "fdc_foundation_id": 173431,
+      "density_ref_id": "idli_cooked",
+      "food101_class_name": null
+    },
+    {
+      "canonical_id": "paneer_curry",
+      "canonical_name_en": "Paneer Curry",
+      "scientific_name": null,
+      "regional_aliases": {
+        "en": ["paneer", "palak paneer", "paneer butter masala", "shahi paneer", "cottage cheese curry"],
+        "hi": ["paneer", "पनीर", "palak paneer", "पालक पनीर", "shahi paneer"],
+        "pa": ["paneer"],
+        "es": ["curry de queso paneer"]
+      },
+      "cuisine_origin": "Indian / South Asian",
+      "food_group": "dairy_and_egg_products",
+      "fdc_foundation_id": 170845,
+      "density_ref_id": "paneer_curry",
+      "food101_class_name": null
+    },
+    {
+      "canonical_id": "chicken_cooked",
+      "canonical_name_en": "Cooked Chicken",
+      "scientific_name": "Gallus gallus domesticus",
+      "regional_aliases": {
+        "en": ["cooked chicken", "grilled chicken", "chicken curry", "butter chicken", "roast chicken"],
+        "hi": ["chicken", "चिकन", "murgh curry", "chicken tikka"],
+        "zh": ["kaoji", "churou"],
+        "es": ["pollo cocinado"]
+      },
+      "cuisine_origin": "Global / Indian",
+      "food_group": "poultry_products",
+      "fdc_foundation_id": 171477,
+      "density_ref_id": "chicken_cooked",
+      "food101_class_name": null
+    },
+    {
+      "canonical_id": "vegetables_cooked",
+      "canonical_name_en": "Cooked Mixed Vegetables",
+      "scientific_name": null,
+      "regional_aliases": {
+        "en": ["cooked vegetables", "vegetable curry", "sabzi", "steamed vegetables", "mixed veg"],
+        "hi": ["sabzi", "सब्ज़ी", "tarkari", "mixed sabji"],
+        "es": ["verduras cocidas"]
+      },
+      "cuisine_origin": "Global / Indian",
+      "food_group": "vegetables_and_vegetable_products",
+      "fdc_foundation_id": 170379,
+      "density_ref_id": "vegetables_cooked",
+      "food101_class_name": null
+    },
+    {
       "canonical_id": "unknown_solid_food",
       "canonical_name_en": "Unidentified Food Component",
       "scientific_name": null,

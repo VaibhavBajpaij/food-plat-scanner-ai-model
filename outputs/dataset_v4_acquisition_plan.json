@@ -1,0 +1,140 @@
+{
+  "target_total_images": 1260,
+  "target_classes_count": 10,
+  "per_class_targets": {
+    "rice_white_cooked": 140,
+    "dal_cooked": 130,
+    "roti_cooked": 130,
+    "dosa_cooked": 120,
+    "idli_cooked": 120,
+    "paneer_curry": 130,
+    "chicken_cooked": 140,
+    "vegetables_cooked": 130,
+    "apple_fresh_raw": 110,
+    "banana_raw": 110
+  },
+  "candidate_sources": {
+    "rice_white_cooked": {
+      "name": "Cooked White Rice",
+      "target": 140,
+      "titles_found": 167,
+      "sample_titles": [
+        "File:HK KTD \u89c0\u5858 Kwun Tong \u725b\u982d\u89d2\u9053 Ngau Tau Kok Road \u88d5\u6c11\u4e2d\u5fc3 U-Mall shop \u7fe0\u6e56\u6d77\u9bae\u9152\u5bb6 Green Wood Seafood Restaurant \u98f2\u65e9\u8336 team steamed dim sum \u8591\u7d72\u54b8\u9b5a\u8089\u9905\u98ef salt fish minced pork rice May 2025 R12S 02.jpg",
+        "File:Liat Portal for Foodie Disorder - Israeli Home Cooking Plate with Chicken Rice and Peas.jpg",
+        "File:Chili Garlic Chicken - Flickr - MattCC716.png",
+        "File:Basmati rice cooking ingredients in pot.jpg",
+        "File:Dal Bhat Tarkari with Chicken.jpg"
+      ]
+    },
+    "dal_cooked": {
+      "name": "Cooked Dal / Lentil Curry",
+      "target": 130,
+      "titles_found": 95,
+      "sample_titles": [
+        "File:Dosa (6105044697).jpg",
+        "File:Cuisine (220) 43.jpg",
+        "File:Hawai Thongba (cooked lentil curry) & rice - Traditional Meitei cuisine - Gastronomic cultural heritage of Manipur (Kangleipak) & domestic and international Meitei diasporas.jpg",
+        "File:Cuisine (181) 08.jpg",
+        "File:Cuisine (47) 40.jpg"
+      ]
+    },
+    "roti_cooked": {
+      "name": "Roti / Chapati Flatbread",
+      "target": 130,
+      "titles_found": 137,
+      "sample_titles": [
+        "File:Roti (Indian Flatbread) (Unsplash).jpg",
+        "File:James Martin Adhikary Checking Roti.jpg",
+        "File:A piece of Chapati.jpg",
+        "File:Roti Canai Celaru.jpg",
+        "File:Roti Canai (8653051869).jpg"
+      ]
+    },
+    "dosa_cooked": {
+      "name": "Crisp Dosa",
+      "target": 120,
+      "titles_found": 93,
+      "sample_titles": [
+        "File:Dosa (6105044697).jpg",
+        "File:Masala Dosa 10.jpg",
+        "File:Dosa dosa.jpg",
+        "File:CHINESE NOODLES COOKED THE INDIAN WAY.jpg",
+        "File:Cuisine (47) 40.jpg"
+      ]
+    },
+    "idli_cooked": {
+      "name": "Steamed Idli",
+      "target": 120,
+      "titles_found": 103,
+      "sample_titles": [
+        "File:Sambar Idli 1.jpg",
+        "File:Dosa,idli and bade.jpg",
+        "File:Dragon idli of Salem.jpg",
+        "File:Idli with Sambar and cocnut chutney (1862290246).jpg",
+        "File:Idly dhokla.png"
+      ]
+    },
+    "paneer_curry": {
+      "name": "Paneer Curry",
+      "target": 130,
+      "titles_found": 70,
+      "sample_titles": [
+        "File:Matar Paneer Curry 1.jpg",
+        "File:Palak Paneer (53569672035).jpg",
+        "File:Matar Panir mit Chapati - Mutter Paneer with chapati.jpg",
+        "File:Homemade food-Ahmedabad-Gujarat-WA0001.jpg",
+        "File:Indian Cuisine (83) 07.jpg"
+      ]
+    },
+    "chicken_cooked": {
+      "name": "Cooked Chicken",
+      "target": 140,
+      "titles_found": 75,
+      "sample_titles": [
+        "File:Butter chicken curry of Matsuya.jpg",
+        "File:The Boston Cooking School magazine of culinary science and domestic economics (1905) (14586802127).jpg",
+        "File:Rivershack Tavern Shrewsbury Louisiana May 2016 Chicken Red Beans.jpg",
+        "File:Chicken Curry and Naan 02.jpg",
+        "File:Butter chicken curry of Lawson.jpg"
+      ]
+    },
+    "vegetables_cooked": {
+      "name": "Cooked Mixed Vegetables",
+      "target": 130,
+      "titles_found": 68,
+      "sample_titles": [
+        "File:Phototh\u00e8que Augustin Boutique-Grard, Mus\u00e9e de la Chartreuse de Douai.jpg",
+        "File:Salads, Sandwiches and Chafing-Dish Dainties - Facing page 28 (b).jpg",
+        "File:Simple working lunch Tondi and Pulgam.jpg",
+        "File:Bell pepper Masala.JPG",
+        "File:Homemade food-Ahmedabad-Gujarat-WA0001.jpg"
+      ]
+    },
+    "apple_fresh_raw": {
+      "name": "Fresh Apple (Raw)",
+      "target": 110,
+      "titles_found": 97,
+      "sample_titles": [
+        "File:Vibrant Produce Display.jpg",
+        "File:2015, Fair Smaki Regionow, Poznan (apples, UEP Poznan).JPG",
+        "File:Apfelbaum M\u00f6rlenbach Naturschutzgebiet In der Erbach WDPA 318598.jpg",
+        "File:Apple basket (25963669243).jpg",
+        "File:Applepicking.jpg"
+      ]
+    },
+    "banana_raw": {
+      "name": "Fresh Banana (Raw)",
+      "target": 110,
+      "titles_found": 72,
+      "sample_titles": [
+        "File:A group of ripe bananas sits next to several oranges.jpg",
+        "File:Starr-021122-0073-Musa acuminata-Cavendish perhaps Williams large bunch-Nahiku-Maui (24185626599).jpg",
+        "File:Starr-130120-1477-Musa acuminata-Cavendish Williams bunch-Hawea Pl Olinda-Maui (24578038743).jpg",
+        "File:Angelina Litvin 2015-08-31 (Unsplash RxvLj90CaBQ).jpg",
+        "File:A vibrant assortment of fresh fruits.jpg"
+      ]
+    }
+  },
+  "estimated_download_mb": 315.0,
+  "estimated_gpu_train_seconds": 15.0
+}

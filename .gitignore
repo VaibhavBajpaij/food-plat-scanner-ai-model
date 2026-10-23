@@ -29,3 +29,4 @@ desktop.ini
 # Logs and temporary files
 *.log
 outputs/reconstructions/*
+scratch/

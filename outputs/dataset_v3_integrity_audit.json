@@ -1,0 +1,66 @@
+{
+  "manifest_file": "D:\\health app\\plat scaning ml mode\\data_manifests\\food_dataset_v3_manifest.json",
+  "total_images_in_manifest": 172,
+  "valid_images": 171,
+  "corrupted_or_missing": [
+    {
+      "image_id": "v3_apple_fresh_raw_train_14",
+      "file_path": "datasets/food_dataset_v3/train/apple_fresh_raw_train_14.jpg",
+      "reason": "Resolution 512x190 is below minimum 224x224"
+    }
+  ],
+  "exact_duplicate_pairs": [],
+  "near_duplicate_pairs": [
+    {
+      "image_1": "v3_broccoli_steamed_train_12",
+      "image_2": "v3_broccoli_steamed_val_02",
+      "hamming_distance": 3,
+      "splits": [
+        "train",
+        "val"
+      ],
+      "paths": [
+        "datasets/food_dataset_v3/train/broccoli_steamed_train_12.jpg",
+        "datasets/food_dataset_v3/val/broccoli_steamed_val_02.jpg"
+      ]
+    },
+    {
+      "image_1": "v3_banana_raw_train_14",
+      "image_2": "v3_banana_raw_train_15",
+      "hamming_distance": 4,
+      "splits": [
+        "train",
+        "train"
+      ],
+      "paths": [
+        "datasets/food_dataset_v3/train/banana_raw_train_14.jpg",
+        "datasets/food_dataset_v3/train/banana_raw_train_15.jpg"
+      ]
+    }
+  ],
+  "split_session_violations": [],
+  "per_class_counts": {
+    "rice_white_cooked": 45,
+    "chicken_breast_grilled": 35,
+    "broccoli_steamed": 30,
+    "apple_fresh_raw": 35,
+    "banana_raw": 27
+  },
+  "split_distribution": {
+    "train": 119,
+    "val": 28,
+    "test": 25
+  },
+  "license_distribution": {
+    "CC BY-SA 4.0": 101,
+    "CC BY 2.0": 25,
+    "CC BY-SA 2.0": 8,
+    "CC BY-SA 3.0": 5,
+    "CC BY 4.0": 3,
+    "Public domain": 15,
+    "CC0": 10,
+    "CC BY 3.0": 3,
+    "No restrictions": 2
+  },
+  "cc0_commercial_count": 27
+}

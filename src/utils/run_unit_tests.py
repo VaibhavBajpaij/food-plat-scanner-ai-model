@@ -18,6 +18,12 @@ def run_all_tests():
     from tests.test_env import TestEnvironment
     from tests.test_dataset_v2 import test_model_head_adaptation, test_v2_manifest_and_leakage
     from tests.test_dataset_v3 import test_model_candidates_forward_pass, test_v3_manifest_and_leakage
+    from tests.test_kaggle_pipeline import (
+        test_dhash_and_hamming_distance,
+        test_image_validation_integrity,
+        test_license_classification_logic,
+        test_mobilenet_v3_10class_shape
+    )
 
     env_tester = TestEnvironment()
 
@@ -33,6 +39,10 @@ def run_all_tests():
         ("test_v2_manifest_and_leakage", test_v2_manifest_and_leakage),
         ("test_model_candidates_forward_pass", test_model_candidates_forward_pass),
         ("test_v3_manifest_and_leakage", test_v3_manifest_and_leakage),
+        ("test_dhash_and_hamming_distance", test_dhash_and_hamming_distance),
+        ("test_image_validation_integrity", test_image_validation_integrity),
+        ("test_license_classification_logic", test_license_classification_logic),
+        ("test_mobilenet_v3_10class_shape", test_mobilenet_v3_10class_shape),
     ]
 
     passed = 0
