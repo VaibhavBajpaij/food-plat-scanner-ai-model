@@ -30,3 +30,5 @@ desktop.ini
 *.log
 outputs/reconstructions/*
 scratch/
+audit_artifacts/
+*.zip

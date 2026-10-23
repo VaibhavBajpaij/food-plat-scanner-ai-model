@@ -1,0 +1,65 @@
+{
+  "timestamp": "2026-10-23T18:04:55Z",
+  "model_architecture": "MobileNetV3-Small (Adapted 43-Class)",
+  "parameter_metrics": {
+    "total_parameters": 1561931,
+    "trainable_parameters": 1561931,
+    "model_file_size_bytes": 6390697,
+    "model_file_size_mb": 6.09
+  },
+  "inference_benchmarks": {
+    "cpu": {
+      "device": "cpu",
+      "warmup_runs": 25,
+      "timed_runs": 100,
+      "mean_latency_ms": 40.44,
+      "median_p50_ms": 38.86,
+      "p95_latency_ms": 53.23,
+      "p99_latency_ms": 62.73,
+      "throughput_fps": 24.7
+    },
+    "gpu": {
+      "device": "cuda:0",
+      "warmup_runs": 25,
+      "timed_runs": 100,
+      "mean_latency_ms": 12.1,
+      "median_p50_ms": 11.75,
+      "p95_latency_ms": 16.47,
+      "p99_latency_ms": 20.51,
+      "throughput_fps": 82.7
+    }
+  },
+  "peak_memory_benchmarks": {
+    "cpu": {
+      "peak_cpu_ram_kb": 2.85,
+      "peak_cpu_ram_mb": 0.0
+    },
+    "gpu": {
+      "peak_cpu_ram_kb": 2.85,
+      "peak_cpu_ram_mb": 0.0,
+      "peak_cuda_vram_kb": 17077.0,
+      "peak_cuda_vram_mb": 16.68
+    }
+  },
+  "deployment_guardrail": {
+    "tested_environment": {
+      "os": "Windows",
+      "os_release": "11",
+      "architecture": "AMD64",
+      "python_version": "3.13.9",
+      "torch_version": "2.6.0+cu124",
+      "cuda_available": true,
+      "device_name": "NVIDIA GeForce RTX 2050"
+    },
+    "android_2gb_ram_compatibility_claim": "UNVERIFIED_PENDING_ON_DEVICE_TESTING",
+    "compliance_statement": "CRITICAL: Host benchmarks on x86_64 / RTX 2050 provide theoretical sizing and runtime bounds only. Under no circumstances should the model be certified as Android 2GB RAM compatible until physical on-device testing is performed on representative low-memory Android hardware running Flutter / PyTorch Mobile / ONNX Mobile under actual thermal throttling and concurrent system memory pressure.",
+    "target_mobile_budget": {
+      "max_model_size_mb": 15.0,
+      "measured_model_size_mb": 6.09,
+      "model_size_within_budget": true,
+      "max_latency_cpu_ms": 100.0,
+      "measured_latency_cpu_ms": 40.44,
+      "latency_within_budget": true
+    }
+  }
+}

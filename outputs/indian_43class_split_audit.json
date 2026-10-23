@@ -1,0 +1,84 @@
+{
+  "audit_timestamp": "2026-10-23T23:00:00Z",
+  "dataset_source": "SohlHealth/enhanced-indian-food-classification",
+  "license": "CC-BY-4.0",
+  "original_dataset": {
+    "total_raw_parquet_records": 15404,
+    "raw_train_records": 13311,
+    "raw_validation_records": 1067,
+    "raw_test_records": 1026,
+    "total_classes": 43
+  },
+  "original_extracted_manifest": {
+    "manifest_path": "audit_artifacts/indian_food_43class_manifest.json",
+    "total_images": 15362,
+    "train_images": 13269,
+    "validation_images": 1067,
+    "test_images": 1026,
+    "explanation_of_42_difference": "42 records in the raw train shards were duplicates/near-duplicates of images in the validation and test shards. During extraction, test and val were ingested first, and colliding train images were quarantined/dropped.",
+    "deficiencies": {
+      "val_test_exact_collisions": 9,
+      "val_test_perceptual_collisions": 1,
+      "classes_present_in_val": 22,
+      "classes_missing_in_val": 21,
+      "classes_present_in_test": 22,
+      "classes_missing_in_test": 21,
+      "missing_classes_list": [
+        "aloo_gobi",
+        "aloo_masala",
+        "bhindi_masala",
+        "biryani",
+        "chicken_curry",
+        "chole",
+        "coconut_chutney",
+        "dum_aloo",
+        "fish_curry",
+        "ghevar",
+        "green_chutney",
+        "kebab",
+        "kheer",
+        "lassi",
+        "mutton_curry",
+        "palak_paneer",
+        "poha",
+        "rajma_curry",
+        "ras_malai",
+        "shahi_paneer",
+        "white_rice"
+      ],
+      "untested_samples_in_training_run": 5600
+    }
+  },
+  "repaired_manifest_v2": {
+    "manifest_path": "data_manifests/indian_food_43class_repaired_manifest_v2.json",
+    "total_images": 15358,
+    "excluded_images_count": 4,
+    "exclusion_reasons": "4 images excluded due to conflicting ground truth labels across duplicate captures",
+    "split_distribution": {
+      "test": 1536,
+      "train": 12285,
+      "val": 1537
+    },
+    "class_coverage": {
+      "train": 43,
+      "val": 43,
+      "test": 43
+    },
+    "leakage_verification": {
+      "exact_sha_collisions": 0,
+      "perceptual_dhash_collisions_le_2": 0,
+      "is_leakage_free": true
+    }
+  },
+  "existing_checkpoint_evaluation_verdict": {
+    "reported_test_accuracy": 0.7914,
+    "reported_test_macro_f1": 0.4128,
+    "trustworthiness": "UNTRUSTWORTHY",
+    "rationale": [
+      "Test accuracy was calculated exclusively on the 22 classes present in the test shard; 21 classes (5,600 images) had 0 test support and were never evaluated.",
+      "The test split contained 9 exact duplicate images leaking from the validation split.",
+      "Evaluating the existing checkpoint on the repaired test split produces severe data contamination, because the newly assigned test samples for the 21 missing classes were already in the model's training set.",
+      "Retraining MobileNetV3-Small on the repaired train/val splits is mandatory to obtain an unbiased, scientifically valid evaluation across all 43 classes."
+    ]
+  }
+}

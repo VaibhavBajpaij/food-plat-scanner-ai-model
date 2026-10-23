@@ -38,6 +38,23 @@ def run_all_tests():
         test_parquet_synthetic_roundtrip_and_smoke_test,
         test_mobilenet_v3_43class_shape
     )
+    from tests.test_repaired_splits_and_evaluation import (
+        test_manifest_integrity,
+        test_label_mapping_and_checkpoint_compatibility,
+        test_class_coverage_across_all_splits,
+        test_duplicate_leakage_and_split_disjointness,
+        test_perceptual_cross_split_leakage,
+        test_metrics_calculation_and_wilson_ci,
+        test_checkpoint_contamination_detection
+    )
+    from tests.test_clean_retraining_and_readiness import (
+        test_clean_imagenet_initialization_not_contaminated_checkpoint,
+        test_43class_classifier_head_structure,
+        test_repaired_manifest_duplicate_group_isolation,
+        test_test_split_isolation_guardrail,
+        test_path_validation_safety_stop,
+        test_deployment_readiness_metrics_and_guardrail
+    )
 
     env_tester = TestEnvironment()
 
@@ -67,6 +84,19 @@ def run_all_tests():
         ("test_legacy_dataset_guardrail_rejection", test_legacy_dataset_guardrail_rejection),
         ("test_parquet_synthetic_roundtrip_and_smoke_test", test_parquet_synthetic_roundtrip_and_smoke_test),
         ("test_mobilenet_v3_43class_shape", test_mobilenet_v3_43class_shape),
+        ("test_manifest_integrity", test_manifest_integrity),
+        ("test_label_mapping_and_checkpoint_compatibility", test_label_mapping_and_checkpoint_compatibility),
+        ("test_class_coverage_across_all_splits", test_class_coverage_across_all_splits),
+        ("test_duplicate_leakage_and_split_disjointness", test_duplicate_leakage_and_split_disjointness),
+        ("test_perceptual_cross_split_leakage", test_perceptual_cross_split_leakage),
+        ("test_metrics_calculation_and_wilson_ci", test_metrics_calculation_and_wilson_ci),
+        ("test_checkpoint_contamination_detection", test_checkpoint_contamination_detection),
+        ("test_clean_imagenet_initialization_not_contaminated_checkpoint", test_clean_imagenet_initialization_not_contaminated_checkpoint),
+        ("test_43class_classifier_head_structure", test_43class_classifier_head_structure),
+        ("test_repaired_manifest_duplicate_group_isolation", test_repaired_manifest_duplicate_group_isolation),
+        ("test_test_split_isolation_guardrail", test_test_split_isolation_guardrail),
+        ("test_path_validation_safety_stop", test_path_validation_safety_stop),
+        ("test_deployment_readiness_metrics_and_guardrail", test_deployment_readiness_metrics_and_guardrail),
     ]
 
     passed = 0
