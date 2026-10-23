@@ -443,7 +443,7 @@ def package_artifacts_zip(
     with zipfile.ZipFile(zip_output_path, "w", zipfile.ZIP_DEFLATED) as zipf:
         if os.path.exists(checkpoint_best_path):
             zipf.write(checkpoint_best_path, arcname=os.path.basename(checkpoint_best_path))
-        latest_ckpt = checkpoint_best_path.replace("_best.pth", "_latest.pth").replace(".pth", "_latest.pth")
+        latest_ckpt = checkpoint_best_path.replace("_best.pth", "_latest.pth") if "_best.pth" in checkpoint_best_path else checkpoint_best_path.replace(".pth", "_latest.pth")
         if os.path.exists(latest_ckpt):
             zipf.write(latest_ckpt, arcname=os.path.basename(latest_ckpt))
         if os.path.exists(label_mapping_path):
@@ -625,7 +625,7 @@ def run_clean_retraining(
 
     # 6. STAGE 1: Head-Only Linear Probe (Backbone Frozen)
     model = init_model
-    latest_ckpt_path = output_checkpoint_path.replace("_best.pth", "_latest.pth").replace(".pth", "_latest.pth")
+    latest_ckpt_path = output_checkpoint_path.replace("_best.pth", "_latest.pth") if "_best.pth" in output_checkpoint_path else output_checkpoint_path.replace(".pth", "_latest.pth")
 
     # Handle resume if requested
     start_stage = 1

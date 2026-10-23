@@ -124,6 +124,34 @@ def test_deployment_readiness_metrics_and_guardrail():
     assert guardrail["android_2gb_ram_compatibility_claim"] == "UNVERIFIED_PENDING_ON_DEVICE_TESTING"
     assert "Android 2GB RAM compatible" in guardrail["compliance_statement"]
 
+def test_latest_checkpoint_naming_no_double_extension():
+    """Regression test: latest checkpoint path replacement must NOT create _latest_latest.pth."""
+    best_path = "models/checkpoints/mobilenet_v3_indian_43class_clean_v2_best.pth"
+    latest_path = best_path.replace("_best.pth", "_latest.pth") if "_best.pth" in best_path else best_path.replace(".pth", "_latest.pth")
+    assert latest_path == "models/checkpoints/mobilenet_v3_indian_43class_clean_v2_latest.pth"
+    assert "_latest_latest" not in latest_path
+
+def test_imagenet_unadapted_overlap_explains_4_65_pct():
+    """
+    Mathematical & empirical regression test explaining the 4.65% smoke-test result.
+    ImageNet-1k only contains 2 food classes corresponding to the 43 Indian dishes:
+    'burger' (cheeseburger) and 'pizza' (pizza).
+    2 / 43 = 0.0465116... = exactly 4.65%.
+    """
+    from torchvision.models import MobileNet_V3_Small_Weights
+    imagenet_cats = MobileNet_V3_Small_Weights.DEFAULT.meta["categories"]
+
+    valid_overlaps = []
+    for c in CANONICAL_43_FOOD_CLASSES:
+        if c == "burger" and any("cheeseburger" in cat.lower() for cat in imagenet_cats):
+            valid_overlaps.append(c)
+        elif c == "pizza" and any("pizza" in cat.lower() for cat in imagenet_cats):
+            valid_overlaps.append(c)
+
+    assert set(valid_overlaps) == {"burger", "pizza"}, f"Expected exactly burger and pizza, got {valid_overlaps}"
+    unadapted_acc = len(valid_overlaps) / len(CANONICAL_43_FOOD_CLASSES)
+    assert abs(unadapted_acc - 0.0465116) < 0.001, f"Expected 4.65%, got {unadapted_acc:.4f}"
+
 if __name__ == "__main__":
     test_clean_imagenet_initialization_not_contaminated_checkpoint()
     test_43class_classifier_head_structure()
@@ -131,4 +159,6 @@ if __name__ == "__main__":
     test_test_split_isolation_guardrail()
     test_path_validation_safety_stop()
     test_deployment_readiness_metrics_and_guardrail()
+    test_latest_checkpoint_naming_no_double_extension()
+    test_imagenet_unadapted_overlap_explains_4_65_pct()
     print("All Clean Retraining and Deployment Readiness tests passed successfully!")

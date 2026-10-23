@@ -53,7 +53,9 @@ def run_all_tests():
         test_repaired_manifest_duplicate_group_isolation,
         test_test_split_isolation_guardrail,
         test_path_validation_safety_stop,
-        test_deployment_readiness_metrics_and_guardrail
+        test_deployment_readiness_metrics_and_guardrail,
+        test_latest_checkpoint_naming_no_double_extension,
+        test_imagenet_unadapted_overlap_explains_4_65_pct
     )
 
     env_tester = TestEnvironment()
@@ -97,6 +99,8 @@ def run_all_tests():
         ("test_test_split_isolation_guardrail", test_test_split_isolation_guardrail),
         ("test_path_validation_safety_stop", test_path_validation_safety_stop),
         ("test_deployment_readiness_metrics_and_guardrail", test_deployment_readiness_metrics_and_guardrail),
+        ("test_latest_checkpoint_naming_no_double_extension", test_latest_checkpoint_naming_no_double_extension),
+        ("test_imagenet_unadapted_overlap_explains_4_65_pct", test_imagenet_unadapted_overlap_explains_4_65_pct),
     ]
 
     passed = 0
