@@ -1,128 +1,107 @@
-# Running the Food Recognition & 3D Plate Scanning Pipeline on Kaggle (GPU Guide)
+# Running the Cloud Dataset Acquisition & Training Pipeline on Kaggle (GPU Guide)
 
-This guide explains how to pull your repository (`https://github.com/VaibhavBajpaij/food-plat-scanner-ai-model`) into a **Kaggle Notebook**, train the food-specific transfer learning models, and execute the comparative evaluation suite using Kaggle's free **NVIDIA Tesla T4 (16 GB VRAM)** GPUs.
+This guide provides complete instructions for executing the cloud dataset acquisition, integrity verification, and MobileNetV3-Small transfer learning pipeline on **Kaggle GPU (NVIDIA Tesla T4 / P100)** with **Google Colab** as a secondary backup.
 
----
-
-## 1. Why Run on Kaggle?
-
-| Resource | Local Development (Laptop) | Kaggle Cloud Environment |
-| :--- | :--- | :--- |
-| **GPU Model** | NVIDIA GeForce RTX 2050 Laptop | **NVIDIA Tesla T4 (16 GB)** or **2x T4 (32 GB)** |
-| **GPU VRAM** | **4 GB** | **16 GB** |
-| **Free Quota** | Battery & thermal limits | **30 hours per week free** |
-| **Pre-installed Stack** | Local Python 3.13 + Torch 2.6 | **PyTorch, Torchvision, CUDA, OpenCV pre-installed** |
-| **Disk Space** | Constrained C: drive | **~73 GB ephemeral disk space per session** |
+**Source of Truth Repository:** `https://github.com/VaibhavBajpaij/food-plat-scanner-ai-model.git`
 
 ---
 
-## 2. Opening the Kaggle Notebook
+## 1. Cloud Infrastructure & Resource Sizing
 
-1. Go to [kaggle.com](https://www.kaggle.com/) and sign in.
-2. Click **+ Create** $\to$ Select **New Notebook**.
-3. In the right-hand **Notebook Options** panel:
-   - **Accelerator**: Select **GPU T4 x1** (or GPU T4 x2).
-   - **Internet**: Toggle to **ON** (Required for git clone and torchvision pretrained weight downloads).
-   - **Persistence**: Select *Variables and Files* (optional).
+| Resource Dimension | Local Development (Laptop) | Kaggle Cloud GPU (Primary) | Google Colab (Backup) |
+| :--- | :--- | :--- | :--- |
+| **GPU Accelerator** | NVIDIA GeForce RTX 2050 (4 GB) | **NVIDIA Tesla T4 (16 GB)** or **2x T4** | **NVIDIA T4 / V100 (15–16 GB)** |
+| **Storage Quota** | Constrained local SSD | **~20 GB `/kaggle/working` ephemeral disk** | **~78 GB `/content` ephemeral disk** |
+| **Network Throughput** | Standard home/office broadband | **Cloud multi-gigabit link (direct to HF/Mendeley)** | **Cloud multi-gigabit link** |
+| **Weekly Free Limit** | N/A | **30 GPU hours / week** | Dynamic free tier compute units |
+| **Persistence Mechanism** | Permanent local filesystem | **Download `kaggle_run_artifacts.zip` before exit** | **Mount Google Drive (`/content/drive`)** |
 
----
-
-## 3. Execution Commands on Kaggle
-
-Inside your Kaggle Notebook, run the following cells:
-
-### Cell 1: Clone the GitHub Repository
-```python
-# Clone the verified repository
-!git clone https://github.com/VaibhavBajpaij/food-plat-scanner-ai-model.git
-
-# Navigate into the project root
-%cd food-plat-scanner-ai-model
-
-# Inspect repository tree
-!ls -lh
-```
-
-### Cell 2: Verify GPU Hardware & Environment
-```python
-# Check Kaggle Tesla T4 GPU
-!nvidia-smi
-
-# Run automated environment verification
-import sys
-!python -m src.utils.verify_env
-```
-
-### Cell 3: Execute Scientific Unit & Integrity Tests
-```python
-# Runs taxonomy, nutrition uncertainty, synthetic volume, and dataset integrity checks
-!python -m src.utils.run_unit_tests
-```
-
-### Cell 4: Audit Dataset V2 & Split Isolation
-```python
-import json
-
-with open("data_manifests/food_dataset_v2_manifest.json", "r", encoding="utf-8") as f:
-    m = json.load(f)
-
-print(f"Dataset: {m['dataset_name']} (v{m['version']})")
-print(f"Total Images: {m['split_summary']['total']} (Train: {m['split_summary']['train']}, Val: {m['split_summary']['val']}, Test: {m['split_summary']['test']})")
-
-tr_shas = {r['sha256'] for r in m['images'] if r['split'] == 'train'}
-va_shas = {r['sha256'] for r in m['images'] if r['split'] == 'val'}
-te_shas = {r['sha256'] for r in m['images'] if r['split'] == 'test'}
-
-assert len(tr_shas & va_shas) == 0, "Train-Val collision!"
-assert len(tr_shas & te_shas) == 0, "Train-Test collision!"
-assert len(va_shas & te_shas) == 0, "Val-Test collision!"
-print("Split Isolation Status: 100% PASS (Zero cross-split hash or session leakage)")
-```
-
-### Cell 5: Train Controlled Transfer Learning Models (Candidates C & D)
-```python
-# Trains Candidate C (Head-Only with Data Augmentation) and Candidate D (Staged Fine-Tuning)
-!python -m src.classification.trainer_v2
-```
-
-### Cell 6: Run Comprehensive 4-Candidate Comparative Evaluation
-```python
-# Benchmarks Candidates A, B, C, D on the untouched held-out test split
-!python -m src.evaluation.eval_suite_v2
-```
-
-### Cell 7: Display Comparative Evaluation Matrix
-```python
-import json
-
-with open("outputs/evaluation_results_v2.json", "r", encoding="utf-8") as f:
-    res = json.load(f)
-
-print("=" * 85)
-print("HELD-OUT TEST SET EVALUATION MATRIX (UNTOUCHED DATA, 5 SAMPLES PER CLASS)")
-print("=" * 85)
-print(f"{'Candidate Model':<36} {'Test Acc':<12} {'Macro-F1':<12} {'Correct Conf':<14} {'Tableware Bias'}")
-print("-" * 85)
-for mname, mdata in res["held_out_test_metrics"].items():
-    acc = mdata["accuracy"]
-    f1 = mdata["macro_f1"]
-    conf = mdata["mean_confidence_correct"]
-    kw = mdata.get("kitchenware_bias_count", 0)
-    print(f"{mname:<36} {acc:>8.1%}    {f1:>8.3f}       {conf:>6.2f}         {kw} hits")
-print("=" * 85)
-```
+### Estimated Sizing & Requirements:
+- **Download Storage (Approved Datasets):**
+  - Anchor: *Enhanced Indian Food Classification* = **~1.75 GB** (15,404 images in 5 parquet shards).
+  - Regional Safe-Harbor: *BD-Food33* = **~350 MB** (1,200 images).
+  - Segmentation Ground Truth: *FoodBD* = **~650 MB** (2,800 images).
+  - Object Detection: *RASOI* = **~200 MB** (2,000 images).
+  - Total Approved Pool = **~2.95 GB compressed** (unpacks to ~4.5 GB raw image cache).
+- **GPU VRAM Utilization:**
+  - MobileNetV3-Small (Batch Size 32, Image Size 224x224): **~1.8–2.6 GB VRAM peak**.
+  - Head-only training (Stage 1) + bottleneck fine-tuning (Stage 2): **100% stable** within the 16 GB VRAM envelope.
+- **Compute Time:**
+  - 15,404 images across 20 epochs on T4 GPU: **~12–18 minutes total runtime**.
 
 ---
 
-## 4. How to Sync Updates Between Local Machine and Kaggle
+## 2. Nine Candidate Datasets: Audit & Compliance Summary
 
-1. **Commit and push locally**:
-   ```powershell
-   git add .
-   git commit -m "feat: your descriptive commit message"
-   git push origin main
-   ```
-2. **Pull inside Kaggle**:
+Before acquiring datasets, our automated governance engine classifies all candidates into four strict tiers:
+
+| Candidate Dataset | Licence | Images | Size | Status | Action |
+| :--- | :--- | :---: | :---: | :--- | :--- |
+| **Enhanced Indian Food Classification** | **CC-BY-4.0** | **15,404** | **~1.75 GB** | **Approved Commercial Workflow** | **Anchor acquisition target** |
+| **Bangladeshi Food (BD-Food33)** | **CC0 1.0 (Public Domain)** | **1,200** | **~350 MB** | **Approved Commercial Workflow** | **Unencumbered regional safe-harbor** |
+| **FoodBD** | **CC BY 4.0** | **2,800** | **~650 MB** | **Approved Commercial Workflow** | **Multi-food segmentation & nutrition** |
+| **Indian Spices** | **CC BY 4.0** | **10,991** | **~1.20 GB** | **Approved Commercial Workflow** | **Spice seasoning recognition** |
+| **RASOI (Roboflow)** | **CC BY 4.0** | **2,000** | **~200 MB** | **Approved Commercial Workflow** | **Localized dish bounding boxes** |
+| **Indian Foods Dataset** | Apache-2.0 / Scraped | ~2,000 | ~450 MB | Requires Review | Curated Apache-2.0 allowed; scrapes blocked |
+| **SpiceVision** | Academic | ~3,000 | ~300 MB | Access Not Verified | Excluded until open mirror verified |
+| **FoodLens (Google Research)** | Proprietary / Closed | ~30,000 | N/A | Access Not Verified | Closed Google internal dataset |
+| **Khana (arXiv:2509.06006)** | **CC BY-NC-ND 4.0** | **131,000** | ~10.0 GB | **Excluded Non-Commercial** | **Strictly quarantined (ComplianceViolationError)** |
+
+---
+
+## 3. Step-by-Step Kaggle Execution Instructions
+
+### A. Environment Initialization
+1. Navigate to [Kaggle Notebooks](https://www.kaggle.com/code) and select **New Notebook**.
+2. In the right-hand **Notebook Options** panel:
+   - **Accelerator**: Select **GPU T4 x1** (or GPU P100).
+   - **Internet**: Toggle to **ON** (Mandatory for Git clone and Hugging Face parquet stream).
+   - **Persistence**: Select *Variables and Files*.
+3. Upload `kaggle_starter.ipynb` from the repository or paste the cells sequentially.
+
+### B. Execution Sequence in `kaggle_starter.ipynb`
+- **Cell 1 (Clone Repository):**
+  ```python
+  !git clone https://github.com/VaibhavBajpaij/food-plat-scanner-ai-model.git /kaggle/working/food-plat-scanner-ai-model
+  %cd /kaggle/working/food-plat-scanner-ai-model
+  ```
+- **Cell 2 (Environment Pre-Flight Audit):**
+  Verifies CUDA availability, tests HTTP connectivity to Hugging Face, and checks available `/kaggle/working` disk space.
+- **Cell 3 (Install Minimal Dependencies):**
+  Installs `pyarrow`, `fastparquet`, and `Pillow`.
+- **Cell 4 (Run Resumable Downloader):**
+  Executes `EnhancedIndianFoodAdapter.acquire(resume=True)` to stream parquet shards directly to `/kaggle/working/datasets/raw/sohlhealth_indian_food/`.
+- **Cell 5 (Image Integrity & Deduplication):**
+  Verifies image decodability, checks for corrupted bytes, computes SHA256/dHash, and prints per-class sample counts.
+- **Cell 6 (Scientific Unit Tests):**
+  Executes `python -m src.utils.run_unit_tests` to verify 18 unit tests across taxonomy, nutrition math, synthetic volume, and pipeline integrity.
+- **Cell 7 (Pretrained Model Smoke Test):**
+  Runs a 1-epoch / 2-batch forward and backward pass on `models.mobilenet_v3_small(weights=DEFAULT)` to verify CUDA gradient computation and memory headroom.
+- **Cell 8 (Execute Staged Transfer Learning):**
+  Executes `python -m src.classification.train_kaggle`.
+  - Stage 1: Linear probe classification head on frozen backbone.
+  - Stage 2: Fine-tuning top bottleneck blocks with cosine annealing.
+- **Cell 9 (Artifact Verification & Export):**
+  Verifies checkpoint reloadability, measures Wilson 95% confidence intervals, and bundles `mobilenet_v3_food_kaggle_best.pth` and `kaggle_training_report.json` into `/kaggle/working/kaggle_run_artifacts.zip`.
+
+### C. Retrieving Artifacts Before Session Closes
+Because `/kaggle/working` is ephemeral:
+1. In the right-hand Kaggle panel, open the **Output** tab.
+2. Locate `/kaggle/working/kaggle_run_artifacts.zip`.
+3. Click the three dots $\to$ select **Download**.
+4. Place the downloaded checkpoint into your local repository under `models/checkpoints/` and the report into `outputs/`.
+
+---
+
+## 4. Colab Backup Workflow (`colab_starter.ipynb`)
+
+If Kaggle weekly GPU quotas are exhausted or queued:
+1. Open [Google Colab](https://colab.research.google.com/).
+2. Select **Upload** and choose `colab_starter.ipynb`.
+3. Set **Runtime $\to$ Change runtime type $\to$ T4 GPU**.
+4. In Cell 3, run the Google Drive mount cell:
    ```python
-   !git pull origin main
+   from google.colab import drive
+   drive.mount('/content/drive')
    ```
+5. Checkpoints and evaluation reports will automatically synchronize to `/content/drive/MyDrive/food_model_checkpoints/` upon completion.

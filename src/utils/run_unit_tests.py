@@ -24,6 +24,11 @@ def run_all_tests():
         test_license_classification_logic,
         test_mobilenet_v3_10class_shape
     )
+    from tests.test_resumable_downloader import (
+        test_compliance_guardrail_blocks_noncommercial,
+        test_approved_adapters_planning,
+        test_orchestrator_covers_all_nine_datasets
+    )
 
     env_tester = TestEnvironment()
 
@@ -43,6 +48,9 @@ def run_all_tests():
         ("test_image_validation_integrity", test_image_validation_integrity),
         ("test_license_classification_logic", test_license_classification_logic),
         ("test_mobilenet_v3_10class_shape", test_mobilenet_v3_10class_shape),
+        ("test_compliance_guardrail_blocks_noncommercial", test_compliance_guardrail_blocks_noncommercial),
+        ("test_approved_adapters_planning", test_approved_adapters_planning),
+        ("test_orchestrator_covers_all_nine_datasets", test_orchestrator_covers_all_nine_datasets),
     ]
 
     passed = 0

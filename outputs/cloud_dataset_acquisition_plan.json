@@ -1,0 +1,134 @@
+{
+  "timestamp": "2026-10-23T09:26:31Z",
+  "approved_commercial_sources": [
+    {
+      "name": "Enhanced Indian Food Classification",
+      "licence": "CC-BY-4.0",
+      "classification": "Approved for the intended commercial-use workflow",
+      "commercial_approved": true,
+      "total_images": 15404,
+      "classes_count": 43,
+      "total_files": 5,
+      "estimated_download_mb": 1870.08,
+      "official_url": "https://huggingface.co/datasets/SohlHealth/enhanced-indian-food-classification",
+      "shards": [
+        {
+          "name": "train_0",
+          "url": "https://huggingface.co/api/datasets/SohlHealth/enhanced-indian-food-classification/parquet/default/train/0.parquet",
+          "size_mb": 432.28
+        },
+        {
+          "name": "train_1",
+          "url": "https://huggingface.co/api/datasets/SohlHealth/enhanced-indian-food-classification/parquet/default/train/1.parquet",
+          "size_mb": 466.09
+        },
+        {
+          "name": "train_2",
+          "url": "https://huggingface.co/api/datasets/SohlHealth/enhanced-indian-food-classification/parquet/default/train/2.parquet",
+          "size_mb": 604.19
+        },
+        {
+          "name": "val_0",
+          "url": "https://huggingface.co/api/datasets/SohlHealth/enhanced-indian-food-classification/parquet/default/validation/0.parquet",
+          "size_mb": 120.94
+        },
+        {
+          "name": "test_0",
+          "url": "https://huggingface.co/api/datasets/SohlHealth/enhanced-indian-food-classification/parquet/default/test/0.parquet",
+          "size_mb": 246.57
+        }
+      ]
+    },
+    {
+      "name": "Bangladeshi Food (BD-Food33)",
+      "licence": "CC0-1.0-Universal",
+      "classification": "Approved for the intended commercial-use workflow",
+      "commercial_approved": true,
+      "total_images": 1200,
+      "classes_count": 33,
+      "estimated_download_mb": 350.0,
+      "official_url": "https://data.mendeley.com/datasets/37b7c5x84m/1",
+      "source_url": "https://data.mendeley.com/public-files/datasets/37b7c5x84m/files/BD-Food33.zip"
+    },
+    {
+      "name": "FoodBD (Bangladeshi Meals & Nutrition)",
+      "licence": "CC BY 4.0",
+      "classification": "Approved for the intended commercial-use workflow",
+      "commercial_approved": true,
+      "total_images": 2800,
+      "estimated_download_mb": 650.0,
+      "official_url": "https://data.mendeley.com/datasets/dpm2v4mv29/1",
+      "source_url": "https://data.mendeley.com/public-files/datasets/dpm2v4mv29/files/FoodBD.zip"
+    },
+    {
+      "name": "Indian Spices",
+      "licence": "CC BY 4.0",
+      "classification": "Approved for the intended commercial-use workflow",
+      "commercial_approved": true,
+      "total_images": 10991,
+      "classes_count": 19,
+      "estimated_download_mb": 1200.0,
+      "official_url": "https://data.mendeley.com/datasets/s977p6h659/1",
+      "source_url": "https://data.mendeley.com/public-files/datasets/s977p6h659/files/Indian_Spices_Dataset.zip"
+    },
+    {
+      "name": "RASOI (Indian Food Object Detection)",
+      "licence": "CC BY 4.0",
+      "classification": "Approved for the intended commercial-use workflow",
+      "commercial_approved": true,
+      "total_images": 2000,
+      "estimated_download_mb": 200.0,
+      "official_url": "https://universe.roboflow.com/wce-6xgpk/rasoi",
+      "source_url": "https://universe.roboflow.com/wce-6xgpk/rasoi/dataset/1/download"
+    }
+  ],
+  "requires_review_sources": [
+    {
+      "name": "Indian Foods Dataset",
+      "licence": "Apache-2.0 (Curated) / Unspecified (Scrapes)",
+      "classification": "Requires licence or image-rights review",
+      "commercial_approved": false,
+      "total_images": 2000,
+      "classes_count": 20,
+      "estimated_download_mb": 450.0,
+      "official_url": "https://www.kaggle.com/datasets/kanishk307/indian-food-images-dataset",
+      "review_notes": "Only curated Apache-2.0 images are approved; web scrapes are blocked pending rights audit."
+    }
+  ],
+  "excluded_non_commercial_sources": [
+    {
+      "name": "Khana (Indian Cuisine Benchmark)",
+      "licence": "CC BY-NC-ND 4.0",
+      "classification": "Non-commercial; excluded unless written permission is obtained",
+      "commercial_approved": false,
+      "total_images": 131000,
+      "classes_count": 80,
+      "estimated_download_mb": 10000.0,
+      "official_url": "https://arxiv.org/abs/2509.06006",
+      "compliance_status": "QUARANTINED_NON_COMMERCIAL"
+    }
+  ],
+  "access_unverified_sources": [
+    {
+      "name": "SpiceVision",
+      "licence": "Academic Research (Mixed/Unverified)",
+      "classification": "Download access not yet verified",
+      "commercial_approved": false,
+      "total_images": 3000,
+      "classes_count": 15,
+      "estimated_download_mb": 300.0,
+      "official_url": "https://www.researchgate.net/publication/SpiceVision",
+      "notes": "Centralized open-access download mirror not found; requires author inquiry."
+    },
+    {
+      "name": "FoodLens (Google Research 2025)",
+      "licence": "Closed / Proprietary",
+      "classification": "Download access not yet verified",
+      "commercial_approved": false,
+      "official_url": "https://research.google/pubs/foodlens-fine-grained-and-multi-label-classification-ofindian-food-images/",
+      "notes": "No public download URL exists. Proprietary internal dataset."
+    }
+  ],
+  "total_approved_images": 32395,
+  "total_approved_download_mb": 4270.08
+}
