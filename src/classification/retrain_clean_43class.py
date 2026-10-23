@@ -455,11 +455,16 @@ def package_artifacts_zip(
         if os.path.exists(manifest_path):
             zipf.write(manifest_path, arcname=os.path.basename(manifest_path))
 
-    # Also duplicate to /kaggle/working if in Kaggle
+    # Also duplicate deliverables to /kaggle/working if in Kaggle
     if os.path.exists("/kaggle/working"):
         kaggle_dest = os.path.join("/kaggle/working", os.path.basename(zip_output_path))
         if os.path.abspath(zip_output_path) != os.path.abspath(kaggle_dest):
             shutil.copyfile(zip_output_path, kaggle_dest)
+        for src_path in [checkpoint_best_path, label_mapping_path, model_config_path, training_report_path]:
+            if os.path.exists(src_path):
+                dest_item = os.path.join("/kaggle/working", os.path.basename(src_path))
+                if os.path.abspath(src_path) != os.path.abspath(dest_item):
+                    shutil.copyfile(src_path, dest_item)
 
     return zip_output_path
 
