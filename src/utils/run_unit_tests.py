@@ -29,6 +29,13 @@ def run_all_tests():
         test_approved_adapters_planning,
         test_orchestrator_covers_all_nine_datasets
     )
+    from tests.test_parquet_food_loader import (
+        test_parquet_image_decoding,
+        test_43class_vocabulary,
+        test_legacy_dataset_guardrail_rejection,
+        test_parquet_synthetic_roundtrip,
+        test_mobilenet_v3_43class_shape
+    )
 
     env_tester = TestEnvironment()
 
@@ -51,6 +58,11 @@ def run_all_tests():
         ("test_compliance_guardrail_blocks_noncommercial", test_compliance_guardrail_blocks_noncommercial),
         ("test_approved_adapters_planning", test_approved_adapters_planning),
         ("test_orchestrator_covers_all_nine_datasets", test_orchestrator_covers_all_nine_datasets),
+        ("test_parquet_image_decoding", test_parquet_image_decoding),
+        ("test_43class_vocabulary", test_43class_vocabulary),
+        ("test_legacy_dataset_guardrail_rejection", test_legacy_dataset_guardrail_rejection),
+        ("test_parquet_synthetic_roundtrip", test_parquet_synthetic_roundtrip),
+        ("test_mobilenet_v3_43class_shape", test_mobilenet_v3_43class_shape),
     ]
 
     passed = 0

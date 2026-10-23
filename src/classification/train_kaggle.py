@@ -1,18 +1,17 @@
 """
-Kaggle-First GPU Training and Evaluation Pipeline
+Kaggle-First GPU Training and Evaluation Pipeline (43-Class Indian Food Classification)
 Designed for reproducible cloud execution on Kaggle GPU (NVIDIA T4 / P100)
 and local development fallback.
 
 Features:
-1. GPU Environment and VRAM Audit.
-2. Transfer Learning from MobileNetV3-Small:
-   - Stage 1: Frozen backbone + 10-class food classifier head.
-   - Stage 2: Staged fine-tuning of top bottleneck blocks with cosine decay.
-3. Checkpoint verification: Saves and re-validates best validation checkpoint.
-4. Comprehensive multi-split evaluation:
-   - Historical test set (continuity benchmark)
-   - New expanded independent test set
-5. Wilson 95% confidence intervals, per-class precision/recall/F1, and confusion matrix.
+1. Strict Compliance Guardrail: Fails loudly if the legacy 172-image 5-class dataset is loaded.
+2. 43-class MobileNetV3-Small architecture with pretrained transfer learning.
+3. Staged Training:
+   - Stage 1: Linear probe on adapted 43-class head with frozen backbone.
+   - Stage 2: Staged fine-tuning of top bottleneck blocks with Cosine Annealing.
+4. Dedicated Checkpoint: Saves to 'mobilenet_v3_indian_43class_best.pth' without overwriting historical models.
+5. Rigorous Evaluation: Wilson 95% confidence intervals, per-class precision/recall/F1 across all 43 classes.
+6. Exports full machine-readable training report to 'kaggle_indian_43class_training_report.json'.
 """
 
 import os
@@ -23,6 +22,7 @@ import math
 import random
 import shutil
 from typing import Dict, Any, List, Tuple, Optional
+from collections import Counter
 
 import torch
 import torch.nn as nn
@@ -34,6 +34,14 @@ from PIL import Image
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 if BASE_DIR not in sys.path:
     sys.path.insert(0, BASE_DIR)
+
+from src.data.parquet_food_loader import (
+    ParquetFoodDataset,
+    EXPECTED_43_CLASSES,
+    LegacyDatasetGuardError,
+    extract_and_prepare_43class_manifest,
+    discover_parquet_shards
+)
 
 def set_seed(seed: int = 42):
     random.seed(seed)
@@ -61,19 +69,19 @@ def get_kaggle_or_local_paths():
 
 def audit_gpu_environment():
     """Audits CUDA availability, device name, VRAM limits, and PyTorch configuration."""
-    print("=" * 80)
-    print("HARDWARE & GPU RUNTIME AUDIT")
-    print("=" * 80)
+    print("=" * 85)
+    print("KAGGLE GPU HARDWARE & COMPUTE RUNTIME AUDIT")
+    print("=" * 85)
     cuda_avail = torch.cuda.is_available()
     device_name = torch.cuda.get_device_name(0) if cuda_avail else "CPU (Fallback)"
     total_vram_gb = torch.cuda.get_device_properties(0).total_memory / (1024**3) if cuda_avail else 0.0
 
-    print(f"CUDA Available:     {cuda_avail}")
-    print(f"Device Name:        {device_name}")
-    print(f"Total VRAM:         {total_vram_gb:.2f} GB")
-    print(f"PyTorch Version:    {torch.__version__}")
-    print(f"CUDA Version (Torch): {torch.version.cuda}")
-    print("=" * 80)
+    print(f"CUDA Available:        {cuda_avail}")
+    print(f"Device Name:           {device_name}")
+    print(f"Total Dedicated VRAM:  {total_vram_gb:.2f} GB")
+    print(f"PyTorch Version:       {torch.__version__}")
+    print(f"CUDA Version (Torch):  {torch.version.cuda}")
+    print("=" * 85)
 
     device = torch.device("cuda:0" if cuda_avail else "cpu")
     return device, {
@@ -83,38 +91,13 @@ def audit_gpu_environment():
         "pytorch_version": torch.__version__
     }
 
-class FoodImageDataset(Dataset):
-    def __init__(self, items: List[Dict[str, Any]], class_to_idx: Dict[str, int], transform=None):
-        self.items = items
-        self.class_to_idx = class_to_idx
-        self.transform = transform
-
-    def __len__(self):
-        return len(self.items)
-
-    def __getitem__(self, idx):
-        item = self.items[idx]
-        file_path = item["file_path"]
-        if not os.path.isabs(file_path):
-            file_path = os.path.join(BASE_DIR, file_path)
-
-        with Image.open(file_path) as img:
-            img = img.convert("RGB")
-
-        if self.transform:
-            tensor = self.transform(img)
-        else:
-            tensor = transforms.ToTensor()(img)
-
-        label = self.class_to_idx[item["canonical_id"]]
-        return tensor, label, item["image_id"]
-
 def build_transforms():
+    """Builds standard training data augmentation and validation normalization transforms."""
     train_transform = transforms.Compose([
         transforms.Resize((256, 256)),
-        transforms.RandomResizedCrop(224, scale=(0.75, 1.0)),
-        transforms.RandomHorizontalFlip(),
-        transforms.RandomRotation(15),
+        transforms.RandomResizedCrop(224, scale=(0.80, 1.0)),
+        transforms.RandomHorizontalFlip(p=0.5),
+        transforms.RandomRotation(degrees=15),
         transforms.ColorJitter(brightness=0.15, contrast=0.15, saturation=0.15),
         transforms.ToTensor(),
         transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
@@ -127,9 +110,9 @@ def build_transforms():
     ])
     return train_transform, val_transform
 
-def build_mobilenet_v3(num_classes: int, device: torch.device):
+def build_mobilenet_v3(num_classes: int = 43, device: Optional[torch.device] = None) -> nn.Module:
     """
-    Constructs MobileNetV3-Small with pretrained weights and adapted classification head.
+    Constructs MobileNetV3-Small with pretrained ImageNet weights and adapted 43-class head.
     """
     weights = models.MobileNet_V3_Small_Weights.DEFAULT
     model = models.mobilenet_v3_small(weights=weights)
@@ -141,9 +124,13 @@ def build_mobilenet_v3(num_classes: int, device: torch.device):
         nn.Dropout(p=0.2),
         nn.Linear(1024, num_classes)
     )
-    return model.to(device)
+
+    if device:
+        model = model.to(device)
+    return model
 
 def calculate_wilson_ci(k: int, n: int, confidence: float = 0.95) -> Tuple[float, float]:
+    """Calculates Wilson score interval for binomial proportions."""
     if n == 0:
         return 0.0, 0.0
     z = 1.95996  # 95% confidence
@@ -153,50 +140,132 @@ def calculate_wilson_ci(k: int, n: int, confidence: float = 0.95) -> Tuple[float
     spread = z * math.sqrt((p * (1 - p) + z**2 / (4 * n)) / n) / denominator
     return max(0.0, centre - spread), min(1.0, centre + spread)
 
-def train_kaggle_model(
-    manifest_path: str,
-    epochs_head: int = 10,
+def train_indian_43class_model(
+    manifest_path: Optional[str] = None,
+    epochs_head: int = 5,
     epochs_finetune: int = 10,
     batch_size: int = 32,
     lr_head: float = 1e-3,
     lr_finetune: float = 1e-4,
-    seed: int = 42
+    seed: int = 42,
+    num_workers: int = 2
 ) -> Dict[str, Any]:
+    """
+    Trains the 43-class MobileNetV3-Small model on the Enhanced Indian Food Classification dataset.
+    Fails loudly if the legacy 172-image 5-class dataset is accidentally loaded.
+    """
     start_time = time.time()
     set_seed(seed)
     is_kaggle, working_dir, output_dir, model_dir = get_kaggle_or_local_paths()
     device, gpu_info = audit_gpu_environment()
 
-    print(f"Loading manifest: {manifest_path}")
+    # Discover or prepare the 43-class manifest
+    if manifest_path is None or not os.path.exists(manifest_path):
+        candidate_manifests = [
+            os.path.join(working_dir, "data_manifests", "indian_food_43class_manifest.json"),
+            os.path.join(BASE_DIR, "data_manifests", "indian_food_43class_manifest.json")
+        ]
+        manifest_path = next((m for m in candidate_manifests if os.path.exists(m)), None)
+
+    if manifest_path is None or not os.path.exists(manifest_path):
+        # Look for raw parquet shards to extract
+        candidate_parquet_dirs = [
+            "/kaggle/working/datasets/raw/sohlhealth_indian_food",
+            os.path.join(working_dir, "datasets", "raw", "sohlhealth_indian_food"),
+            os.path.join(BASE_DIR, "datasets", "raw", "sohlhealth_indian_food")
+        ]
+        parquet_dir = next((d for d in candidate_parquet_dirs if os.path.exists(d)), None)
+
+        if parquet_dir and len(discover_parquet_shards(parquet_dir)) > 0:
+            print(f"Manifest not found. Extracting from parquet shards at {parquet_dir}...")
+            image_out = os.path.join(working_dir, "datasets", "processed", "indian_food_43class")
+            manifest_out = os.path.join(working_dir, "data_manifests", "indian_food_43class_manifest.json")
+            extract_and_prepare_43class_manifest(parquet_dir, image_out, manifest_out)
+            manifest_path = manifest_out
+        else:
+            raise FileNotFoundError(
+                "Neither 43-class manifest nor downloaded parquet shards found! "
+                "Please run Step 4 (Resumable Downloader) to acquire the Enhanced Indian Food Classification shards."
+            )
+
+    print(f"Loading 43-Class Indian Food manifest: {manifest_path}")
     with open(manifest_path, "r", encoding="utf-8") as f:
         manifest_data = json.load(f)
 
     all_images = manifest_data.get("images", [])
+    total_images_loaded = len(all_images)
     classes = sorted(list({img["canonical_id"] for img in all_images}))
-    class_to_idx = {c: i for i, c in enumerate(classes)}
-    idx_to_class = {i: c for i, c in enumerate(classes)}
     num_classes = len(classes)
 
-    print(f"Found {len(all_images)} images across {num_classes} classes: {classes}")
+    # -------------------------------------------------------------------------
+    # STRICT COMPLIANCE GUARDRAIL: Fail loudly if legacy dataset is loaded
+    # -------------------------------------------------------------------------
+    if total_images_loaded < 1000 or num_classes < 40:
+        raise LegacyDatasetGuardError(
+            f"FATAL COMPLIANCE GUARDRAIL VIOLATION: "
+            f"Attempted to train on legacy/tiny dataset with only {total_images_loaded} images across {num_classes} classes! "
+            f"The Indian Food 43-Class pipeline strictly requires the validated ~15,404-image dataset across 43 classes. "
+            f"Training halted immediately to prevent invalid results."
+        )
+
+    print("=" * 85)
+    print(f"VERIFIED 43-CLASS INDIAN FOOD DATASET LOADED:")
+    print(f"Total Unique Images:   {total_images_loaded:,}")
+    print(f"Total Active Classes:  {num_classes} (Target: 43)")
+    print(f"Class Vocabulary:      {classes}")
+    print("=" * 85)
+
+    class_to_idx = {c: i for i, c in enumerate(classes)}
+    idx_to_class = {i: c for i, c in enumerate(classes)}
 
     train_items = [img for img in all_images if img.get("split") == "train"]
     val_items = [img for img in all_images if img.get("split") == "val"]
-    test_hist_items = [img for img in all_images if img.get("split") == "test" or img.get("split") == "test_historical"]
-    test_indep_items = [img for img in all_images if img.get("split") == "test_independent"]
+    test_items = [img for img in all_images if img.get("split") == "test"]
 
-    print(f"Split breakdown: Train={len(train_items)}, Val={len(val_items)}, TestHist={len(test_hist_items)}, TestIndep={len(test_indep_items)}")
+    print(f"Split Breakdown: Train={len(train_items):,}, Val={len(val_items):,}, Test={len(test_items):,}")
 
     train_trans, val_trans = build_transforms()
-    train_loader = DataLoader(FoodImageDataset(train_items, class_to_idx, train_trans), batch_size=batch_size, shuffle=True)
-    val_loader = DataLoader(FoodImageDataset(val_items, class_to_idx, val_trans), batch_size=batch_size, shuffle=False)
+    train_dataset = ParquetFoodDataset(train_items, class_to_idx, transform=train_trans, base_dir=working_dir)
+    val_dataset = ParquetFoodDataset(val_items, class_to_idx, transform=val_trans, base_dir=working_dir)
+    test_dataset = ParquetFoodDataset(test_items, class_to_idx, transform=val_trans, base_dir=working_dir)
 
-    model = build_mobilenet_v3(num_classes, device)
+    train_loader = DataLoader(
+        train_dataset,
+        batch_size=batch_size,
+        shuffle=True,
+        num_workers=num_workers,
+        pin_memory=torch.cuda.is_available()
+    )
+    val_loader = DataLoader(
+        val_dataset,
+        batch_size=batch_size,
+        shuffle=False,
+        num_workers=num_workers,
+        pin_memory=torch.cuda.is_available()
+    )
+    test_loader = DataLoader(
+        test_dataset,
+        batch_size=batch_size,
+        shuffle=False,
+        num_workers=num_workers,
+        pin_memory=torch.cuda.is_available()
+    )
+
+    model = build_mobilenet_v3(num_classes=num_classes, device=device)
     criterion = nn.CrossEntropyLoss()
 
-    # Stage 1: Head-Only Training (Backbone frozen)
-    print("\n" + "=" * 80)
-    print("STAGE 1: TRAINING FOOD CLASSIFIER HEAD (Backbone Frozen)")
-    print("=" * 80)
+    # Distinct checkpoint path to ensure existing models are never overwritten
+    checkpoint_name = "mobilenet_v3_indian_43class_best.pth"
+    best_checkpoint_path = os.path.join(model_dir, checkpoint_name)
+    best_val_acc = 0.0
+
+    # -------------------------------------------------------------------------
+    # STAGE 1: Linear Probe Head Training (Backbone Frozen)
+    # -------------------------------------------------------------------------
+    print("\n" + "=" * 85)
+    print(f"STAGE 1: TRAINING 43-CLASS CLASSIFIER HEAD ({epochs_head} Epochs, Backbone Frozen)")
+    print("=" * 85)
+
     for p in model.features.parameters():
         p.requires_grad = False
     for p in model.classifier.parameters():
@@ -204,14 +273,12 @@ def train_kaggle_model(
 
     opt_head = optim.AdamW(model.classifier.parameters(), lr=lr_head, weight_decay=1e-2)
 
-    best_val_acc = 0.0
-    best_checkpoint_path = os.path.join(model_dir, "mobilenet_v3_food_kaggle_best.pth")
-
     for ep in range(1, epochs_head + 1):
         model.train()
         running_loss = 0.0
         correct = 0
         total = 0
+
         for x, y, _ in train_loader:
             x, y = x.to(device), y.to(device)
             opt_head.zero_grad()
@@ -228,7 +295,7 @@ def train_kaggle_model(
         tr_loss = running_loss / max(1, total)
         tr_acc = correct / max(1, total)
 
-        # Val
+        # Validation pass
         model.eval()
         v_loss = 0.0
         v_correct = 0
@@ -245,60 +312,66 @@ def train_kaggle_model(
 
         val_loss = v_loss / max(1, v_total)
         val_acc = v_correct / max(1, v_total)
-        print(f"Epoch {ep:02d}/{epochs_head:02d} | Train Loss: {tr_loss:.4f} Acc: {tr_acc:.1%} | Val Loss: {val_loss:.4f} Acc: {val_acc:.1%}")
+        print(f"Stage 1 [Epoch {ep:02d}/{epochs_head:02d}] Train Loss: {tr_loss:.4f} Acc: {tr_acc:.1%} | Val Loss: {val_loss:.4f} Acc: {val_acc:.1%}")
 
         if val_acc >= best_val_acc:
             best_val_acc = val_acc
             torch.save({
                 "epoch": ep,
+                "stage": "head_only",
                 "model_state_dict": model.state_dict(),
                 "val_acc": val_acc,
+                "num_classes": num_classes,
                 "classes": classes,
-                "seed": seed,
-                "stage": "stage1_head_only"
+                "class_to_idx": class_to_idx,
+                "architecture": "mobilenet_v3_small_43class"
             }, best_checkpoint_path)
+            print(f"  -> Saved Stage 1 best checkpoint (Val Acc: {val_acc:.1%}) to {best_checkpoint_path}")
 
-    # Stage 2: Staged Fine-Tuning (Unfreezing upper bottleneck blocks 10-12)
-    print("\n" + "=" * 80)
-    print("STAGE 2: STAGED FINE-TUNING (Upper Inverted Residual Blocks Unfrozen)")
-    print("=" * 80)
-    # Unfreeze upper blocks (features[9:] in MobileNetV3-Small)
-    for p in model.features.parameters():
-        p.requires_grad = False
-    for i in range(8, len(model.features)):
-        for p in model.features[i].parameters():
-            p.requires_grad = True
+    # -------------------------------------------------------------------------
+    # STAGE 2: Staged Fine-Tuning of Upper Bottlenecks
+    # -------------------------------------------------------------------------
+    print("\n" + "=" * 85)
+    print(f"STAGE 2: STAGED FINE-TUNING OF TOP BOTTLENECKS ({epochs_finetune} Epochs)")
+    print("=" * 85)
 
-    opt_ft = optim.AdamW([
-        {"params": [p for i in range(8, len(model.features)) for p in model.features[i].parameters()], "lr": lr_finetune * 0.5},
+    # Unfreeze upper bottleneck blocks 10-12
+    for idx, block in enumerate(model.features):
+        if idx >= 10:
+            for p in block.parameters():
+                p.requires_grad = True
+
+    opt_finetune = optim.AdamW([
+        {"params": [p for idx, block in enumerate(model.features) if idx >= 10 for p in block.parameters()], "lr": lr_finetune * 0.1},
         {"params": model.classifier.parameters(), "lr": lr_finetune}
     ], weight_decay=1e-2)
 
-    sched_ft = optim.lr_scheduler.CosineAnnealingLR(opt_ft, T_max=epochs_finetune, eta_min=1e-6)
+    scheduler = optim.lr_scheduler.CosineAnnealingLR(opt_finetune, T_max=epochs_finetune, eta_min=1e-6)
 
     for ep in range(1, epochs_finetune + 1):
         model.train()
         running_loss = 0.0
         correct = 0
         total = 0
+
         for x, y, _ in train_loader:
             x, y = x.to(device), y.to(device)
-            opt_ft.zero_grad()
+            opt_finetune.zero_grad()
             out = model(x)
             loss = criterion(out, y)
             loss.backward()
-            opt_ft.step()
+            opt_finetune.step()
 
             running_loss += loss.item() * x.size(0)
             preds = out.argmax(dim=1)
             correct += (preds == y).sum().item()
             total += y.size(0)
 
-        sched_ft.step()
+        scheduler.step()
         tr_loss = running_loss / max(1, total)
         tr_acc = correct / max(1, total)
 
-        # Val
+        # Validation pass
         model.eval()
         v_loss = 0.0
         v_correct = 0
@@ -315,74 +388,66 @@ def train_kaggle_model(
 
         val_loss = v_loss / max(1, v_total)
         val_acc = v_correct / max(1, v_total)
-        print(f"FineTune Epoch {ep:02d}/{epochs_finetune:02d} | Train Loss: {tr_loss:.4f} Acc: {tr_acc:.1%} | Val Loss: {val_loss:.4f} Acc: {val_acc:.1%}")
+        print(f"Stage 2 [Epoch {ep:02d}/{epochs_finetune:02d}] Train Loss: {tr_loss:.4f} Acc: {tr_acc:.1%} | Val Loss: {val_loss:.4f} Acc: {val_acc:.1%}")
 
         if val_acc >= best_val_acc:
             best_val_acc = val_acc
             torch.save({
-                "epoch": ep,
+                "epoch": ep + epochs_head,
+                "stage": "staged_finetune",
                 "model_state_dict": model.state_dict(),
                 "val_acc": val_acc,
+                "num_classes": num_classes,
                 "classes": classes,
-                "seed": seed,
-                "stage": "stage2_staged_finetuning"
+                "class_to_idx": class_to_idx,
+                "architecture": "mobilenet_v3_small_43class"
             }, best_checkpoint_path)
+            print(f"  -> Saved Stage 2 best checkpoint (Val Acc: {val_acc:.1%}) to {best_checkpoint_path}")
 
-    training_duration_s = round(time.time() - start_time, 2)
-    checkpoint_size_mb = round(os.path.getsize(best_checkpoint_path) / (1024**2), 2)
+    # -------------------------------------------------------------------------
+    # STAGE 3: Full Evaluation on Validation and Independent Test Sets
+    # -------------------------------------------------------------------------
+    print("\n" + "=" * 85)
+    print("STAGE 3: FULL EVALUATION ON VALIDATION AND INDEPENDENT TEST SETS")
+    print("=" * 85)
 
-    print("\n" + "=" * 80)
-    print(f"TRAINING COMPLETE in {training_duration_s} seconds.")
-    print(f"Best Validation Accuracy: {best_val_acc:.1%}")
-    print(f"Best Checkpoint Saved:   {best_checkpoint_path} ({checkpoint_size_mb} MB)")
-    print("=" * 80)
-
-    # Verification: Reload checkpoint to guarantee integrity
+    # Load best checkpoint
     ckpt = torch.load(best_checkpoint_path, map_location=device, weights_only=False)
     model.load_state_dict(ckpt["model_state_dict"])
     model.eval()
 
-    def evaluate_split(split_items: List[Dict[str, Any]], split_name: str) -> Dict[str, Any]:
-        if not split_items:
-            return {"accuracy": 0.0, "total_samples": 0}
-
-        loader = DataLoader(FoodImageDataset(split_items, class_to_idx, val_trans), batch_size=batch_size, shuffle=False)
-        correct = 0
-        total = 0
-        y_true = []
-        y_pred = []
-
+    def evaluate_split(loader: DataLoader, split_name: str) -> Dict[str, Any]:
+        y_true, y_pred = [], []
         with torch.no_grad():
             for x, y, _ in loader:
-                x, y = x.to(device), y.to(device)
+                x = x.to(device)
                 out = model(x)
-                preds = out.argmax(dim=1)
-                correct += (preds == y).sum().item()
-                total += y.size(0)
-                y_true.extend(y.cpu().tolist())
-                y_pred.extend(preds.cpu().tolist())
+                preds = out.argmax(dim=1).cpu().tolist()
+                y_pred.extend(preds)
+                y_true.extend(y.tolist())
 
+        total = len(y_true)
+        correct = sum(1 for yt, yp in zip(y_true, y_pred) if yt == yp)
         acc = correct / max(1, total)
         ci_low, ci_high = calculate_wilson_ci(correct, total)
 
-        # Per-class metrics
         per_class = {}
         for cidx, cname in idx_to_class.items():
             tp = sum(1 for yt, yp in zip(y_true, y_pred) if yt == cidx and yp == cidx)
             fp = sum(1 for yt, yp in zip(y_true, y_pred) if yt != cidx and yp == cidx)
             fn = sum(1 for yt, yp in zip(y_true, y_pred) if yt == cidx and yp != cidx)
+            support = sum(1 for yt in y_true if yt == cidx)
             prec = tp / max(1, tp + fp)
             rec = tp / max(1, tp + fn)
             f1 = 2 * prec * rec / max(1e-6, prec + rec)
             per_class[cname] = {
-                "support": sum(1 for yt in y_true if yt == cidx),
+                "support": support,
                 "precision": round(prec, 4),
                 "recall": round(rec, 4),
                 "f1_score": round(f1, 4)
             }
 
         macro_f1 = sum(v["f1_score"] for v in per_class.values()) / max(1, len(per_class))
-
         return {
             "split_name": split_name,
             "total_samples": total,
@@ -393,12 +458,21 @@ def train_kaggle_model(
             "per_class": per_class
         }
 
-    eval_hist = evaluate_split(test_hist_items, "test_historical")
-    eval_indep = evaluate_split(test_indep_items, "test_independent")
+    val_metrics = evaluate_split(val_loader, "validation")
+    test_metrics = evaluate_split(test_loader, "test_independent")
+
+    training_duration_s = round(time.time() - start_time, 2)
+    checkpoint_size_mb = round(os.path.getsize(best_checkpoint_path) / (1024**2), 2)
 
     report = {
+        "dataset_name": "Enhanced Indian Food Classification (43 Classes)",
+        "source_dataset": "SohlHealth/enhanced-indian-food-classification",
+        "license": "CC-BY-4.0",
         "generated_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
         "hardware_environment": gpu_info,
+        "total_images_in_dataset": total_images_loaded,
+        "num_classes": num_classes,
+        "classes": classes,
         "training_duration_seconds": training_duration_s,
         "checkpoint_file": best_checkpoint_path,
         "checkpoint_size_mb": checkpoint_size_mb,
@@ -412,17 +486,26 @@ def train_kaggle_model(
             "optimizer": "AdamW",
             "scheduler": "CosineAnnealingLR"
         },
-        "evaluation_historical_test": eval_hist,
-        "evaluation_independent_test": eval_indep
+        "validation_metrics": val_metrics,
+        "independent_test_metrics": test_metrics
     }
 
-    report_path = os.path.join(output_dir, "kaggle_training_report.json")
+    report_path = os.path.join(output_dir, "kaggle_indian_43class_training_report.json")
     with open(report_path, "w", encoding="utf-8") as f:
         json.dump(report, f, indent=2)
 
-    print(f"\nFinal Evaluation Report saved to: {report_path}")
+    print("\n" + "=" * 85)
+    print("FINAL 43-CLASS INDIAN FOOD EVALUATION METRICS REPORT")
+    print("=" * 85)
+    print(f"Validation Accuracy: {val_metrics['accuracy']:.1%} (95% CI: [{val_metrics['accuracy_ci_95'][0]:.1%}, {val_metrics['accuracy_ci_95'][1]:.1%}])")
+    print(f"Validation Macro-F1: {val_metrics['macro_f1']:.4f} (over 43 classes)")
+    print(f"Independent Test Accuracy: {test_metrics['accuracy']:.1%} (95% CI: [{test_metrics['accuracy_ci_95'][0]:.1%}, {test_metrics['accuracy_ci_95'][1]:.1%}])")
+    print(f"Independent Test Macro-F1: {test_metrics['macro_f1']:.4f}")
+    print(f"Checkpoint Saved To:       {best_checkpoint_path} ({checkpoint_size_mb} MB)")
+    print(f"Report Saved To:           {report_path}")
+    print("=" * 85)
+
     return report
 
 if __name__ == "__main__":
-    v3_manifest = os.path.join(BASE_DIR, "data_manifests", "food_dataset_v3_manifest.json")
-    train_kaggle_model(v3_manifest, epochs_head=2, epochs_finetune=2, batch_size=16)
+    train_indian_43class_model()

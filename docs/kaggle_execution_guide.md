@@ -1,107 +1,81 @@
-# Running the Cloud Dataset Acquisition & Training Pipeline on Kaggle (GPU Guide)
+# Running the 43-Class Cloud Dataset Acquisition & Training Pipeline on Kaggle (GPU Guide)
 
-This guide provides complete instructions for executing the cloud dataset acquisition, integrity verification, and MobileNetV3-Small transfer learning pipeline on **Kaggle GPU (NVIDIA Tesla T4 / P100)** with **Google Colab** as a secondary backup.
+This guide provides complete instructions for acquiring the 15,404-image Enhanced Indian Food dataset, verifying image integrity, and fine-tuning the 43-class MobileNetV3-Small transfer learning model on **Kaggle GPU (NVIDIA Tesla T4 / P100)** with **Google Colab** as a secondary backup.
 
 **Source of Truth Repository:** `https://github.com/VaibhavBajpaij/food-plat-scanner-ai-model.git`
 
 ---
 
-## 1. Cloud Infrastructure & Resource Sizing
+## 1. Cloud Infrastructure & Sizing (43 Classes, 15,404 Images)
 
 | Resource Dimension | Local Development (Laptop) | Kaggle Cloud GPU (Primary) | Google Colab (Backup) |
 | :--- | :--- | :--- | :--- |
 | **GPU Accelerator** | NVIDIA GeForce RTX 2050 (4 GB) | **NVIDIA Tesla T4 (16 GB)** or **2x T4** | **NVIDIA T4 / V100 (15–16 GB)** |
 | **Storage Quota** | Constrained local SSD | **~20 GB `/kaggle/working` ephemeral disk** | **~78 GB `/content` ephemeral disk** |
-| **Network Throughput** | Standard home/office broadband | **Cloud multi-gigabit link (direct to HF/Mendeley)** | **Cloud multi-gigabit link** |
+| **Network Throughput** | Standard broadband | **Cloud multi-gigabit link (direct to HF/Mendeley)** | **Cloud multi-gigabit link** |
 | **Weekly Free Limit** | N/A | **30 GPU hours / week** | Dynamic free tier compute units |
-| **Persistence Mechanism** | Permanent local filesystem | **Download `kaggle_run_artifacts.zip` before exit** | **Mount Google Drive (`/content/drive`)** |
+| **Persistence Mechanism** | Permanent local filesystem | **Download `kaggle_indian_43class_artifacts.zip`** | **Mount Google Drive (`/content/drive`)** |
 
-### Estimated Sizing & Requirements:
-- **Download Storage (Approved Datasets):**
-  - Anchor: *Enhanced Indian Food Classification* = **~1.75 GB** (15,404 images in 5 parquet shards).
-  - Regional Safe-Harbor: *BD-Food33* = **~350 MB** (1,200 images).
-  - Segmentation Ground Truth: *FoodBD* = **~650 MB** (2,800 images).
-  - Object Detection: *RASOI* = **~200 MB** (2,000 images).
-  - Total Approved Pool = **~2.95 GB compressed** (unpacks to ~4.5 GB raw image cache).
-- **GPU VRAM Utilization:**
-  - MobileNetV3-Small (Batch Size 32, Image Size 224x224): **~1.8–2.6 GB VRAM peak**.
-  - Head-only training (Stage 1) + bottleneck fine-tuning (Stage 2): **100% stable** within the 16 GB VRAM envelope.
-- **Compute Time:**
-  - 15,404 images across 20 epochs on T4 GPU: **~12–18 minutes total runtime**.
+### Sizing & Requirements:
+- **Parquet Download Size:** ~1.75 GB across 5 shards (`train_0`, `train_1`, `train_2`, `val_0`, `test_0`).
+- **Extracted Images (JPEG):** ~2.50 GB on disk across `/kaggle/working/datasets/processed/indian_food_43class/`.
+- **GPU VRAM Utilization (Batch Size 32):** ~1.8–2.6 GB VRAM peak on MobileNetV3-Small (100% stable within Kaggle's 16 GB VRAM envelope).
+- **Compute Time:** ~12–18 minutes total runtime for 15 epochs (5 head + 10 bottleneck fine-tuning) on T4 GPU.
 
 ---
 
-## 2. Nine Candidate Datasets: Audit & Compliance Summary
+## 2. Nine Candidate Datasets: Independent Forensic Licence Summary
 
-Before acquiring datasets, our automated governance engine classifies all candidates into four strict tiers:
-
-| Candidate Dataset | Licence | Images | Size | Status | Action |
-| :--- | :--- | :---: | :---: | :--- | :--- |
-| **Enhanced Indian Food Classification** | **CC-BY-4.0** | **15,404** | **~1.75 GB** | **Approved Commercial Workflow** | **Anchor acquisition target** |
-| **Bangladeshi Food (BD-Food33)** | **CC0 1.0 (Public Domain)** | **1,200** | **~350 MB** | **Approved Commercial Workflow** | **Unencumbered regional safe-harbor** |
-| **FoodBD** | **CC BY 4.0** | **2,800** | **~650 MB** | **Approved Commercial Workflow** | **Multi-food segmentation & nutrition** |
-| **Indian Spices** | **CC BY 4.0** | **10,991** | **~1.20 GB** | **Approved Commercial Workflow** | **Spice seasoning recognition** |
-| **RASOI (Roboflow)** | **CC BY 4.0** | **2,000** | **~200 MB** | **Approved Commercial Workflow** | **Localized dish bounding boxes** |
-| **Indian Foods Dataset** | Apache-2.0 / Scraped | ~2,000 | ~450 MB | Requires Review | Curated Apache-2.0 allowed; scrapes blocked |
-| **SpiceVision** | Academic | ~3,000 | ~300 MB | Access Not Verified | Excluded until open mirror verified |
-| **FoodLens (Google Research)** | Proprietary / Closed | ~30,000 | N/A | Access Not Verified | Closed Google internal dataset |
-| **Khana (arXiv:2509.06006)** | **CC BY-NC-ND 4.0** | **131,000** | ~10.0 GB | **Excluded Non-Commercial** | **Strictly quarantined (ComplianceViolationError)** |
+| Candidate Dataset | Stated Licence | Provenance / Direct Finding | Status |
+| :--- | :--- | :--- | :--- |
+| **Enhanced Indian Food Classification** | **CC-BY-4.0** | 15,404 photos across 43 Indian dishes from SohlHealth. | **APPROVED (Primary Anchor)** |
+| **Bangladeshi Food (BD-Food33)** | **CC0 1.0** | 1,200 photos taken by Daffodil University researchers. Dedicated to Public Domain. | **APPROVED (Safe-Harbor)** |
+| **FoodBD** | **CC BY 4.0** | ~2,800 meal images with polygon masks & nutrition estimates. | **APPROVED (Calibration)** |
+| **Indian Spices** | **CC BY 4.0** | 10,991 images of 19 whole and ground spices taken under controlled lighting. | **APPROVED (Ingredients)** |
+| **RASOI** | **CC BY 4.0** | ~2,000 plated meal photos with bounding boxes from Walchand College. | **APPROVED (Detection)** |
+| **Indian Foods Dataset** | Mixed / Scraped | Web scraped community mirrors; original photographer rights unverified. | **REQUIRES RIGHTS REVIEW (Quarantined)** |
+| **SpiceVision** | Academic | Conference paper (IEEE NKCon 2024); no open public repository mirror. | **ACCESS NOT VERIFIED (Excluded)** |
+| **FoodLens** | Closed / Proprietary | Google Research internal dataset collected from restaurant menus; unpublished. | **ACCESS NOT VERIFIED (Excluded)** |
+| **Khana** | **CC BY-NC-ND 4.0** | 131,000+ images. Prohibits commercial monetization and adapted model weights. | **NON-COMMERCIAL (Strictly Quarantined)** |
 
 ---
 
-## 3. Step-by-Step Kaggle Execution Instructions
+## 3. Step-by-Step Kaggle Execution Sequence
 
-### A. Environment Initialization
-1. Navigate to [Kaggle Notebooks](https://www.kaggle.com/code) and select **New Notebook**.
-2. In the right-hand **Notebook Options** panel:
-   - **Accelerator**: Select **GPU T4 x1** (or GPU P100).
-   - **Internet**: Toggle to **ON** (Mandatory for Git clone and Hugging Face parquet stream).
-   - **Persistence**: Select *Variables and Files*.
-3. Upload `kaggle_starter.ipynb` from the repository or paste the cells sequentially.
+### A. Initialize Kaggle Notebook
+1. Go to [kaggle.com/code](https://www.kaggle.com/code) $\to$ **New Notebook**.
+2. Settings panel (right side):
+   - **Accelerator**: **GPU T4 x1** (or GPU P100).
+   - **Internet**: **ON** (Mandatory for Git clone and Hugging Face parquet stream).
+   - **Persistence**: *Variables and Files*.
+3. Upload [`kaggle_starter.ipynb`](file:///d:/health%20app/plat%20scaning%20ml%20mode/kaggle_starter.ipynb) or copy cells sequentially.
 
-### B. Execution Sequence in `kaggle_starter.ipynb`
+### B. Cells in `kaggle_starter.ipynb`
 - **Cell 1 (Clone Repository):**
-  ```python
-  !git clone https://github.com/VaibhavBajpaij/food-plat-scanner-ai-model.git /kaggle/working/food-plat-scanner-ai-model
-  %cd /kaggle/working/food-plat-scanner-ai-model
-  ```
+  Clones the latest code from `origin/main` into `/kaggle/working/food-plat-scanner-ai-model`.
 - **Cell 2 (Environment Pre-Flight Audit):**
-  Verifies CUDA availability, tests HTTP connectivity to Hugging Face, and checks available `/kaggle/working` disk space.
+  Audits GPU, tests HTTP outbound connectivity to Hugging Face, and checks available disk space in `/kaggle/working` using platform-independent storage metrics.
 - **Cell 3 (Install Minimal Dependencies):**
-  Installs `pyarrow`, `fastparquet`, and `Pillow`.
+  Runs `pip install -q pyarrow fastparquet Pillow torchvision`.
 - **Cell 4 (Run Resumable Downloader):**
-  Executes `EnhancedIndianFoodAdapter.acquire(resume=True)` to stream parquet shards directly to `/kaggle/working/datasets/raw/sohlhealth_indian_food/`.
-- **Cell 5 (Image Integrity & Deduplication):**
-  Verifies image decodability, checks for corrupted bytes, computes SHA256/dHash, and prints per-class sample counts.
-- **Cell 6 (Scientific Unit Tests):**
-  Executes `python -m src.utils.run_unit_tests` to verify 18 unit tests across taxonomy, nutrition math, synthetic volume, and pipeline integrity.
-- **Cell 7 (Pretrained Model Smoke Test):**
-  Runs a 1-epoch / 2-batch forward and backward pass on `models.mobilenet_v3_small(weights=DEFAULT)` to verify CUDA gradient computation and memory headroom.
-- **Cell 8 (Execute Staged Transfer Learning):**
-  Executes `python -m src.classification.train_kaggle`.
-  - Stage 1: Linear probe classification head on frozen backbone.
-  - Stage 2: Fine-tuning top bottleneck blocks with cosine annealing.
+  Acquires all 5 Parquet shards (15,404 rows) directly into `/kaggle/working/datasets/raw/sohlhealth_indian_food/`.
+- **Cell 5 (Parquet Extraction & Validation):**
+  Decodes raw byte structs into JPEGs, computes SHA256 and dHash to drop corrupted files and cross-split near-duplicates, and builds `data_manifests/indian_food_43class_manifest.json`.
+- **Cell 6 (Run Unit Tests):**
+  Runs `python -m src.utils.run_unit_tests` (all 23 unit and integrity tests pass).
+- **Cell 7 (Run 43-Class Smoke Test):**
+  Tests `build_mobilenet_v3(num_classes=43)` with dummy batch to verify forward/backward passes and output logits shape `[4, 43]`.
+- **Cell 8 (Execute 43-Class Training on 15,404 Images):**
+  Runs `train_indian_43class_model(...)`.
+  - Stage 1: Linear probe on adapted 43-class head with frozen backbone (5 epochs).
+  - Stage 2: Staged fine-tuning of upper bottleneck blocks 10-12 with cosine annealing (10 epochs).
+  - Strictly halts with `LegacyDatasetGuardError` if a legacy or small dataset (<1,000 images or <40 classes) is detected.
 - **Cell 9 (Artifact Verification & Export):**
-  Verifies checkpoint reloadability, measures Wilson 95% confidence intervals, and bundles `mobilenet_v3_food_kaggle_best.pth` and `kaggle_training_report.json` into `/kaggle/working/kaggle_run_artifacts.zip`.
+  Reloads checkpoint, verifies `num_classes == 43`, and packages `mobilenet_v3_indian_43class_best.pth`, `kaggle_indian_43class_training_report.json`, and `indian_food_43class_manifest.json` into `/kaggle/working/kaggle_indian_43class_artifacts.zip`.
 
-### C. Retrieving Artifacts Before Session Closes
-Because `/kaggle/working` is ephemeral:
-1. In the right-hand Kaggle panel, open the **Output** tab.
-2. Locate `/kaggle/working/kaggle_run_artifacts.zip`.
-3. Click the three dots $\to$ select **Download**.
-4. Place the downloaded checkpoint into your local repository under `models/checkpoints/` and the report into `outputs/`.
-
----
-
-## 4. Colab Backup Workflow (`colab_starter.ipynb`)
-
-If Kaggle weekly GPU quotas are exhausted or queued:
-1. Open [Google Colab](https://colab.research.google.com/).
-2. Select **Upload** and choose `colab_starter.ipynb`.
-3. Set **Runtime $\to$ Change runtime type $\to$ T4 GPU**.
-4. In Cell 3, run the Google Drive mount cell:
-   ```python
-   from google.colab import drive
-   drive.mount('/content/drive')
-   ```
-5. Checkpoints and evaluation reports will automatically synchronize to `/content/drive/MyDrive/food_model_checkpoints/` upon completion.
+### C. Download Checkpoint Before Session Closes
+In the Kaggle right-hand panel:
+1. Open the **Output** tab.
+2. Locate `/kaggle/working/kaggle_indian_43class_artifacts.zip`.
+3. Click three dots $\to$ **Download**.
+4. Unpack locally to place the model into `models/checkpoints/` and the report into `outputs/`.

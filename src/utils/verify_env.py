@@ -20,19 +20,23 @@ def run_environment_audit() -> dict:
         "errors": []
     }
 
-    # Check disk space on D: drive
+    # Check disk space on active working directory / repository root (platform-independent)
+    target_path = "/kaggle/working" if os.path.exists("/kaggle/working") else os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
     try:
-        total, used, free = shutil.disk_usage("D:\\")
-        audit["disk_info_d_drive"] = {
+        total, used, free = shutil.disk_usage(target_path)
+        disk_metrics = {
+            "target_path": target_path,
             "total_gb": round(total / (1024**3), 2),
             "used_gb": round(used / (1024**3), 2),
             "free_gb": round(free / (1024**3), 2)
         }
-        if free / (1024**3) < 10.0:
+        audit["disk_info"] = disk_metrics
+        audit["disk_info_d_drive"] = disk_metrics  # Backward-compatibility alias
+        if free / (1024**3) < 4.0:
             audit["status"] = "WARNING"
-            audit["errors"].append("Less than 10 GB free on D: drive.")
+            audit["errors"].append(f"Less than 4 GB free space available on {target_path}.")
     except Exception as e:
-        audit["errors"].append(f"Disk check failed: {str(e)}")
+        audit["errors"].append(f"Disk check failed on {target_path}: {str(e)}")
 
     # Check PyTorch and CUDA
     try:
