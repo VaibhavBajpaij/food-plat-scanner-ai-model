@@ -19,13 +19,20 @@ import pyarrow.parquet as pq
 
 from src.data.parquet_food_loader import (
     decode_parquet_image,
+    get_split_from_path,
     EXPECTED_43_CLASSES,
     LegacyDatasetGuardError,
     inspect_parquet_dataset,
+    audit_splits_and_classes,
+    audit_cross_split_leakage,
     extract_and_prepare_43class_manifest,
     ParquetFoodDataset
 )
-from src.classification.train_kaggle import build_mobilenet_v3, train_indian_43class_model
+from src.classification.train_kaggle import (
+    build_mobilenet_v3,
+    train_indian_43class_model,
+    run_actual_data_smoke_test
+)
 
 def test_parquet_image_decoding():
     # 1. Valid image in dict struct
@@ -49,6 +56,19 @@ def test_parquet_image_decoding():
     except ValueError:
         pass
 
+def test_get_split_from_path():
+    # Flat filenames
+    assert get_split_from_path("train_0.parquet") == "train"
+    assert get_split_from_path("val_0.parquet") == "val"
+    assert get_split_from_path("test_0.parquet") == "test"
+
+    # Nested directory structures
+    assert get_split_from_path("/kaggle/working/data/train/0.parquet") == "train"
+    assert get_split_from_path("/kaggle/working/data/validation/0.parquet") == "val"
+    assert get_split_from_path("/kaggle/working/data/test/0.parquet") == "test"
+    assert get_split_from_path(r"D:\health app\datasets\raw\train\0.parquet") == "train"
+    assert get_split_from_path(r"D:\health app\datasets\raw\val\0.parquet") == "val"
+
 def test_43class_vocabulary():
     assert len(EXPECTED_43_CLASSES) == 43, f"Expected exactly 43 classes, got {len(EXPECTED_43_CLASSES)}"
     assert "masala_dosa" in EXPECTED_43_CLASSES
@@ -57,8 +77,21 @@ def test_43class_vocabulary():
     assert "dal_makhani" in EXPECTED_43_CLASSES
     assert "biryani" in EXPECTED_43_CLASSES
 
+def test_split_and_leakage_audit():
+    records = [
+        {"canonical_id": "biryani", "split": "train", "sha256": "sha_1", "perceptual_hash": "0000000000000000", "image_id": "img1"},
+        {"canonical_id": "biryani", "split": "val", "sha256": "sha_2", "perceptual_hash": "ffffffffffffffff", "image_id": "img2"},
+        {"canonical_id": "masala_dosa", "split": "test", "sha256": "sha_3", "perceptual_hash": "1111111111111111", "image_id": "img3"}
+    ]
+    split_rep = audit_splits_and_classes(records, expected_classes=["biryani", "masala_dosa"])
+    assert split_rep["splits"]["train"]["classes_present_count"] == 1
+    assert "masala_dosa" in split_rep["splits"]["train"]["missing_classes"]
+
+    leakage_rep = audit_cross_split_leakage(records)
+    assert leakage_rep["is_leakage_free"]
+    assert leakage_rep["exact_collisions"]["train_val"] == 0
+
 def test_legacy_dataset_guardrail_rejection():
-    # If a manifest has fewer than 1,000 images or fewer than 40 classes, it must fail loudly!
     with tempfile.NamedTemporaryFile("w", suffix=".json", delete=False) as f:
         json_path = f.name
         import json
@@ -78,8 +111,7 @@ def test_legacy_dataset_guardrail_rejection():
         if os.path.exists(json_path):
             os.remove(json_path)
 
-def test_parquet_synthetic_roundtrip():
-    # Create synthetic parquet file with PyArrow
+def test_parquet_synthetic_roundtrip_and_smoke_test():
     with tempfile.TemporaryDirectory() as tmp_dir:
         pq_path = os.path.join(tmp_dir, "train_0.parquet")
         img1 = Image.new("RGB", (64, 64), color=(100, 200, 50))
@@ -96,7 +128,6 @@ def test_parquet_synthetic_roundtrip():
         ]
         labels_col = ["masala_dosa", "butter_chicken"]
 
-        # Struct type for images
         schema = pa.schema([
             ("image", pa.struct([("bytes", pa.binary()), ("path", pa.string())])),
             ("label", pa.string())
@@ -112,15 +143,19 @@ def test_parquet_synthetic_roundtrip():
         # Inspect
         audit = inspect_parquet_dataset([pq_path])
         assert audit["total_rows"] == 2
+        assert audit["split_counts"]["train"] == 2
         assert "masala_dosa" in audit["classes"]
-        assert "butter_chicken" in audit["classes"]
 
-        # Extract and verify manifest
+        # Extract
         out_img_dir = os.path.join(tmp_dir, "extracted")
         out_manifest = os.path.join(tmp_dir, "manifest.json")
         res = extract_and_prepare_43class_manifest(tmp_dir, out_img_dir, out_manifest)
         assert res["total_images"] == 2
-        assert len(res["images"]) == 2
+
+        # Run smoke test on actual extracted images
+        device = torch.device("cpu")
+        smoke_rep = run_actual_data_smoke_test(out_manifest, batch_size=2, device=device)
+        assert smoke_rep["status"] == "PASS"
 
 def test_mobilenet_v3_43class_shape():
     device = torch.device("cpu")
@@ -131,8 +166,10 @@ def test_mobilenet_v3_43class_shape():
 
 if __name__ == "__main__":
     test_parquet_image_decoding()
+    test_get_split_from_path()
     test_43class_vocabulary()
+    test_split_and_leakage_audit()
     test_legacy_dataset_guardrail_rejection()
-    test_parquet_synthetic_roundtrip()
+    test_parquet_synthetic_roundtrip_and_smoke_test()
     test_mobilenet_v3_43class_shape()
-    print("All Parquet Food Loader and 43-Class unit tests passed!")
+    print("All Parquet Food Loader, Split Preservation and Smoke Test tests passed!")

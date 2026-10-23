@@ -146,11 +146,11 @@ class EnhancedIndianFoodAdapter(BaseDatasetAdapter):
     15,404 images across 43 authentic Indian classes. Licence: CC-BY-4.0.
     """
     PARQUET_SHARDS = [
-        ("train_0", "https://huggingface.co/api/datasets/SohlHealth/enhanced-indian-food-classification/parquet/default/train/0.parquet", 453282200),
-        ("train_1", "https://huggingface.co/api/datasets/SohlHealth/enhanced-indian-food-classification/parquet/default/train/1.parquet", 488731100),
-        ("train_2", "https://huggingface.co/api/datasets/SohlHealth/enhanced-indian-food-classification/parquet/default/train/2.parquet", 633543100),
-        ("val_0", "https://huggingface.co/api/datasets/SohlHealth/enhanced-indian-food-classification/parquet/default/validation/0.parquet", 126810200),
-        ("test_0", "https://huggingface.co/api/datasets/SohlHealth/enhanced-indian-food-classification/parquet/default/test/0.parquet", 258550100)
+        ("train_0", "https://huggingface.co/api/datasets/SohlHealth/enhanced-indian-food-classification/parquet/default/train/0.parquet", 453276648),
+        ("train_1", "https://huggingface.co/api/datasets/SohlHealth/enhanced-indian-food-classification/parquet/default/train/1.parquet", 488726543),
+        ("train_2", "https://huggingface.co/api/datasets/SohlHealth/enhanced-indian-food-classification/parquet/default/train/2.parquet", 633540512),
+        ("val_0", "https://huggingface.co/api/datasets/SohlHealth/enhanced-indian-food-classification/parquet/default/validation/0.parquet", 262185162),
+        ("test_0", "https://huggingface.co/api/datasets/SohlHealth/enhanced-indian-food-classification/parquet/default/test/0.parquet", 258554499)
     ]
 
     def __init__(self, staging_dir: Optional[str] = None):

@@ -5,11 +5,13 @@ and cloud PyTorch transfer learning pipelines.
 
 Features:
 1. Robust Parquet-to-PIL image decoder (handles dict structs, raw bytes, and scalars).
-2. 43-class canonical label indexing and consistency verification.
-3. Exact duplicate (SHA256) and perceptual near-duplicate (dHash Hamming distance) detection.
-4. Zero cross-split leakage enforcement between train, validation, and test.
-5. PyTorch Dataset implementation supporting both on-disk extracted images and streaming.
-6. Guardrail: Fails loudly if a legacy/tiny dataset is supplied.
+2. Split preservation supporting both flat shard names ('train_0.parquet') and nested directories ('train/0.parquet').
+3. 43-class canonical label indexing and consistency verification.
+4. Comprehensive split audit: verifies class representation in train, validation, and test splits.
+5. Exact duplicate (SHA256) and perceptual near-duplicate (dHash Hamming distance) detection.
+6. Zero cross-split leakage enforcement between train, validation, and test.
+7. PyTorch Dataset implementation supporting both on-disk extracted images and streaming.
+8. Guardrail: Fails loudly if a legacy/tiny dataset is supplied.
 """
 
 import os
@@ -19,7 +21,7 @@ import json
 import time
 import hashlib
 from typing import Dict, Any, List, Tuple, Optional, Set
-from collections import Counter
+from collections import Counter, defaultdict
 
 import torch
 from torch.utils.data import Dataset
@@ -89,6 +91,33 @@ def decode_parquet_image(image_data: Any) -> Image.Image:
     except Exception as e:
         raise ValueError(f"Corrupt image buffer could not be decoded by PIL: {e}")
 
+def get_split_from_path(filepath: str) -> str:
+    """
+    Determines split assignment from file path, handling both flat names
+    ('train_0.parquet') and nested directories ('train/0.parquet' or 'validation/0.parquet').
+    """
+    norm = filepath.replace("\\", "/").lower()
+    fn = os.path.basename(norm)
+
+    # Check filename first
+    if "test" in fn:
+        return "test"
+    if "val" in fn or "validation" in fn:
+        return "val"
+    if "train" in fn:
+        return "train"
+
+    # Check directory parts
+    parts = norm.split("/")
+    if "test" in parts:
+        return "test"
+    if "val" in parts or "validation" in parts:
+        return "val"
+    if "train" in parts:
+        return "train"
+
+    return "train"
+
 def discover_parquet_shards(search_dir: str) -> List[str]:
     """Finds all .parquet files in the given directory or its subdirectories."""
     shards = []
@@ -101,7 +130,7 @@ def discover_parquet_shards(search_dir: str) -> List[str]:
 def inspect_parquet_dataset(parquet_files: List[str]) -> Dict[str, Any]:
     """
     Audits Parquet files without full image decoding.
-    Returns row counts, column names, and distinct label distribution.
+    Returns row counts, column names, shard breakdown, and distinct label distribution.
     """
     if pq is None:
         raise ImportError("pyarrow is required to read parquet files. Install with 'pip install pyarrow'.")
@@ -109,18 +138,22 @@ def inspect_parquet_dataset(parquet_files: List[str]) -> Dict[str, Any]:
     total_rows = 0
     all_labels = set()
     label_counts = Counter()
+    split_counts = Counter()
     shard_details = []
 
     for pfile in parquet_files:
+        assigned_split = get_split_from_path(pfile)
         p_table = pq.read_table(pfile, columns=["label"])
         row_count = len(p_table)
         total_rows += row_count
+        split_counts[assigned_split] += row_count
         labels = [str(x).strip().lower().replace(" ", "_") for x in p_table["label"].to_pylist()]
         all_labels.update(labels)
         label_counts.update(labels)
         shard_details.append({
             "path": pfile,
             "filename": os.path.basename(pfile),
+            "assigned_split": assigned_split,
             "rows": row_count,
             "size_mb": round(os.path.getsize(pfile) / (1024**2), 2)
         })
@@ -129,8 +162,100 @@ def inspect_parquet_dataset(parquet_files: List[str]) -> Dict[str, Any]:
         "total_rows": total_rows,
         "classes_count": len(all_labels),
         "classes": sorted(list(all_labels)),
+        "split_counts": dict(split_counts),
         "label_counts": dict(label_counts),
         "shards": shard_details
+    }
+
+def audit_splits_and_classes(
+    records: List[Dict[str, Any]],
+    expected_classes: Optional[List[str]] = None
+) -> Dict[str, Any]:
+    """
+    Verifies that every class is represented in the appropriate splits and reports any missing classes.
+    """
+    if expected_classes is None:
+        expected_classes = EXPECTED_43_CLASSES
+
+    expected_set = set(expected_classes)
+    split_classes: Dict[str, Set[str]] = defaultdict(set)
+    split_counts: Dict[str, Counter] = defaultdict(Counter)
+
+    for r in records:
+        sp = r.get("split", "train")
+        cls = r.get("canonical_id", "")
+        split_classes[sp].add(cls)
+        split_counts[sp][cls] += 1
+
+    report = {
+        "total_records": len(records),
+        "expected_classes_count": len(expected_classes),
+        "splits": {}
+    }
+
+    for sp in ["train", "val", "test"]:
+        present = split_classes[sp]
+        missing = sorted(list(expected_set - present))
+        counts = split_counts[sp]
+        min_count = min(counts.values()) if counts else 0
+        max_count = max(counts.values()) if counts else 0
+        report["splits"][sp] = {
+            "total_samples": sum(counts.values()),
+            "classes_present_count": len(present),
+            "classes_missing_count": len(missing),
+            "missing_classes": missing,
+            "min_samples_per_class": min_count,
+            "max_samples_per_class": max_count
+        }
+
+    return report
+
+def audit_cross_split_leakage(records: List[Dict[str, Any]]) -> Dict[str, Any]:
+    """
+    Checks for exact duplicates (SHA256) and near-duplicates (dHash Hamming <= 2) across splits.
+    """
+    split_shas: Dict[str, Set[str]] = defaultdict(set)
+    split_dhashes: Dict[str, Dict[str, str]] = defaultdict(dict)  # split -> dhash -> image_id
+
+    exact_leakage: List[Dict[str, Any]] = []
+    near_leakage: List[Dict[str, Any]] = []
+
+    for r in records:
+        sp = r.get("split", "train")
+        sha = r.get("sha256", "")
+        dh = r.get("perceptual_hash", "")
+        img_id = r.get("image_id", "")
+
+        split_shas[sp].add(sha)
+        if dh:
+            split_dhashes[sp][dh] = img_id
+
+    # Check exact collisions
+    train_val_exact = split_shas["train"] & split_shas["val"]
+    train_test_exact = split_shas["train"] & split_shas["test"]
+    val_test_exact = split_shas["val"] & split_shas["test"]
+
+    # Check near collisions between train and val/test
+    train_dh = split_dhashes["train"]
+    val_dh = split_dhashes["val"]
+    test_dh = split_dhashes["test"]
+
+    for t_dh, t_id in train_dh.items():
+        for v_dh, v_id in val_dh.items():
+            if hamming_distance(t_dh, v_dh) <= 2:
+                near_leakage.append({"type": "train_val_near", "train_id": t_id, "val_id": v_id, "dist": hamming_distance(t_dh, v_dh)})
+        for te_dh, te_id in test_dh.items():
+            if hamming_distance(t_dh, te_dh) <= 2:
+                near_leakage.append({"type": "train_test_near", "train_id": t_id, "test_id": te_id, "dist": hamming_distance(t_dh, te_dh)})
+
+    return {
+        "exact_collisions": {
+            "train_val": len(train_val_exact),
+            "train_test": len(train_test_exact),
+            "val_test": len(val_test_exact)
+        },
+        "near_duplicate_collisions_count": len(near_leakage),
+        "is_leakage_free": (len(train_val_exact) == 0 and len(train_test_exact) == 0 and len(val_test_exact) == 0 and len(near_leakage) == 0)
     }
 
 def extract_and_prepare_43class_manifest(
@@ -163,22 +288,22 @@ def extract_and_prepare_43class_manifest(
     leakage_quarantined = 0
     corrupt_skipped = 0
 
-    # Process validation and test shards first so test/val purity is prioritized
-    # Then train shard near-duplicates will be dropped from train.
+    # Ingest validation and test shards first so test/val purity is prioritized.
+    # Train shard near-duplicates matching val/test will be excluded from train.
     def shard_priority(filepath: str) -> int:
-        fn = os.path.basename(filepath).lower()
-        if "test" in fn:
+        s = get_split_from_path(filepath)
+        if s == "test":
             return 0
-        if "val" in fn:
+        if s == "val":
             return 1
         return 2
 
     ordered_shards = sorted(parquet_files, key=shard_priority)
 
     for pfile in ordered_shards:
-        fn = os.path.basename(pfile).lower()
-        default_split = "test" if "test" in fn else ("val" if "val" in fn else "train")
-        print(f"Reading {fn} (default split: {default_split})...")
+        assigned_split = get_split_from_path(pfile)
+        fn = os.path.basename(pfile)
+        print(f"Processing shard: {fn:<22} | Assigned Split: {assigned_split}")
 
         table = pq.read_table(pfile)
         df = table.to_pandas()
@@ -196,7 +321,7 @@ def extract_and_prepare_43class_manifest(
                 corrupt_skipped += 1
                 continue
 
-            # Compute hashes
+            # Compute image hashes
             img_byte_arr = io.BytesIO()
             img.save(img_byte_arr, format="JPEG", quality=95)
             img_bytes = img_byte_arr.getvalue()
@@ -204,7 +329,7 @@ def extract_and_prepare_43class_manifest(
             dh = compute_dhash(img)
 
             # Check cross-split duplication
-            target_split = default_split
+            target_split = assigned_split
             if target_split == "train":
                 # Check exact duplicate against test or val
                 if sha in seen_shas and seen_shas[sha] in ("val", "test"):
@@ -232,10 +357,7 @@ def extract_and_prepare_43class_manifest(
                 img_disk_path = os.path.join(split_class_dir, img_filename)
                 if not os.path.exists(img_disk_path):
                     img.save(img_disk_path, "JPEG", quality=95)
-                try:
-                    file_rel_path = os.path.relpath(img_disk_path, BASE_DIR)
-                except ValueError:
-                    file_rel_path = img_disk_path
+                file_rel_path = os.path.abspath(img_disk_path)
 
             records.append({
                 "image_id": f"sohl_{sha[:12]}",
@@ -255,13 +377,18 @@ def extract_and_prepare_43class_manifest(
     classes = sorted(list({r["canonical_id"] for r in records}))
     splits_count = Counter(r["split"] for r in records)
 
+    # Perform split and class representation audit
+    split_audit = audit_splits_and_classes(records, expected_classes=EXPECTED_43_CLASSES)
+    leakage_audit = audit_cross_split_leakage(records)
+
     print("=" * 85)
-    print(f"DATASET EXTRACTION & VALIDATION SUMMARY:")
+    print("DATASET EXTRACTION & VALIDATION SUMMARY:")
     print(f"Total Valid Images Extracted: {total_valid:,}")
     print(f"Distinct Classes:             {len(classes)} (Expected: 43)")
     print(f"Split Distribution:           Train={splits_count['train']:,}, Val={splits_count['val']:,}, Test={splits_count['test']:,}")
     print(f"Corrupt Images Skipped:       {corrupt_skipped}")
     print(f"Near-Duplicate Leakage Dropped: {leakage_quarantined}")
+    print(f"Cross-Split Leakage Status:   {'100% PASS (Zero Leakage)' if leakage_audit['is_leakage_free'] else 'WARNING'}")
     print("=" * 85)
 
     manifest_data = {
@@ -272,6 +399,8 @@ def extract_and_prepare_43class_manifest(
         "classes_count": len(classes),
         "classes": classes,
         "split_summary": dict(splits_count),
+        "split_audit": split_audit,
+        "leakage_audit": leakage_audit,
         "images": records
     }
 
@@ -286,7 +415,7 @@ def extract_and_prepare_43class_manifest(
 class ParquetFoodDataset(Dataset):
     """
     PyTorch Dataset for 43-Class Indian Food Classification.
-    Accepts extracted manifest items or raw parquet records and applies torchvision transforms.
+    Accepts extracted manifest items and applies torchvision transforms.
     """
     def __init__(
         self,
@@ -307,11 +436,30 @@ class ParquetFoodDataset(Dataset):
         item = self.items[idx]
         file_path = item.get("file_path", "")
 
-        if not os.path.isabs(file_path):
-            file_path = os.path.join(self.base_dir, file_path)
-
+        resolved_path = None
         if os.path.exists(file_path):
-            with Image.open(file_path) as img:
+            resolved_path = file_path
+        else:
+            candidates = [
+                os.path.join(self.base_dir, file_path),
+                os.path.join(BASE_DIR, file_path),
+                os.path.join("/kaggle/working", file_path)
+            ]
+            norm = file_path.replace("\\", "/")
+            if "datasets/" in norm:
+                suffix = norm[norm.index("datasets/"):]
+                candidates.extend([
+                    os.path.join(self.base_dir, suffix),
+                    os.path.join(BASE_DIR, suffix),
+                    os.path.join("/kaggle/working", suffix)
+                ])
+            for cand in candidates:
+                if os.path.exists(cand):
+                    resolved_path = cand
+                    break
+
+        if resolved_path and os.path.exists(resolved_path):
+            with Image.open(resolved_path) as img:
                 img = img.convert("RGB")
         else:
             raise FileNotFoundError(f"Image file not found on disk: {file_path}")

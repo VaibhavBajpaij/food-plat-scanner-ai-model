@@ -31,9 +31,11 @@ def run_all_tests():
     )
     from tests.test_parquet_food_loader import (
         test_parquet_image_decoding,
+        test_get_split_from_path,
         test_43class_vocabulary,
+        test_split_and_leakage_audit,
         test_legacy_dataset_guardrail_rejection,
-        test_parquet_synthetic_roundtrip,
+        test_parquet_synthetic_roundtrip_and_smoke_test,
         test_mobilenet_v3_43class_shape
     )
 
@@ -59,9 +61,11 @@ def run_all_tests():
         ("test_approved_adapters_planning", test_approved_adapters_planning),
         ("test_orchestrator_covers_all_nine_datasets", test_orchestrator_covers_all_nine_datasets),
         ("test_parquet_image_decoding", test_parquet_image_decoding),
+        ("test_get_split_from_path", test_get_split_from_path),
         ("test_43class_vocabulary", test_43class_vocabulary),
+        ("test_split_and_leakage_audit", test_split_and_leakage_audit),
         ("test_legacy_dataset_guardrail_rejection", test_legacy_dataset_guardrail_rejection),
-        ("test_parquet_synthetic_roundtrip", test_parquet_synthetic_roundtrip),
+        ("test_parquet_synthetic_roundtrip_and_smoke_test", test_parquet_synthetic_roundtrip_and_smoke_test),
         ("test_mobilenet_v3_43class_shape", test_mobilenet_v3_43class_shape),
     ]
 

@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-10-23T12:48:05Z",
+  "timestamp": "2026-10-23T13:26:57Z",
   "approved_commercial_sources": [
     {
       "name": "Enhanced Indian Food Classification",
@@ -9,7 +9,7 @@
       "total_images": 15404,
       "classes_count": 43,
       "total_files": 5,
-      "estimated_download_mb": 1870.08,
+      "estimated_download_mb": 1999.17,
       "official_url": "https://huggingface.co/datasets/SohlHealth/enhanced-indian-food-classification",
       "shards": [
         {
@@ -30,12 +30,12 @@
         {
           "name": "val_0",
           "url": "https://huggingface.co/api/datasets/SohlHealth/enhanced-indian-food-classification/parquet/default/validation/0.parquet",
-          "size_mb": 120.94
+          "size_mb": 250.04
         },
         {
           "name": "test_0",
           "url": "https://huggingface.co/api/datasets/SohlHealth/enhanced-indian-food-classification/parquet/default/test/0.parquet",
-          "size_mb": 246.57
+          "size_mb": 246.58
         }
       ]
     },
@@ -130,5 +130,5 @@
     }
   ],
   "total_approved_images": 32395,
-  "total_approved_download_mb": 4270.08
+  "total_approved_download_mb": 4399.17
 }
