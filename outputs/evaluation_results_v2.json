@@ -1,0 +1,4014 @@
+{
+  "timestamp": "2026-10-23T06:40:35Z",
+  "device": "cuda",
+  "held_out_test_metrics": {
+    "Candidate_A_Original_Pretrained": {
+      "total_images": 25,
+      "correct": 3,
+      "accuracy": 0.12,
+      "macro_f1": 0.1333,
+      "mean_confidence_correct": 0.6918,
+      "mean_confidence_incorrect": 0.4826,
+      "kitchenware_bias_count": 11,
+      "per_class": {
+        "apple_fresh_raw": {
+          "support": 5,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "banana_raw": {
+          "support": 5,
+          "precision": 0.75,
+          "recall": 0.6,
+          "f1": 0.6667
+        },
+        "broccoli_steamed": {
+          "support": 5,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "chicken_breast_grilled": {
+          "support": 5,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "rice_white_cooked": {
+          "support": 5,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        }
+      },
+      "confusion_matrix": {
+        "apple_fresh_raw": {
+          "apple_fresh_raw": 0,
+          "banana_raw": 1,
+          "broccoli_steamed": 0,
+          "chicken_breast_grilled": 0,
+          "rice_white_cooked": 0,
+          "unrepresented_or_other": 4
+        },
+        "banana_raw": {
+          "apple_fresh_raw": 0,
+          "banana_raw": 3,
+          "broccoli_steamed": 0,
+          "chicken_breast_grilled": 0,
+          "rice_white_cooked": 0,
+          "unrepresented_or_other": 2
+        },
+        "broccoli_steamed": {
+          "apple_fresh_raw": 0,
+          "banana_raw": 0,
+          "broccoli_steamed": 0,
+          "chicken_breast_grilled": 0,
+          "rice_white_cooked": 0,
+          "unrepresented_or_other": 5
+        },
+        "chicken_breast_grilled": {
+          "apple_fresh_raw": 0,
+          "banana_raw": 0,
+          "broccoli_steamed": 1,
+          "chicken_breast_grilled": 0,
+          "rice_white_cooked": 0,
+          "unrepresented_or_other": 4
+        },
+        "rice_white_cooked": {
+          "apple_fresh_raw": 0,
+          "banana_raw": 0,
+          "broccoli_steamed": 0,
+          "chicken_breast_grilled": 0,
+          "rice_white_cooked": 0,
+          "unrepresented_or_other": 5
+        }
+      },
+      "failures": [
+        {
+          "image": "datasets/food_dataset_v2/test/rice_white_cooked_test_01.jpg",
+          "ground_truth": "rice_white_cooked",
+          "predicted": "unrepresented_or_other",
+          "raw_imagenet_top1": "guacamole",
+          "confidence": 0.3247,
+          "top_predictions": [
+            {
+              "category": "guacamole",
+              "prob": 0.3247
+            },
+            {
+              "category": "meat loaf",
+              "prob": 0.1469
+            },
+            {
+              "category": "burrito",
+              "prob": 0.1128
+            }
+          ]
+        },
+        {
+          "image": "datasets/food_dataset_v2/test/rice_white_cooked_test_02.jpg",
+          "ground_truth": "rice_white_cooked",
+          "predicted": "unrepresented_or_other",
+          "raw_imagenet_top1": "pot",
+          "confidence": 0.4121,
+          "top_predictions": [
+            {
+              "category": "pot",
+              "prob": 0.4121
+            },
+            {
+              "category": "broccoli",
+              "prob": 0.1758
+            },
+            {
+              "category": "trifle",
+              "prob": 0.0553
+            }
+          ]
+        },
+        {
+          "image": "datasets/food_dataset_v2/test/rice_white_cooked_test_03.jpg",
+          "ground_truth": "rice_white_cooked",
+          "predicted": "unrepresented_or_other",
+          "raw_imagenet_top1": "potpie",
+          "confidence": 0.5195,
+          "top_predictions": [
+            {
+              "category": "potpie",
+              "prob": 0.5195
+            },
+            {
+              "category": "burrito",
+              "prob": 0.409
+            },
+            {
+              "category": "plate",
+              "prob": 0.0126
+            }
+          ]
+        },
+        {
+          "image": "datasets/food_dataset_v2/test/rice_white_cooked_test_04.jpg",
+          "ground_truth": "rice_white_cooked",
+          "predicted": "unrepresented_or_other",
+          "raw_imagenet_top1": "pretzel",
+          "confidence": 0.4543,
+          "top_predictions": [
+            {
+              "category": "pretzel",
+              "prob": 0.4543
+            },
+            {
+              "category": "hotdog",
+              "prob": 0.1207
+            },
+            {
+              "category": "hot pot",
+              "prob": 0.106
+            }
+          ]
+        },
+        {
+          "image": "datasets/food_dataset_v2/test/rice_white_cooked_test_05.jpg",
+          "ground_truth": "rice_white_cooked",
+          "predicted": "unrepresented_or_other",
+          "raw_imagenet_top1": "burrito",
+          "confidence": 0.3167,
+          "top_predictions": [
+            {
+              "category": "burrito",
+              "prob": 0.3167
+            },
+            {
+              "category": "plate",
+              "prob": 0.1129
+            },
+            {
+              "category": "king crab",
+              "prob": 0.0998
+            }
+          ]
+        },
+        {
+          "image": "datasets/food_dataset_v2/test/chicken_breast_grilled_test_01.jpg",
+          "ground_truth": "chicken_breast_grilled",
+          "predicted": "unrepresented_or_other",
+          "raw_imagenet_top1": "cauliflower",
+          "confidence": 0.4422,
+          "top_predictions": [
+            {
+              "category": "cauliflower",
+              "prob": 0.4422
+            },
+            {
+              "category": "broccoli",
+              "prob": 0.4343
+            },
+            {
+              "category": "plate",
+              "prob": 0.0666
+            }
+          ]
+        },
+        {
+          "image": "datasets/food_dataset_v2/test/chicken_breast_grilled_test_02.jpg",
+          "ground_truth": "chicken_breast_grilled",
+          "predicted": "broccoli_steamed",
+          "raw_imagenet_top1": "broccoli",
+          "confidence": 0.9701,
+          "top_predictions": [
+            {
+              "category": "broccoli",
+              "prob": 0.9701
+            },
+            {
+              "category": "cauliflower",
+              "prob": 0.0252
+            },
+            {
+              "category": "guacamole",
+              "prob": 0.0022
+            }
+          ]
+        },
+        {
+          "image": "datasets/food_dataset_v2/test/chicken_breast_grilled_test_03.jpg",
+          "ground_truth": "chicken_breast_grilled",
+          "predicted": "unrepresented_or_other",
+          "raw_imagenet_top1": "cauliflower",
+          "confidence": 0.659,
+          "top_predictions": [
+            {
+              "category": "cauliflower",
+              "prob": 0.659
+            },
+            {
+              "category": "broccoli",
+              "prob": 0.2282
+            },
+            {
+              "category": "plate",
+              "prob": 0.0451
+            }
+          ]
+        },
+        {
+          "image": "datasets/food_dataset_v2/test/chicken_breast_grilled_test_04.jpg",
+          "ground_truth": "chicken_breast_grilled",
+          "predicted": "unrepresented_or_other",
+          "raw_imagenet_top1": "cauliflower",
+          "confidence": 0.3336,
+          "top_predictions": [
+            {
+              "category": "cauliflower",
+              "prob": 0.3336
+            },
+            {
+              "category": "guacamole",
+              "prob": 0.2765
+            },
+            {
+              "category": "mashed potato",
+              "prob": 0.1462
+            }
+          ]
+        },
+        {
+          "image": "datasets/food_dataset_v2/test/chicken_breast_grilled_test_05.jpg",
+          "ground_truth": "chicken_breast_grilled",
+          "predicted": "unrepresented_or_other",
+          "raw_imagenet_top1": "plate",
+          "confidence": 0.3886,
+          "top_predictions": [
+            {
+              "category": "plate",
+              "prob": 0.3886
+            },
+            {
+              "category": "burrito",
+              "prob": 0.3209
+            },
+            {
+              "category": "cucumber",
+              "prob": 0.0606
+            }
+          ]
+        },
+        {
+          "image": "datasets/food_dataset_v2/test/broccoli_steamed_test_01.jpg",
+          "ground_truth": "broccoli_steamed",
+          "predicted": "unrepresented_or_other",
+          "raw_imagenet_top1": "plate",
+          "confidence": 0.5628,
+          "top_predictions": [
+            {
+              "category": "plate",
+              "prob": 0.5628
+            },
+            {
+              "category": "bakery",
+              "prob": 0.0614
+            },
+            {
+              "category": "acorn squash",
+              "prob": 0.0497
+            }
+          ]
+        },
+        {
+          "image": "datasets/food_dataset_v2/test/broccoli_steamed_test_02.jpg",
+          "ground_truth": "broccoli_steamed",
+          "predicted": "unrepresented_or_other",
+          "raw_imagenet_top1": "plate",
+          "confidence": 0.5597,
+          "top_predictions": [
+            {
+              "category": "plate",
+              "prob": 0.5597
+            },
+            {
+              "category": "broccoli",
+              "prob": 0.2604
+            },
+            {
+              "category": "guacamole",
+              "prob": 0.0449
+            }
+          ]
+        },
+        {
+          "image": "datasets/food_dataset_v2/test/broccoli_steamed_test_03.jpg",
+          "ground_truth": "broccoli_steamed",
+          "predicted": "unrepresented_or_other",
+          "raw_imagenet_top1": "mashed potato",
+          "confidence": 0.6259,
+          "top_predictions": [
+            {
+              "category": "mashed potato",
+              "prob": 0.6259
+            },
+            {
+              "category": "plate",
+              "prob": 0.1121
+            },
+            {
+              "category": "hot pot",
+              "prob": 0.0871
+            }
+          ]
+        },
+        {
+          "image": "datasets/food_dataset_v2/test/broccoli_steamed_test_04.jpg",
+          "ground_truth": "broccoli_steamed",
+          "predicted": "unrepresented_or_other",
+          "raw_imagenet_top1": "plate",
+          "confidence": 0.4084,
+          "top_predictions": [
+            {
+              "category": "plate",
+              "prob": 0.4084
+            },
+            {
+              "category": "broccoli",
+              "prob": 0.256
+            },
+            {
+              "category": "guacamole",
+              "prob": 0.2238
+            }
+          ]
+        },
+        {
+          "image": "datasets/food_dataset_v2/test/broccoli_steamed_test_05.jpg",
+          "ground_truth": "broccoli_steamed",
+          "predicted": "unrepresented_or_other",
+          "raw_imagenet_top1": "wok",
+          "confidence": 0.5228,
+          "top_predictions": [
+            {
+              "category": "wok",
+              "prob": 0.5228
+            },
+            {
+              "category": "strainer",
+              "prob": 0.2389
+            },
+            {
+              "category": "frying pan",
+              "prob": 0.0391
+            }
+          ]
+        },
+        {
+          "image": "datasets/food_dataset_v2/test/apple_fresh_raw_test_01.jpg",
+          "ground_truth": "apple_fresh_raw",
+          "predicted": "unrepresented_or_other",
+          "raw_imagenet_top1": "plate",
+          "confidence": 0.6897,
+          "top_predictions": [
+            {
+              "category": "plate",
+              "prob": 0.6897
+            },
+            {
+              "category": "corn",
+              "prob": 0.0677
+            },
+            {
+              "category": "French loaf",
+              "prob": 0.0433
+            }
+          ]
+        },
+        {
+          "image": "datasets/food_dataset_v2/test/apple_fresh_raw_test_02.jpg",
+          "ground_truth": "apple_fresh_raw",
+          "predicted": "unrepresented_or_other",
+          "raw_imagenet_top1": "hourglass",
+          "confidence": 0.2359,
+          "top_predictions": [
+            {
+              "category": "hourglass",
+              "prob": 0.2359
+            },
+            {
+              "category": "eggnog",
+              "prob": 0.1302
+            },
+            {
+              "category": "beaker",
+              "prob": 0.1244
+            }
+          ]
+        },
+        {
+          "image": "datasets/food_dataset_v2/test/apple_fresh_raw_test_03.jpg",
+          "ground_truth": "apple_fresh_raw",
+          "predicted": "banana_raw",
+          "raw_imagenet_top1": "banana",
+          "confidence": 0.4547,
+          "top_predictions": [
+            {
+              "category": "banana",
+              "prob": 0.4547
+            },
+            {
+              "category": "lemon",
+              "prob": 0.1566
+            },
+            {
+              "category": "Granny Smith",
+              "prob": 0.1559
+            }
+          ]
+        },
+        {
+          "image": "datasets/food_dataset_v2/test/apple_fresh_raw_test_04.jpg",
+          "ground_truth": "apple_fresh_raw",
+          "predicted": "unrepresented_or_other",
+          "raw_imagenet_top1": "tray",
+          "confidence": 0.7316,
+          "top_predictions": [
+            {
+              "category": "tray",
+              "prob": 0.7316
+            },
+            {
+              "category": "face powder",
+              "prob": 0.0417
+            },
+            {
+              "category": "magnetic compass",
+              "prob": 0.0318
+            }
+          ]
+        },
+        {
+          "image": "datasets/food_dataset_v2/test/apple_fresh_raw_test_05.jpg",
+          "ground_truth": "apple_fresh_raw",
+          "predicted": "unrepresented_or_other",
+          "raw_imagenet_top1": "plate",
+          "confidence": 0.3016,
+          "top_predictions": [
+            {
+              "category": "plate",
+              "prob": 0.3016
+            },
+            {
+              "category": "consomme",
+              "prob": 0.068
+            },
+            {
+              "category": "soup bowl",
+              "prob": 0.0657
+            }
+          ]
+        },
+        {
+          "image": "datasets/food_dataset_v2/test/banana_raw_test_01.jpg",
+          "ground_truth": "banana_raw",
+          "predicted": "unrepresented_or_other",
+          "raw_imagenet_top1": "handkerchief",
+          "confidence": 0.1744,
+          "top_predictions": [
+            {
+              "category": "handkerchief",
+              "prob": 0.1744
+            },
+            {
+              "category": "burrito",
+              "prob": 0.1741
+            },
+            {
+              "category": "coil",
+              "prob": 0.0882
+            }
+          ]
+        },
+        {
+          "image": "datasets/food_dataset_v2/test/banana_raw_test_02.jpg",
+          "ground_truth": "banana_raw",
+          "predicted": "unrepresented_or_other",
+          "raw_imagenet_top1": "trilobite",
+          "confidence": 0.528,
+          "top_predictions": [
+            {
+              "category": "trilobite",
+              "prob": 0.528
+            },
+            {
+              "category": "dough",
+              "prob": 0.1674
+            },
+            {
+              "category": "isopod",
+              "prob": 0.0909
+            }
+          ]
+        }
+      ]
+    },
+    "Candidate_B_Existing_Head_Only": {
+      "total_images": 25,
+      "correct": 7,
+      "accuracy": 0.28,
+      "macro_f1": 0.2271,
+      "mean_confidence_correct": 0.5325,
+      "mean_confidence_incorrect": 0.452,
+      "kitchenware_bias_count": 0,
+      "per_class": {
+        "apple_fresh_raw": {
+          "support": 5,
+          "precision": 1.0,
+          "recall": 0.4,
+          "f1": 0.5714
+        },
+        "banana_raw": {
+          "support": 5,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "broccoli_steamed": {
+          "support": 5,
+          "precision": 0.2857,
+          "recall": 0.8,
+          "f1": 0.4211
+        },
+        "chicken_breast_grilled": {
+          "support": 5,
+          "precision": 0.1111,
+          "recall": 0.2,
+          "f1": 0.1429
+        },
+        "rice_white_cooked": {
+          "support": 5,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        }
+      },
+      "confusion_matrix": {
+        "apple_fresh_raw": {
+          "apple_fresh_raw": 2,
+          "banana_raw": 0,
+          "broccoli_steamed": 3,
+          "chicken_breast_grilled": 0,
+          "rice_white_cooked": 0
+        },
+        "banana_raw": {
+          "apple_fresh_raw": 0,
+          "banana_raw": 0,
+          "broccoli_steamed": 2,
+          "chicken_breast_grilled": 3,
+          "rice_white_cooked": 0
+        },
+        "broccoli_steamed": {
+          "apple_fresh_raw": 0,
+          "banana_raw": 0,
+          "broccoli_steamed": 4,
+          "chicken_breast_grilled": 1,
+          "rice_white_cooked": 0
+        },
+        "chicken_breast_grilled": {
+          "apple_fresh_raw": 0,
+          "banana_raw": 0,
+          "broccoli_steamed": 4,
+          "chicken_breast_grilled": 1,
+          "rice_white_cooked": 0
+        },
+        "rice_white_cooked": {
+          "apple_fresh_raw": 0,
+          "banana_raw": 0,
+          "broccoli_steamed": 1,
+          "chicken_breast_grilled": 4,
+          "rice_white_cooked": 0
+        }
+      },
+      "failures": [
+        {
+          "image": "datasets/food_dataset_v2/test/rice_white_cooked_test_01.jpg",
+          "ground_truth": "rice_white_cooked",
+          "predicted": "chicken_breast_grilled",
+          "confidence": 0.5077,
+          "top_predictions": [
+            {
+              "category": "chicken_breast_grilled",
+              "prob": 0.5077
+            },
+            {
+              "category": "broccoli_steamed",
+              "prob": 0.2469
+            },
+            {
+              "category": "rice_white_cooked",
+              "prob": 0.1816
+            }
+          ]
+        },
+        {
+          "image": "datasets/food_dataset_v2/test/rice_white_cooked_test_02.jpg",
+          "ground_truth": "rice_white_cooked",
+          "predicted": "chicken_breast_grilled",
+          "confidence": 0.2974,
+          "top_predictions": [
+            {
+              "category": "chicken_breast_grilled",
+              "prob": 0.2974
+            },
+            {
+              "category": "broccoli_steamed",
+              "prob": 0.2665
+            },
+            {
+              "category": "rice_white_cooked",
+              "prob": 0.2014
+            }
+          ]
+        },
+        {
+          "image": "datasets/food_dataset_v2/test/rice_white_cooked_test_03.jpg",
+          "ground_truth": "rice_white_cooked",
+          "predicted": "broccoli_steamed",
+          "confidence": 0.4153,
+          "top_predictions": [
+            {
+              "category": "broccoli_steamed",
+              "prob": 0.4153
+            },
+            {
+              "category": "chicken_breast_grilled",
+              "prob": 0.3091
+            },
+            {
+              "category": "rice_white_cooked",
+              "prob": 0.2246
+            }
+          ]
+        },
+        {
+          "image": "datasets/food_dataset_v2/test/rice_white_cooked_test_04.jpg",
+          "ground_truth": "rice_white_cooked",
+          "predicted": "chicken_breast_grilled",
+          "confidence": 0.566,
+          "top_predictions": [
+            {
+              "category": "chicken_breast_grilled",
+              "prob": 0.566
+            },
+            {
+              "category": "broccoli_steamed",
+              "prob": 0.2591
+            },
+            {
+              "category": "apple_fresh_raw",
+              "prob": 0.1047
+            }
+          ]
+        },
+        {
+          "image": "datasets/food_dataset_v2/test/rice_white_cooked_test_05.jpg",
+          "ground_truth": "rice_white_cooked",
+          "predicted": "chicken_breast_grilled",
+          "confidence": 0.5149,
+          "top_predictions": [
+            {
+              "category": "chicken_breast_grilled",
+              "prob": 0.5149
+            },
+            {
+              "category": "broccoli_steamed",
+              "prob": 0.3244
+            },
+            {
+              "category": "rice_white_cooked",
+              "prob": 0.1137
+            }
+          ]
+        },
+        {
+          "image": "datasets/food_dataset_v2/test/chicken_breast_grilled_test_01.jpg",
+          "ground_truth": "chicken_breast_grilled",
+          "predicted": "broccoli_steamed",
+          "confidence": 0.467,
+          "top_predictions": [
+            {
+              "category": "broccoli_steamed",
+              "prob": 0.467
+            },
+            {
+              "category": "rice_white_cooked",
+              "prob": 0.3131
+            },
+            {
+              "category": "chicken_breast_grilled",
+              "prob": 0.1563
+            }
+          ]
+        },
+        {
+          "image": "datasets/food_dataset_v2/test/chicken_breast_grilled_test_02.jpg",
+          "ground_truth": "chicken_breast_grilled",
+          "predicted": "broccoli_steamed",
+          "confidence": 0.3642,
+          "top_predictions": [
+            {
+              "category": "broccoli_steamed",
+              "prob": 0.3642
+            },
+            {
+              "category": "rice_white_cooked",
+              "prob": 0.3102
+            },
+            {
+              "category": "chicken_breast_grilled",
+              "prob": 0.1433
+            }
+          ]
+        },
+        {
+          "image": "datasets/food_dataset_v2/test/chicken_breast_grilled_test_03.jpg",
+          "ground_truth": "chicken_breast_grilled",
+          "predicted": "broccoli_steamed",
+          "confidence": 0.355,
+          "top_predictions": [
+            {
+              "category": "broccoli_steamed",
+              "prob": 0.355
+            },
+            {
+              "category": "chicken_breast_grilled",
+              "prob": 0.3115
+            },
+            {
+              "category": "rice_white_cooked",
+              "prob": 0.2543
+            }
+          ]
+        },
+        {
+          "image": "datasets/food_dataset_v2/test/chicken_breast_grilled_test_04.jpg",
+          "ground_truth": "chicken_breast_grilled",
+          "predicted": "broccoli_steamed",
+          "confidence": 0.3588,
+          "top_predictions": [
+            {
+              "category": "broccoli_steamed",
+              "prob": 0.3588
+            },
+            {
+              "category": "chicken_breast_grilled",
+              "prob": 0.3095
+            },
+            {
+              "category": "rice_white_cooked",
+              "prob": 0.2382
+            }
+          ]
+        },
+        {
+          "image": "datasets/food_dataset_v2/test/broccoli_steamed_test_03.jpg",
+          "ground_truth": "broccoli_steamed",
+          "predicted": "chicken_breast_grilled",
+          "confidence": 0.2769,
+          "top_predictions": [
+            {
+              "category": "chicken_breast_grilled",
+              "prob": 0.2769
+            },
+            {
+              "category": "apple_fresh_raw",
+              "prob": 0.267
+            },
+            {
+              "category": "broccoli_steamed",
+              "prob": 0.2405
+            }
+          ]
+        },
+        {
+          "image": "datasets/food_dataset_v2/test/apple_fresh_raw_test_01.jpg",
+          "ground_truth": "apple_fresh_raw",
+          "predicted": "broccoli_steamed",
+          "confidence": 0.4486,
+          "top_predictions": [
+            {
+              "category": "broccoli_steamed",
+              "prob": 0.4486
+            },
+            {
+              "category": "apple_fresh_raw",
+              "prob": 0.2095
+            },
+            {
+              "category": "rice_white_cooked",
+              "prob": 0.1576
+            }
+          ]
+        },
+        {
+          "image": "datasets/food_dataset_v2/test/apple_fresh_raw_test_03.jpg",
+          "ground_truth": "apple_fresh_raw",
+          "predicted": "broccoli_steamed",
+          "confidence": 0.4402,
+          "top_predictions": [
+            {
+              "category": "broccoli_steamed",
+              "prob": 0.4402
+            },
+            {
+              "category": "apple_fresh_raw",
+              "prob": 0.3645
+            },
+            {
+              "category": "chicken_breast_grilled",
+              "prob": 0.1043
+            }
+          ]
+        },
+        {
+          "image": "datasets/food_dataset_v2/test/apple_fresh_raw_test_05.jpg",
+          "ground_truth": "apple_fresh_raw",
+          "predicted": "broccoli_steamed",
+          "confidence": 0.67,
+          "top_predictions": [
+            {
+              "category": "broccoli_steamed",
+              "prob": 0.67
+            },
+            {
+              "category": "apple_fresh_raw",
+              "prob": 0.1317
+            },
+            {
+              "category": "chicken_breast_grilled",
+              "prob": 0.1196
+            }
+          ]
+        },
+        {
+          "image": "datasets/food_dataset_v2/test/banana_raw_test_01.jpg",
+          "ground_truth": "banana_raw",
+          "predicted": "chicken_breast_grilled",
+          "confidence": 0.4577,
+          "top_predictions": [
+            {
+              "category": "chicken_breast_grilled",
+              "prob": 0.4577
+            },
+            {
+              "category": "broccoli_steamed",
+              "prob": 0.2223
+            },
+            {
+              "category": "rice_white_cooked",
+              "prob": 0.2073
+            }
+          ]
+        },
+        {
+          "image": "datasets/food_dataset_v2/test/banana_raw_test_02.jpg",
+          "ground_truth": "banana_raw",
+          "predicted": "chicken_breast_grilled",
+          "confidence": 0.686,
+          "top_predictions": [
+            {
+              "category": "chicken_breast_grilled",
+              "prob": 0.686
+            },
+            {
+              "category": "broccoli_steamed",
+              "prob": 0.2019
+            },
+            {
+              "category": "rice_white_cooked",
+              "prob": 0.069
+            }
+          ]
+        },
+        {
+          "image": "datasets/food_dataset_v2/test/banana_raw_test_03.jpg",
+          "ground_truth": "banana_raw",
+          "predicted": "chicken_breast_grilled",
+          "confidence": 0.451,
+          "top_predictions": [
+            {
+              "category": "chicken_breast_grilled",
+              "prob": 0.451
+            },
+            {
+              "category": "broccoli_steamed",
+              "prob": 0.3966
+            },
+            {
+              "category": "apple_fresh_raw",
+              "prob": 0.0922
+            }
+          ]
+        },
+        {
+          "image": "datasets/food_dataset_v2/test/banana_raw_test_04.jpg",
+          "ground_truth": "banana_raw",
+          "predicted": "broccoli_steamed",
+          "confidence": 0.4196,
+          "top_predictions": [
+            {
+              "category": "broccoli_steamed",
+              "prob": 0.4196
+            },
+            {
+              "category": "chicken_breast_grilled",
+              "prob": 0.2685
+            },
+            {
+              "category": "apple_fresh_raw",
+              "prob": 0.2038
+            }
+          ]
+        },
+        {
+          "image": "datasets/food_dataset_v2/test/banana_raw_test_05.jpg",
+          "ground_truth": "banana_raw",
+          "predicted": "broccoli_steamed",
+          "confidence": 0.4403,
+          "top_predictions": [
+            {
+              "category": "broccoli_steamed",
+              "prob": 0.4403
+            },
+            {
+              "category": "chicken_breast_grilled",
+              "prob": 0.3775
+            },
+            {
+              "category": "apple_fresh_raw",
+              "prob": 0.102
+            }
+          ]
+        }
+      ]
+    },
+    "Candidate_C_Improved_Head_Only": {
+      "total_images": 25,
+      "correct": 12,
+      "accuracy": 0.48,
+      "macro_f1": 0.46,
+      "mean_confidence_correct": 0.8297,
+      "mean_confidence_incorrect": 0.6018,
+      "kitchenware_bias_count": 0,
+      "per_class": {
+        "apple_fresh_raw": {
+          "support": 5,
+          "precision": 0.8,
+          "recall": 0.8,
+          "f1": 0.8
+        },
+        "banana_raw": {
+          "support": 5,
+          "precision": 0.4286,
+          "recall": 0.6,
+          "f1": 0.5
+        },
+        "broccoli_steamed": {
+          "support": 5,
+          "precision": 0.75,
+          "recall": 0.6,
+          "f1": 0.6667
+        },
+        "chicken_breast_grilled": {
+          "support": 5,
+          "precision": 0.2857,
+          "recall": 0.4,
+          "f1": 0.3333
+        },
+        "rice_white_cooked": {
+          "support": 5,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        }
+      },
+      "confusion_matrix": {
+        "apple_fresh_raw": {
+          "apple_fresh_raw": 4,
+          "banana_raw": 1,
+          "broccoli_steamed": 0,
+          "chicken_breast_grilled": 0,
+          "rice_white_cooked": 0
+        },
+        "banana_raw": {
+          "apple_fresh_raw": 0,
+          "banana_raw": 3,
+          "broccoli_steamed": 0,
+          "chicken_breast_grilled": 0,
+          "rice_white_cooked": 2
+        },
+        "broccoli_steamed": {
+          "apple_fresh_raw": 1,
+          "banana_raw": 0,
+          "broccoli_steamed": 3,
+          "chicken_breast_grilled": 1,
+          "rice_white_cooked": 0
+        },
+        "chicken_breast_grilled": {
+          "apple_fresh_raw": 0,
+          "banana_raw": 2,
+          "broccoli_steamed": 1,
+          "chicken_breast_grilled": 2,
+          "rice_white_cooked": 0
+        },
+        "rice_white_cooked": {
+          "apple_fresh_raw": 0,
+          "banana_raw": 1,
+          "broccoli_steamed": 0,
+          "chicken_breast_grilled": 4,
+          "rice_white_cooked": 0
+        }
+      },
+      "failures": [
+        {
+          "image": "datasets/food_dataset_v2/test/rice_white_cooked_test_01.jpg",
+          "ground_truth": "rice_white_cooked",
+          "predicted": "chicken_breast_grilled",
+          "confidence": 0.4741,
+          "top_predictions": [
+            {
+              "category": "chicken_breast_grilled",
+              "prob": 0.4741
+            },
+            {
+              "category": "rice_white_cooked",
+              "prob": 0.4589
+            },
+            {
+              "category": "broccoli_steamed",
+              "prob": 0.0628
+            }
+          ]
+        },
+        {
+          "image": "datasets/food_dataset_v2/test/rice_white_cooked_test_02.jpg",
+          "ground_truth": "rice_white_cooked",
+          "predicted": "banana_raw",
+          "confidence": 0.7618,
+          "top_predictions": [
+            {
+              "category": "banana_raw",
+              "prob": 0.7618
+            },
+            {
+              "category": "apple_fresh_raw",
+              "prob": 0.1292
+            },
+            {
+              "category": "chicken_breast_grilled",
+              "prob": 0.0573
+            }
+          ]
+        },
+        {
+          "image": "datasets/food_dataset_v2/test/rice_white_cooked_test_03.jpg",
+          "ground_truth": "rice_white_cooked",
+          "predicted": "chicken_breast_grilled",
+          "confidence": 0.6229,
+          "top_predictions": [
+            {
+              "category": "chicken_breast_grilled",
+              "prob": 0.6229
+            },
+            {
+              "category": "rice_white_cooked",
+              "prob": 0.281
+            },
+            {
+              "category": "broccoli_steamed",
+              "prob": 0.063
+            }
+          ]
+        },
+        {
+          "image": "datasets/food_dataset_v2/test/rice_white_cooked_test_04.jpg",
+          "ground_truth": "rice_white_cooked",
+          "predicted": "chicken_breast_grilled",
+          "confidence": 0.8174,
+          "top_predictions": [
+            {
+              "category": "chicken_breast_grilled",
+              "prob": 0.8174
+            },
+            {
+              "category": "banana_raw",
+              "prob": 0.1219
+            },
+            {
+              "category": "apple_fresh_raw",
+              "prob": 0.0435
+            }
+          ]
+        },
+        {
+          "image": "datasets/food_dataset_v2/test/rice_white_cooked_test_05.jpg",
+          "ground_truth": "rice_white_cooked",
+          "predicted": "chicken_breast_grilled",
+          "confidence": 0.6674,
+          "top_predictions": [
+            {
+              "category": "chicken_breast_grilled",
+              "prob": 0.6674
+            },
+            {
+              "category": "rice_white_cooked",
+              "prob": 0.1254
+            },
+            {
+              "category": "broccoli_steamed",
+              "prob": 0.1093
+            }
+          ]
+        },
+        {
+          "image": "datasets/food_dataset_v2/test/chicken_breast_grilled_test_01.jpg",
+          "ground_truth": "chicken_breast_grilled",
+          "predicted": "broccoli_steamed",
+          "confidence": 0.4968,
+          "top_predictions": [
+            {
+              "category": "broccoli_steamed",
+              "prob": 0.4968
+            },
+            {
+              "category": "rice_white_cooked",
+              "prob": 0.1854
+            },
+            {
+              "category": "chicken_breast_grilled",
+              "prob": 0.1694
+            }
+          ]
+        },
+        {
+          "image": "datasets/food_dataset_v2/test/chicken_breast_grilled_test_02.jpg",
+          "ground_truth": "chicken_breast_grilled",
+          "predicted": "banana_raw",
+          "confidence": 0.789,
+          "top_predictions": [
+            {
+              "category": "banana_raw",
+              "prob": 0.789
+            },
+            {
+              "category": "apple_fresh_raw",
+              "prob": 0.0965
+            },
+            {
+              "category": "broccoli_steamed",
+              "prob": 0.0945
+            }
+          ]
+        },
+        {
+          "image": "datasets/food_dataset_v2/test/chicken_breast_grilled_test_04.jpg",
+          "ground_truth": "chicken_breast_grilled",
+          "predicted": "banana_raw",
+          "confidence": 0.441,
+          "top_predictions": [
+            {
+              "category": "banana_raw",
+              "prob": 0.441
+            },
+            {
+              "category": "broccoli_steamed",
+              "prob": 0.3014
+            },
+            {
+              "category": "rice_white_cooked",
+              "prob": 0.1613
+            }
+          ]
+        },
+        {
+          "image": "datasets/food_dataset_v2/test/broccoli_steamed_test_01.jpg",
+          "ground_truth": "broccoli_steamed",
+          "predicted": "apple_fresh_raw",
+          "confidence": 0.8173,
+          "top_predictions": [
+            {
+              "category": "apple_fresh_raw",
+              "prob": 0.8173
+            },
+            {
+              "category": "banana_raw",
+              "prob": 0.088
+            },
+            {
+              "category": "broccoli_steamed",
+              "prob": 0.0524
+            }
+          ]
+        },
+        {
+          "image": "datasets/food_dataset_v2/test/broccoli_steamed_test_03.jpg",
+          "ground_truth": "broccoli_steamed",
+          "predicted": "chicken_breast_grilled",
+          "confidence": 0.5337,
+          "top_predictions": [
+            {
+              "category": "chicken_breast_grilled",
+              "prob": 0.5337
+            },
+            {
+              "category": "rice_white_cooked",
+              "prob": 0.246
+            },
+            {
+              "category": "apple_fresh_raw",
+              "prob": 0.0998
+            }
+          ]
+        },
+        {
+          "image": "datasets/food_dataset_v2/test/apple_fresh_raw_test_05.jpg",
+          "ground_truth": "apple_fresh_raw",
+          "predicted": "banana_raw",
+          "confidence": 0.5875,
+          "top_predictions": [
+            {
+              "category": "banana_raw",
+              "prob": 0.5875
+            },
+            {
+              "category": "broccoli_steamed",
+              "prob": 0.204
+            },
+            {
+              "category": "apple_fresh_raw",
+              "prob": 0.1606
+            }
+          ]
+        },
+        {
+          "image": "datasets/food_dataset_v2/test/banana_raw_test_01.jpg",
+          "ground_truth": "banana_raw",
+          "predicted": "rice_white_cooked",
+          "confidence": 0.3689,
+          "top_predictions": [
+            {
+              "category": "rice_white_cooked",
+              "prob": 0.3689
+            },
+            {
+              "category": "chicken_breast_grilled",
+              "prob": 0.2552
+            },
+            {
+              "category": "banana_raw",
+              "prob": 0.228
+            }
+          ]
+        },
+        {
+          "image": "datasets/food_dataset_v2/test/banana_raw_test_02.jpg",
+          "ground_truth": "banana_raw",
+          "predicted": "rice_white_cooked",
+          "confidence": 0.4457,
+          "top_predictions": [
+            {
+              "category": "rice_white_cooked",
+              "prob": 0.4457
+            },
+            {
+              "category": "chicken_breast_grilled",
+              "prob": 0.2125
+            },
+            {
+              "category": "banana_raw",
+              "prob": 0.1701
+            }
+          ]
+        }
+      ]
+    },
+    "Candidate_D_Staged_Fine_Tuned": {
+      "total_images": 25,
+      "correct": 12,
+      "accuracy": 0.48,
+      "macro_f1": 0.46,
+      "mean_confidence_correct": 0.8288,
+      "mean_confidence_incorrect": 0.6371,
+      "kitchenware_bias_count": 0,
+      "per_class": {
+        "apple_fresh_raw": {
+          "support": 5,
+          "precision": 0.8,
+          "recall": 0.8,
+          "f1": 0.8
+        },
+        "banana_raw": {
+          "support": 5,
+          "precision": 0.4286,
+          "recall": 0.6,
+          "f1": 0.5
+        },
+        "broccoli_steamed": {
+          "support": 5,
+          "precision": 0.75,
+          "recall": 0.6,
+          "f1": 0.6667
+        },
+        "chicken_breast_grilled": {
+          "support": 5,
+          "precision": 0.2857,
+          "recall": 0.4,
+          "f1": 0.3333
+        },
+        "rice_white_cooked": {
+          "support": 5,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        }
+      },
+      "confusion_matrix": {
+        "apple_fresh_raw": {
+          "apple_fresh_raw": 4,
+          "banana_raw": 1,
+          "broccoli_steamed": 0,
+          "chicken_breast_grilled": 0,
+          "rice_white_cooked": 0
+        },
+        "banana_raw": {
+          "apple_fresh_raw": 0,
+          "banana_raw": 3,
+          "broccoli_steamed": 0,
+          "chicken_breast_grilled": 0,
+          "rice_white_cooked": 2
+        },
+        "broccoli_steamed": {
+          "apple_fresh_raw": 1,
+          "banana_raw": 0,
+          "broccoli_steamed": 3,
+          "chicken_breast_grilled": 1,
+          "rice_white_cooked": 0
+        },
+        "chicken_breast_grilled": {
+          "apple_fresh_raw": 0,
+          "banana_raw": 2,
+          "broccoli_steamed": 1,
+          "chicken_breast_grilled": 2,
+          "rice_white_cooked": 0
+        },
+        "rice_white_cooked": {
+          "apple_fresh_raw": 0,
+          "banana_raw": 1,
+          "broccoli_steamed": 0,
+          "chicken_breast_grilled": 4,
+          "rice_white_cooked": 0
+        }
+      },
+      "failures": [
+        {
+          "image": "datasets/food_dataset_v2/test/rice_white_cooked_test_01.jpg",
+          "ground_truth": "rice_white_cooked",
+          "predicted": "chicken_breast_grilled",
+          "confidence": 0.6093,
+          "top_predictions": [
+            {
+              "category": "chicken_breast_grilled",
+              "prob": 0.6093
+            },
+            {
+              "category": "rice_white_cooked",
+              "prob": 0.3442
+            },
+            {
+              "category": "broccoli_steamed",
+              "prob": 0.0443
+            }
+          ]
+        },
+        {
+          "image": "datasets/food_dataset_v2/test/rice_white_cooked_test_02.jpg",
+          "ground_truth": "rice_white_cooked",
+          "predicted": "banana_raw",
+          "confidence": 0.7346,
+          "top_predictions": [
+            {
+              "category": "banana_raw",
+              "prob": 0.7346
+            },
+            {
+              "category": "apple_fresh_raw",
+              "prob": 0.1279
+            },
+            {
+              "category": "chicken_breast_grilled",
+              "prob": 0.0792
+            }
+          ]
+        },
+        {
+          "image": "datasets/food_dataset_v2/test/rice_white_cooked_test_03.jpg",
+          "ground_truth": "rice_white_cooked",
+          "predicted": "chicken_breast_grilled",
+          "confidence": 0.7192,
+          "top_predictions": [
+            {
+              "category": "chicken_breast_grilled",
+              "prob": 0.7192
+            },
+            {
+              "category": "rice_white_cooked",
+              "prob": 0.2166
+            },
+            {
+              "category": "broccoli_steamed",
+              "prob": 0.0409
+            }
+          ]
+        },
+        {
+          "image": "datasets/food_dataset_v2/test/rice_white_cooked_test_04.jpg",
+          "ground_truth": "rice_white_cooked",
+          "predicted": "chicken_breast_grilled",
+          "confidence": 0.8853,
+          "top_predictions": [
+            {
+              "category": "chicken_breast_grilled",
+              "prob": 0.8853
+            },
+            {
+              "category": "banana_raw",
+              "prob": 0.0809
+            },
+            {
+              "category": "apple_fresh_raw",
+              "prob": 0.0233
+            }
+          ]
+        },
+        {
+          "image": "datasets/food_dataset_v2/test/rice_white_cooked_test_05.jpg",
+          "ground_truth": "rice_white_cooked",
+          "predicted": "chicken_breast_grilled",
+          "confidence": 0.7537,
+          "top_predictions": [
+            {
+              "category": "chicken_breast_grilled",
+              "prob": 0.7537
+            },
+            {
+              "category": "rice_white_cooked",
+              "prob": 0.0941
+            },
+            {
+              "category": "broccoli_steamed",
+              "prob": 0.0822
+            }
+          ]
+        },
+        {
+          "image": "datasets/food_dataset_v2/test/chicken_breast_grilled_test_01.jpg",
+          "ground_truth": "chicken_breast_grilled",
+          "predicted": "broccoli_steamed",
+          "confidence": 0.442,
+          "top_predictions": [
+            {
+              "category": "broccoli_steamed",
+              "prob": 0.442
+            },
+            {
+              "category": "chicken_breast_grilled",
+              "prob": 0.2533
+            },
+            {
+              "category": "rice_white_cooked",
+              "prob": 0.1773
+            }
+          ]
+        },
+        {
+          "image": "datasets/food_dataset_v2/test/chicken_breast_grilled_test_02.jpg",
+          "ground_truth": "chicken_breast_grilled",
+          "predicted": "banana_raw",
+          "confidence": 0.8068,
+          "top_predictions": [
+            {
+              "category": "banana_raw",
+              "prob": 0.8068
+            },
+            {
+              "category": "broccoli_steamed",
+              "prob": 0.0904
+            },
+            {
+              "category": "apple_fresh_raw",
+              "prob": 0.0825
+            }
+          ]
+        },
+        {
+          "image": "datasets/food_dataset_v2/test/chicken_breast_grilled_test_04.jpg",
+          "ground_truth": "chicken_breast_grilled",
+          "predicted": "banana_raw",
+          "confidence": 0.4397,
+          "top_predictions": [
+            {
+              "category": "banana_raw",
+              "prob": 0.4397
+            },
+            {
+              "category": "broccoli_steamed",
+              "prob": 0.3019
+            },
+            {
+              "category": "rice_white_cooked",
+              "prob": 0.1518
+            }
+          ]
+        },
+        {
+          "image": "datasets/food_dataset_v2/test/broccoli_steamed_test_01.jpg",
+          "ground_truth": "broccoli_steamed",
+          "predicted": "apple_fresh_raw",
+          "confidence": 0.8015,
+          "top_predictions": [
+            {
+              "category": "apple_fresh_raw",
+              "prob": 0.8015
+            },
+            {
+              "category": "banana_raw",
+              "prob": 0.0823
+            },
+            {
+              "category": "broccoli_steamed",
+              "prob": 0.0528
+            }
+          ]
+        },
+        {
+          "image": "datasets/food_dataset_v2/test/broccoli_steamed_test_03.jpg",
+          "ground_truth": "broccoli_steamed",
+          "predicted": "chicken_breast_grilled",
+          "confidence": 0.6218,
+          "top_predictions": [
+            {
+              "category": "chicken_breast_grilled",
+              "prob": 0.6218
+            },
+            {
+              "category": "rice_white_cooked",
+              "prob": 0.2061
+            },
+            {
+              "category": "apple_fresh_raw",
+              "prob": 0.0769
+            }
+          ]
+        },
+        {
+          "image": "datasets/food_dataset_v2/test/apple_fresh_raw_test_05.jpg",
+          "ground_truth": "apple_fresh_raw",
+          "predicted": "banana_raw",
+          "confidence": 0.6156,
+          "top_predictions": [
+            {
+              "category": "banana_raw",
+              "prob": 0.6156
+            },
+            {
+              "category": "broccoli_steamed",
+              "prob": 0.1797
+            },
+            {
+              "category": "apple_fresh_raw",
+              "prob": 0.1463
+            }
+          ]
+        },
+        {
+          "image": "datasets/food_dataset_v2/test/banana_raw_test_01.jpg",
+          "ground_truth": "banana_raw",
+          "predicted": "rice_white_cooked",
+          "confidence": 0.3932,
+          "top_predictions": [
+            {
+              "category": "rice_white_cooked",
+              "prob": 0.3932
+            },
+            {
+              "category": "chicken_breast_grilled",
+              "prob": 0.2804
+            },
+            {
+              "category": "banana_raw",
+              "prob": 0.1819
+            }
+          ]
+        },
+        {
+          "image": "datasets/food_dataset_v2/test/banana_raw_test_02.jpg",
+          "ground_truth": "banana_raw",
+          "predicted": "rice_white_cooked",
+          "confidence": 0.4595,
+          "top_predictions": [
+            {
+              "category": "rice_white_cooked",
+              "prob": 0.4595
+            },
+            {
+              "category": "chicken_breast_grilled",
+              "prob": 0.247
+            },
+            {
+              "category": "banana_raw",
+              "prob": 0.1335
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "validation_metrics": {
+    "Candidate_A_Original_Pretrained": {
+      "total_images": 20,
+      "correct": 8,
+      "accuracy": 0.4,
+      "macro_f1": 0.4381,
+      "mean_confidence_correct": 0.7622,
+      "mean_confidence_incorrect": 0.5792,
+      "kitchenware_bias_count": 3,
+      "per_class": {
+        "apple_fresh_raw": {
+          "support": 4,
+          "precision": 1.0,
+          "recall": 0.75,
+          "f1": 0.8571
+        },
+        "banana_raw": {
+          "support": 4,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "broccoli_steamed": {
+          "support": 4,
+          "precision": 0.5,
+          "recall": 0.25,
+          "f1": 0.3333
+        },
+        "chicken_breast_grilled": {
+          "support": 4,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "rice_white_cooked": {
+          "support": 4,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        }
+      },
+      "confusion_matrix": {
+        "apple_fresh_raw": {
+          "apple_fresh_raw": 3,
+          "banana_raw": 0,
+          "broccoli_steamed": 0,
+          "chicken_breast_grilled": 0,
+          "rice_white_cooked": 0,
+          "unrepresented_or_other": 1
+        },
+        "banana_raw": {
+          "apple_fresh_raw": 0,
+          "banana_raw": 4,
+          "broccoli_steamed": 0,
+          "chicken_breast_grilled": 0,
+          "rice_white_cooked": 0,
+          "unrepresented_or_other": 0
+        },
+        "broccoli_steamed": {
+          "apple_fresh_raw": 0,
+          "banana_raw": 0,
+          "broccoli_steamed": 1,
+          "chicken_breast_grilled": 0,
+          "rice_white_cooked": 0,
+          "unrepresented_or_other": 3
+        },
+        "chicken_breast_grilled": {
+          "apple_fresh_raw": 0,
+          "banana_raw": 0,
+          "broccoli_steamed": 0,
+          "chicken_breast_grilled": 0,
+          "rice_white_cooked": 0,
+          "unrepresented_or_other": 4
+        },
+        "rice_white_cooked": {
+          "apple_fresh_raw": 0,
+          "banana_raw": 0,
+          "broccoli_steamed": 1,
+          "chicken_breast_grilled": 0,
+          "rice_white_cooked": 0,
+          "unrepresented_or_other": 3
+        }
+      },
+      "failures": [
+        {
+          "image": "datasets/food_dataset_v2/val/rice_white_cooked_val_01.jpg",
+          "ground_truth": "rice_white_cooked",
+          "predicted": "unrepresented_or_other",
+          "raw_imagenet_top1": "mashed potato",
+          "confidence": 0.8443,
+          "top_predictions": [
+            {
+              "category": "mashed potato",
+              "prob": 0.8443
+            },
+            {
+              "category": "eggnog",
+              "prob": 0.0604
+            },
+            {
+              "category": "strainer",
+              "prob": 0.0176
+            }
+          ]
+        },
+        {
+          "image": "datasets/food_dataset_v2/val/rice_white_cooked_val_02.jpg",
+          "ground_truth": "rice_white_cooked",
+          "predicted": "unrepresented_or_other",
+          "raw_imagenet_top1": "mashed potato",
+          "confidence": 0.9539,
+          "top_predictions": [
+            {
+              "category": "mashed potato",
+              "prob": 0.9539
+            },
+            {
+              "category": "soup bowl",
+              "prob": 0.0095
+            },
+            {
+              "category": "mixing bowl",
+              "prob": 0.0076
+            }
+          ]
+        },
+        {
+          "image": "datasets/food_dataset_v2/val/rice_white_cooked_val_03.jpg",
+          "ground_truth": "rice_white_cooked",
+          "predicted": "unrepresented_or_other",
+          "raw_imagenet_top1": "bow tie",
+          "confidence": 0.1659,
+          "top_predictions": [
+            {
+              "category": "bow tie",
+              "prob": 0.1659
+            },
+            {
+              "category": "potter's wheel",
+              "prob": 0.0689
+            },
+            {
+              "category": "dough",
+              "prob": 0.0665
+            }
+          ]
+        },
+        {
+          "image": "datasets/food_dataset_v2/val/rice_white_cooked_val_04.jpg",
+          "ground_truth": "rice_white_cooked",
+          "predicted": "broccoli_steamed",
+          "raw_imagenet_top1": "broccoli",
+          "confidence": 0.8591,
+          "top_predictions": [
+            {
+              "category": "broccoli",
+              "prob": 0.8591
+            },
+            {
+              "category": "plate",
+              "prob": 0.0708
+            },
+            {
+              "category": "guacamole",
+              "prob": 0.036
+            }
+          ]
+        },
+        {
+          "image": "datasets/food_dataset_v2/val/chicken_breast_grilled_val_01.jpg",
+          "ground_truth": "chicken_breast_grilled",
+          "predicted": "unrepresented_or_other",
+          "raw_imagenet_top1": "carbonara",
+          "confidence": 0.6795,
+          "top_predictions": [
+            {
+              "category": "carbonara",
+              "prob": 0.6795
+            },
+            {
+              "category": "consomme",
+              "prob": 0.1417
+            },
+            {
+              "category": "broccoli",
+              "prob": 0.0939
+            }
+          ]
+        },
+        {
+          "image": "datasets/food_dataset_v2/val/chicken_breast_grilled_val_02.jpg",
+          "ground_truth": "chicken_breast_grilled",
+          "predicted": "unrepresented_or_other",
+          "raw_imagenet_top1": "cauliflower",
+          "confidence": 0.5109,
+          "top_predictions": [
+            {
+              "category": "cauliflower",
+              "prob": 0.5109
+            },
+            {
+              "category": "broccoli",
+              "prob": 0.4474
+            },
+            {
+              "category": "mashed potato",
+              "prob": 0.01
+            }
+          ]
+        },
+        {
+          "image": "datasets/food_dataset_v2/val/chicken_breast_grilled_val_03.jpg",
+          "ground_truth": "chicken_breast_grilled",
+          "predicted": "unrepresented_or_other",
+          "raw_imagenet_top1": "carbonara",
+          "confidence": 0.5199,
+          "top_predictions": [
+            {
+              "category": "carbonara",
+              "prob": 0.5199
+            },
+            {
+              "category": "plate",
+              "prob": 0.1898
+            },
+            {
+              "category": "broccoli",
+              "prob": 0.0808
+            }
+          ]
+        },
+        {
+          "image": "datasets/food_dataset_v2/val/chicken_breast_grilled_val_04.jpg",
+          "ground_truth": "chicken_breast_grilled",
+          "predicted": "unrepresented_or_other",
+          "raw_imagenet_top1": "pizza",
+          "confidence": 0.3049,
+          "top_predictions": [
+            {
+              "category": "pizza",
+              "prob": 0.3049
+            },
+            {
+              "category": "hot pot",
+              "prob": 0.2229
+            },
+            {
+              "category": "meat loaf",
+              "prob": 0.1348
+            }
+          ]
+        },
+        {
+          "image": "datasets/food_dataset_v2/val/broccoli_steamed_val_01.jpg",
+          "ground_truth": "broccoli_steamed",
+          "predicted": "unrepresented_or_other",
+          "raw_imagenet_top1": "soup bowl",
+          "confidence": 0.38,
+          "top_predictions": [
+            {
+              "category": "soup bowl",
+              "prob": 0.38
+            },
+            {
+              "category": "corn",
+              "prob": 0.17
+            },
+            {
+              "category": "plate",
+              "prob": 0.1236
+            }
+          ]
+        },
+        {
+          "image": "datasets/food_dataset_v2/val/broccoli_steamed_val_03.jpg",
+          "ground_truth": "broccoli_steamed",
+          "predicted": "unrepresented_or_other",
+          "raw_imagenet_top1": "carbonara",
+          "confidence": 0.5821,
+          "top_predictions": [
+            {
+              "category": "carbonara",
+              "prob": 0.5821
+            },
+            {
+              "category": "plate",
+              "prob": 0.1856
+            },
+            {
+              "category": "broccoli",
+              "prob": 0.181
+            }
+          ]
+        },
+        {
+          "image": "datasets/food_dataset_v2/val/broccoli_steamed_val_04.jpg",
+          "ground_truth": "broccoli_steamed",
+          "predicted": "unrepresented_or_other",
+          "raw_imagenet_top1": "carbonara",
+          "confidence": 0.7905,
+          "top_predictions": [
+            {
+              "category": "carbonara",
+              "prob": 0.7905
+            },
+            {
+              "category": "plate",
+              "prob": 0.1795
+            },
+            {
+              "category": "consomme",
+              "prob": 0.0115
+            }
+          ]
+        },
+        {
+          "image": "datasets/food_dataset_v2/val/apple_fresh_raw_val_01.jpg",
+          "ground_truth": "apple_fresh_raw",
+          "predicted": "unrepresented_or_other",
+          "raw_imagenet_top1": "cassette",
+          "confidence": 0.3589,
+          "top_predictions": [
+            {
+              "category": "cassette",
+              "prob": 0.3589
+            },
+            {
+              "category": "Petri dish",
+              "prob": 0.0801
+            },
+            {
+              "category": "mouse",
+              "prob": 0.0774
+            }
+          ]
+        }
+      ]
+    },
+    "Candidate_B_Existing_Head_Only": {
+      "total_images": 20,
+      "correct": 4,
+      "accuracy": 0.2,
+      "macro_f1": 0.1114,
+      "mean_confidence_correct": 0.5138,
+      "mean_confidence_incorrect": 0.4763,
+      "kitchenware_bias_count": 0,
+      "per_class": {
+        "apple_fresh_raw": {
+          "support": 4,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "banana_raw": {
+          "support": 4,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "broccoli_steamed": {
+          "support": 4,
+          "precision": 0.25,
+          "recall": 0.75,
+          "f1": 0.375
+        },
+        "chicken_breast_grilled": {
+          "support": 4,
+          "precision": 0.1429,
+          "recall": 0.25,
+          "f1": 0.1818
+        },
+        "rice_white_cooked": {
+          "support": 4,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        }
+      },
+      "confusion_matrix": {
+        "apple_fresh_raw": {
+          "apple_fresh_raw": 0,
+          "banana_raw": 0,
+          "broccoli_steamed": 2,
+          "chicken_breast_grilled": 2,
+          "rice_white_cooked": 0
+        },
+        "banana_raw": {
+          "apple_fresh_raw": 0,
+          "banana_raw": 0,
+          "broccoli_steamed": 2,
+          "chicken_breast_grilled": 2,
+          "rice_white_cooked": 0
+        },
+        "broccoli_steamed": {
+          "apple_fresh_raw": 0,
+          "banana_raw": 0,
+          "broccoli_steamed": 3,
+          "chicken_breast_grilled": 1,
+          "rice_white_cooked": 0
+        },
+        "chicken_breast_grilled": {
+          "apple_fresh_raw": 0,
+          "banana_raw": 0,
+          "broccoli_steamed": 2,
+          "chicken_breast_grilled": 1,
+          "rice_white_cooked": 1
+        },
+        "rice_white_cooked": {
+          "apple_fresh_raw": 0,
+          "banana_raw": 0,
+          "broccoli_steamed": 3,
+          "chicken_breast_grilled": 1,
+          "rice_white_cooked": 0
+        }
+      },
+      "failures": [
+        {
+          "image": "datasets/food_dataset_v2/val/rice_white_cooked_val_01.jpg",
+          "ground_truth": "rice_white_cooked",
+          "predicted": "broccoli_steamed",
+          "confidence": 0.6768,
+          "top_predictions": [
+            {
+              "category": "broccoli_steamed",
+              "prob": 0.6768
+            },
+            {
+              "category": "chicken_breast_grilled",
+              "prob": 0.1576
+            },
+            {
+              "category": "rice_white_cooked",
+              "prob": 0.1128
+            }
+          ]
+        },
+        {
+          "image": "datasets/food_dataset_v2/val/rice_white_cooked_val_02.jpg",
+          "ground_truth": "rice_white_cooked",
+          "predicted": "broccoli_steamed",
+          "confidence": 0.4639,
+          "top_predictions": [
+            {
+              "category": "broccoli_steamed",
+              "prob": 0.4639
+            },
+            {
+              "category": "chicken_breast_grilled",
+              "prob": 0.2603
+            },
+            {
+              "category": "rice_white_cooked",
+              "prob": 0.1642
+            }
+          ]
+        },
+        {
+          "image": "datasets/food_dataset_v2/val/rice_white_cooked_val_03.jpg",
+          "ground_truth": "rice_white_cooked",
+          "predicted": "chicken_breast_grilled",
+          "confidence": 0.3801,
+          "top_predictions": [
+            {
+              "category": "chicken_breast_grilled",
+              "prob": 0.3801
+            },
+            {
+              "category": "apple_fresh_raw",
+              "prob": 0.2173
+            },
+            {
+              "category": "broccoli_steamed",
+              "prob": 0.1926
+            }
+          ]
+        },
+        {
+          "image": "datasets/food_dataset_v2/val/rice_white_cooked_val_04.jpg",
+          "ground_truth": "rice_white_cooked",
+          "predicted": "broccoli_steamed",
+          "confidence": 0.4777,
+          "top_predictions": [
+            {
+              "category": "broccoli_steamed",
+              "prob": 0.4777
+            },
+            {
+              "category": "chicken_breast_grilled",
+              "prob": 0.4093
+            },
+            {
+              "category": "rice_white_cooked",
+              "prob": 0.0805
+            }
+          ]
+        },
+        {
+          "image": "datasets/food_dataset_v2/val/chicken_breast_grilled_val_01.jpg",
+          "ground_truth": "chicken_breast_grilled",
+          "predicted": "broccoli_steamed",
+          "confidence": 0.5305,
+          "top_predictions": [
+            {
+              "category": "broccoli_steamed",
+              "prob": 0.5305
+            },
+            {
+              "category": "rice_white_cooked",
+              "prob": 0.1801
+            },
+            {
+              "category": "chicken_breast_grilled",
+              "prob": 0.1398
+            }
+          ]
+        },
+        {
+          "image": "datasets/food_dataset_v2/val/chicken_breast_grilled_val_03.jpg",
+          "ground_truth": "chicken_breast_grilled",
+          "predicted": "broccoli_steamed",
+          "confidence": 0.4416,
+          "top_predictions": [
+            {
+              "category": "broccoli_steamed",
+              "prob": 0.4416
+            },
+            {
+              "category": "chicken_breast_grilled",
+              "prob": 0.2942
+            },
+            {
+              "category": "rice_white_cooked",
+              "prob": 0.1787
+            }
+          ]
+        },
+        {
+          "image": "datasets/food_dataset_v2/val/chicken_breast_grilled_val_04.jpg",
+          "ground_truth": "chicken_breast_grilled",
+          "predicted": "rice_white_cooked",
+          "confidence": 0.4119,
+          "top_predictions": [
+            {
+              "category": "rice_white_cooked",
+              "prob": 0.4119
+            },
+            {
+              "category": "broccoli_steamed",
+              "prob": 0.268
+            },
+            {
+              "category": "chicken_breast_grilled",
+              "prob": 0.2536
+            }
+          ]
+        },
+        {
+          "image": "datasets/food_dataset_v2/val/broccoli_steamed_val_03.jpg",
+          "ground_truth": "broccoli_steamed",
+          "predicted": "chicken_breast_grilled",
+          "confidence": 0.4397,
+          "top_predictions": [
+            {
+              "category": "chicken_breast_grilled",
+              "prob": 0.4397
+            },
+            {
+              "category": "broccoli_steamed",
+              "prob": 0.372
+            },
+            {
+              "category": "rice_white_cooked",
+              "prob": 0.1345
+            }
+          ]
+        },
+        {
+          "image": "datasets/food_dataset_v2/val/apple_fresh_raw_val_01.jpg",
+          "ground_truth": "apple_fresh_raw",
+          "predicted": "broccoli_steamed",
+          "confidence": 0.3824,
+          "top_predictions": [
+            {
+              "category": "broccoli_steamed",
+              "prob": 0.3824
+            },
+            {
+              "category": "apple_fresh_raw",
+              "prob": 0.175
+            },
+            {
+              "category": "banana_raw",
+              "prob": 0.1578
+            }
+          ]
+        },
+        {
+          "image": "datasets/food_dataset_v2/val/apple_fresh_raw_val_02.jpg",
+          "ground_truth": "apple_fresh_raw",
+          "predicted": "chicken_breast_grilled",
+          "confidence": 0.393,
+          "top_predictions": [
+            {
+              "category": "chicken_breast_grilled",
+              "prob": 0.393
+            },
+            {
+              "category": "broccoli_steamed",
+              "prob": 0.2822
+            },
+            {
+              "category": "rice_white_cooked",
+              "prob": 0.1445
+            }
+          ]
+        },
+        {
+          "image": "datasets/food_dataset_v2/val/apple_fresh_raw_val_03.jpg",
+          "ground_truth": "apple_fresh_raw",
+          "predicted": "chicken_breast_grilled",
+          "confidence": 0.8346,
+          "top_predictions": [
+            {
+              "category": "chicken_breast_grilled",
+              "prob": 0.8346
+            },
+            {
+              "category": "broccoli_steamed",
+              "prob": 0.0975
+            },
+            {
+              "category": "banana_raw",
+              "prob": 0.0419
+            }
+          ]
+        },
+        {
+          "image": "datasets/food_dataset_v2/val/apple_fresh_raw_val_04.jpg",
+          "ground_truth": "apple_fresh_raw",
+          "predicted": "broccoli_steamed",
+          "confidence": 0.3071,
+          "top_predictions": [
+            {
+              "category": "broccoli_steamed",
+              "prob": 0.3071
+            },
+            {
+              "category": "banana_raw",
+              "prob": 0.2964
+            },
+            {
+              "category": "apple_fresh_raw",
+              "prob": 0.1919
+            }
+          ]
+        },
+        {
+          "image": "datasets/food_dataset_v2/val/banana_raw_val_01.jpg",
+          "ground_truth": "banana_raw",
+          "predicted": "broccoli_steamed",
+          "confidence": 0.5346,
+          "top_predictions": [
+            {
+              "category": "broccoli_steamed",
+              "prob": 0.5346
+            },
+            {
+              "category": "chicken_breast_grilled",
+              "prob": 0.3536
+            },
+            {
+              "category": "apple_fresh_raw",
+              "prob": 0.0555
+            }
+          ]
+        },
+        {
+          "image": "datasets/food_dataset_v2/val/banana_raw_val_02.jpg",
+          "ground_truth": "banana_raw",
+          "predicted": "chicken_breast_grilled",
+          "confidence": 0.4717,
+          "top_predictions": [
+            {
+              "category": "chicken_breast_grilled",
+              "prob": 0.4717
+            },
+            {
+              "category": "broccoli_steamed",
+              "prob": 0.2832
+            },
+            {
+              "category": "apple_fresh_raw",
+              "prob": 0.1194
+            }
+          ]
+        },
+        {
+          "image": "datasets/food_dataset_v2/val/banana_raw_val_03.jpg",
+          "ground_truth": "banana_raw",
+          "predicted": "chicken_breast_grilled",
+          "confidence": 0.467,
+          "top_predictions": [
+            {
+              "category": "chicken_breast_grilled",
+              "prob": 0.467
+            },
+            {
+              "category": "broccoli_steamed",
+              "prob": 0.3746
+            },
+            {
+              "category": "apple_fresh_raw",
+              "prob": 0.0931
+            }
+          ]
+        },
+        {
+          "image": "datasets/food_dataset_v2/val/banana_raw_val_04.jpg",
+          "ground_truth": "banana_raw",
+          "predicted": "broccoli_steamed",
+          "confidence": 0.4077,
+          "top_predictions": [
+            {
+              "category": "broccoli_steamed",
+              "prob": 0.4077
+            },
+            {
+              "category": "chicken_breast_grilled",
+              "prob": 0.3048
+            },
+            {
+              "category": "apple_fresh_raw",
+              "prob": 0.1431
+            }
+          ]
+        }
+      ]
+    },
+    "Candidate_C_Improved_Head_Only": {
+      "total_images": 20,
+      "correct": 13,
+      "accuracy": 0.65,
+      "macro_f1": 0.63,
+      "mean_confidence_correct": 0.8026,
+      "mean_confidence_incorrect": 0.685,
+      "kitchenware_bias_count": 0,
+      "per_class": {
+        "apple_fresh_raw": {
+          "support": 4,
+          "precision": 1.0,
+          "recall": 0.25,
+          "f1": 0.4
+        },
+        "banana_raw": {
+          "support": 4,
+          "precision": 0.5,
+          "recall": 1.0,
+          "f1": 0.6667
+        },
+        "broccoli_steamed": {
+          "support": 4,
+          "precision": 0.75,
+          "recall": 0.75,
+          "f1": 0.75
+        },
+        "chicken_breast_grilled": {
+          "support": 4,
+          "precision": 1.0,
+          "recall": 0.5,
+          "f1": 0.6667
+        },
+        "rice_white_cooked": {
+          "support": 4,
+          "precision": 0.6,
+          "recall": 0.75,
+          "f1": 0.6667
+        }
+      },
+      "confusion_matrix": {
+        "apple_fresh_raw": {
+          "apple_fresh_raw": 1,
+          "banana_raw": 2,
+          "broccoli_steamed": 0,
+          "chicken_breast_grilled": 0,
+          "rice_white_cooked": 1
+        },
+        "banana_raw": {
+          "apple_fresh_raw": 0,
+          "banana_raw": 4,
+          "broccoli_steamed": 0,
+          "chicken_breast_grilled": 0,
+          "rice_white_cooked": 0
+        },
+        "broccoli_steamed": {
+          "apple_fresh_raw": 0,
+          "banana_raw": 0,
+          "broccoli_steamed": 3,
+          "chicken_breast_grilled": 0,
+          "rice_white_cooked": 1
+        },
+        "chicken_breast_grilled": {
+          "apple_fresh_raw": 0,
+          "banana_raw": 2,
+          "broccoli_steamed": 0,
+          "chicken_breast_grilled": 2,
+          "rice_white_cooked": 0
+        },
+        "rice_white_cooked": {
+          "apple_fresh_raw": 0,
+          "banana_raw": 0,
+          "broccoli_steamed": 1,
+          "chicken_breast_grilled": 0,
+          "rice_white_cooked": 3
+        }
+      },
+      "failures": [
+        {
+          "image": "datasets/food_dataset_v2/val/rice_white_cooked_val_04.jpg",
+          "ground_truth": "rice_white_cooked",
+          "predicted": "broccoli_steamed",
+          "confidence": 0.8228,
+          "top_predictions": [
+            {
+              "category": "broccoli_steamed",
+              "prob": 0.8228
+            },
+            {
+              "category": "chicken_breast_grilled",
+              "prob": 0.1304
+            },
+            {
+              "category": "rice_white_cooked",
+              "prob": 0.0423
+            }
+          ]
+        },
+        {
+          "image": "datasets/food_dataset_v2/val/chicken_breast_grilled_val_01.jpg",
+          "ground_truth": "chicken_breast_grilled",
+          "predicted": "banana_raw",
+          "confidence": 0.486,
+          "top_predictions": [
+            {
+              "category": "banana_raw",
+              "prob": 0.486
+            },
+            {
+              "category": "broccoli_steamed",
+              "prob": 0.4281
+            },
+            {
+              "category": "rice_white_cooked",
+              "prob": 0.046
+            }
+          ]
+        },
+        {
+          "image": "datasets/food_dataset_v2/val/chicken_breast_grilled_val_02.jpg",
+          "ground_truth": "chicken_breast_grilled",
+          "predicted": "banana_raw",
+          "confidence": 0.9178,
+          "top_predictions": [
+            {
+              "category": "banana_raw",
+              "prob": 0.9178
+            },
+            {
+              "category": "broccoli_steamed",
+              "prob": 0.0342
+            },
+            {
+              "category": "chicken_breast_grilled",
+              "prob": 0.0222
+            }
+          ]
+        },
+        {
+          "image": "datasets/food_dataset_v2/val/broccoli_steamed_val_01.jpg",
+          "ground_truth": "broccoli_steamed",
+          "predicted": "rice_white_cooked",
+          "confidence": 0.7598,
+          "top_predictions": [
+            {
+              "category": "rice_white_cooked",
+              "prob": 0.7598
+            },
+            {
+              "category": "broccoli_steamed",
+              "prob": 0.1634
+            },
+            {
+              "category": "chicken_breast_grilled",
+              "prob": 0.0527
+            }
+          ]
+        },
+        {
+          "image": "datasets/food_dataset_v2/val/apple_fresh_raw_val_01.jpg",
+          "ground_truth": "apple_fresh_raw",
+          "predicted": "rice_white_cooked",
+          "confidence": 0.7016,
+          "top_predictions": [
+            {
+              "category": "rice_white_cooked",
+              "prob": 0.7016
+            },
+            {
+              "category": "apple_fresh_raw",
+              "prob": 0.1333
+            },
+            {
+              "category": "broccoli_steamed",
+              "prob": 0.0591
+            }
+          ]
+        },
+        {
+          "image": "datasets/food_dataset_v2/val/apple_fresh_raw_val_02.jpg",
+          "ground_truth": "apple_fresh_raw",
+          "predicted": "banana_raw",
+          "confidence": 0.358,
+          "top_predictions": [
+            {
+              "category": "banana_raw",
+              "prob": 0.358
+            },
+            {
+              "category": "rice_white_cooked",
+              "prob": 0.3546
+            },
+            {
+              "category": "chicken_breast_grilled",
+              "prob": 0.1268
+            }
+          ]
+        },
+        {
+          "image": "datasets/food_dataset_v2/val/apple_fresh_raw_val_03.jpg",
+          "ground_truth": "apple_fresh_raw",
+          "predicted": "banana_raw",
+          "confidence": 0.7489,
+          "top_predictions": [
+            {
+              "category": "banana_raw",
+              "prob": 0.7489
+            },
+            {
+              "category": "chicken_breast_grilled",
+              "prob": 0.162
+            },
+            {
+              "category": "broccoli_steamed",
+              "prob": 0.0767
+            }
+          ]
+        }
+      ]
+    },
+    "Candidate_D_Staged_Fine_Tuned": {
+      "total_images": 20,
+      "correct": 12,
+      "accuracy": 0.6,
+      "macro_f1": 0.5786,
+      "mean_confidence_correct": 0.8435,
+      "mean_confidence_incorrect": 0.6204,
+      "kitchenware_bias_count": 0,
+      "per_class": {
+        "apple_fresh_raw": {
+          "support": 4,
+          "precision": 1.0,
+          "recall": 0.25,
+          "f1": 0.4
+        },
+        "banana_raw": {
+          "support": 4,
+          "precision": 0.5714,
+          "recall": 1.0,
+          "f1": 0.7273
+        },
+        "broccoli_steamed": {
+          "support": 4,
+          "precision": 0.75,
+          "recall": 0.75,
+          "f1": 0.75
+        },
+        "chicken_breast_grilled": {
+          "support": 4,
+          "precision": 0.6667,
+          "recall": 0.5,
+          "f1": 0.5714
+        },
+        "rice_white_cooked": {
+          "support": 4,
+          "precision": 0.4,
+          "recall": 0.5,
+          "f1": 0.4444
+        }
+      },
+      "confusion_matrix": {
+        "apple_fresh_raw": {
+          "apple_fresh_raw": 1,
+          "banana_raw": 1,
+          "broccoli_steamed": 0,
+          "chicken_breast_grilled": 0,
+          "rice_white_cooked": 2
+        },
+        "banana_raw": {
+          "apple_fresh_raw": 0,
+          "banana_raw": 4,
+          "broccoli_steamed": 0,
+          "chicken_breast_grilled": 0,
+          "rice_white_cooked": 0
+        },
+        "broccoli_steamed": {
+          "apple_fresh_raw": 0,
+          "banana_raw": 0,
+          "broccoli_steamed": 3,
+          "chicken_breast_grilled": 0,
+          "rice_white_cooked": 1
+        },
+        "chicken_breast_grilled": {
+          "apple_fresh_raw": 0,
+          "banana_raw": 2,
+          "broccoli_steamed": 0,
+          "chicken_breast_grilled": 2,
+          "rice_white_cooked": 0
+        },
+        "rice_white_cooked": {
+          "apple_fresh_raw": 0,
+          "banana_raw": 0,
+          "broccoli_steamed": 1,
+          "chicken_breast_grilled": 1,
+          "rice_white_cooked": 2
+        }
+      },
+      "failures": [
+        {
+          "image": "datasets/food_dataset_v2/val/rice_white_cooked_val_03.jpg",
+          "ground_truth": "rice_white_cooked",
+          "predicted": "chicken_breast_grilled",
+          "confidence": 0.3831,
+          "top_predictions": [
+            {
+              "category": "chicken_breast_grilled",
+              "prob": 0.3831
+            },
+            {
+              "category": "rice_white_cooked",
+              "prob": 0.2787
+            },
+            {
+              "category": "apple_fresh_raw",
+              "prob": 0.2176
+            }
+          ]
+        },
+        {
+          "image": "datasets/food_dataset_v2/val/rice_white_cooked_val_04.jpg",
+          "ground_truth": "rice_white_cooked",
+          "predicted": "broccoli_steamed",
+          "confidence": 0.7377,
+          "top_predictions": [
+            {
+              "category": "broccoli_steamed",
+              "prob": 0.7377
+            },
+            {
+              "category": "chicken_breast_grilled",
+              "prob": 0.2174
+            },
+            {
+              "category": "rice_white_cooked",
+              "prob": 0.0409
+            }
+          ]
+        },
+        {
+          "image": "datasets/food_dataset_v2/val/chicken_breast_grilled_val_01.jpg",
+          "ground_truth": "chicken_breast_grilled",
+          "predicted": "banana_raw",
+          "confidence": 0.4515,
+          "top_predictions": [
+            {
+              "category": "banana_raw",
+              "prob": 0.4515
+            },
+            {
+              "category": "broccoli_steamed",
+              "prob": 0.4482
+            },
+            {
+              "category": "chicken_breast_grilled",
+              "prob": 0.0455
+            }
+          ]
+        },
+        {
+          "image": "datasets/food_dataset_v2/val/chicken_breast_grilled_val_02.jpg",
+          "ground_truth": "chicken_breast_grilled",
+          "predicted": "banana_raw",
+          "confidence": 0.923,
+          "top_predictions": [
+            {
+              "category": "banana_raw",
+              "prob": 0.923
+            },
+            {
+              "category": "broccoli_steamed",
+              "prob": 0.0324
+            },
+            {
+              "category": "chicken_breast_grilled",
+              "prob": 0.0257
+            }
+          ]
+        },
+        {
+          "image": "datasets/food_dataset_v2/val/broccoli_steamed_val_01.jpg",
+          "ground_truth": "broccoli_steamed",
+          "predicted": "rice_white_cooked",
+          "confidence": 0.755,
+          "top_predictions": [
+            {
+              "category": "rice_white_cooked",
+              "prob": 0.755
+            },
+            {
+              "category": "broccoli_steamed",
+              "prob": 0.1579
+            },
+            {
+              "category": "chicken_breast_grilled",
+              "prob": 0.0631
+            }
+          ]
+        },
+        {
+          "image": "datasets/food_dataset_v2/val/apple_fresh_raw_val_01.jpg",
+          "ground_truth": "apple_fresh_raw",
+          "predicted": "rice_white_cooked",
+          "confidence": 0.6938,
+          "top_predictions": [
+            {
+              "category": "rice_white_cooked",
+              "prob": 0.6938
+            },
+            {
+              "category": "apple_fresh_raw",
+              "prob": 0.1409
+            },
+            {
+              "category": "banana_raw",
+              "prob": 0.0595
+            }
+          ]
+        },
+        {
+          "image": "datasets/food_dataset_v2/val/apple_fresh_raw_val_02.jpg",
+          "ground_truth": "apple_fresh_raw",
+          "predicted": "rice_white_cooked",
+          "confidence": 0.378,
+          "top_predictions": [
+            {
+              "category": "rice_white_cooked",
+              "prob": 0.378
+            },
+            {
+              "category": "banana_raw",
+              "prob": 0.3142
+            },
+            {
+              "category": "chicken_breast_grilled",
+              "prob": 0.1488
+            }
+          ]
+        },
+        {
+          "image": "datasets/food_dataset_v2/val/apple_fresh_raw_val_03.jpg",
+          "ground_truth": "apple_fresh_raw",
+          "predicted": "banana_raw",
+          "confidence": 0.6414,
+          "top_predictions": [
+            {
+              "category": "banana_raw",
+              "prob": 0.6414
+            },
+            {
+              "category": "chicken_breast_grilled",
+              "prob": 0.2588
+            },
+            {
+              "category": "broccoli_steamed",
+              "prob": 0.0867
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "smoke_test_metrics": {
+    "Candidate_A_Original_Pretrained": {
+      "total_images": 17,
+      "correct": 2,
+      "accuracy": 0.1176,
+      "macro_f1": 0.1667,
+      "mean_confidence_correct": 0.8527,
+      "mean_confidence_incorrect": 0.5476,
+      "kitchenware_bias_count": 5,
+      "per_class": {
+        "apple_fresh_raw": {
+          "support": 3,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "banana_raw": {
+          "support": 3,
+          "precision": 1.0,
+          "recall": 0.3333,
+          "f1": 0.5
+        },
+        "broccoli_steamed": {
+          "support": 4,
+          "precision": 0.5,
+          "recall": 0.25,
+          "f1": 0.3333
+        },
+        "chicken_breast_grilled": {
+          "support": 3,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "rice_white_cooked": {
+          "support": 4,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        }
+      },
+      "confusion_matrix": {
+        "apple_fresh_raw": {
+          "apple_fresh_raw": 0,
+          "banana_raw": 0,
+          "broccoli_steamed": 0,
+          "chicken_breast_grilled": 0,
+          "rice_white_cooked": 0,
+          "unrepresented_or_other": 3
+        },
+        "banana_raw": {
+          "apple_fresh_raw": 0,
+          "banana_raw": 1,
+          "broccoli_steamed": 0,
+          "chicken_breast_grilled": 0,
+          "rice_white_cooked": 0,
+          "unrepresented_or_other": 2
+        },
+        "broccoli_steamed": {
+          "apple_fresh_raw": 0,
+          "banana_raw": 0,
+          "broccoli_steamed": 1,
+          "chicken_breast_grilled": 0,
+          "rice_white_cooked": 0,
+          "unrepresented_or_other": 3
+        },
+        "chicken_breast_grilled": {
+          "apple_fresh_raw": 0,
+          "banana_raw": 0,
+          "broccoli_steamed": 0,
+          "chicken_breast_grilled": 0,
+          "rice_white_cooked": 0,
+          "unrepresented_or_other": 3
+        },
+        "rice_white_cooked": {
+          "apple_fresh_raw": 0,
+          "banana_raw": 0,
+          "broccoli_steamed": 1,
+          "chicken_breast_grilled": 0,
+          "rice_white_cooked": 0,
+          "unrepresented_or_other": 3
+        }
+      },
+      "failures": [
+        {
+          "image": "datasets/eval/smoke_test/rice_white_cooked_01.jpg",
+          "ground_truth": "rice_white_cooked",
+          "predicted": "unrepresented_or_other",
+          "raw_imagenet_top1": "American lobster",
+          "confidence": 0.3522,
+          "top_predictions": [
+            {
+              "category": "American lobster",
+              "prob": 0.3522
+            },
+            {
+              "category": "crayfish",
+              "prob": 0.1393
+            },
+            {
+              "category": "mortar",
+              "prob": 0.0809
+            }
+          ]
+        },
+        {
+          "image": "datasets/eval/smoke_test/rice_white_cooked_02.jpg",
+          "ground_truth": "rice_white_cooked",
+          "predicted": "unrepresented_or_other",
+          "raw_imagenet_top1": "guacamole",
+          "confidence": 0.3084,
+          "top_predictions": [
+            {
+              "category": "guacamole",
+              "prob": 0.3084
+            },
+            {
+              "category": "meat loaf",
+              "prob": 0.1439
+            },
+            {
+              "category": "burrito",
+              "prob": 0.1234
+            }
+          ]
+        },
+        {
+          "image": "datasets/eval/smoke_test/rice_white_cooked_03.jpg",
+          "ground_truth": "rice_white_cooked",
+          "predicted": "unrepresented_or_other",
+          "raw_imagenet_top1": "pot",
+          "confidence": 0.3412,
+          "top_predictions": [
+            {
+              "category": "pot",
+              "prob": 0.3412
+            },
+            {
+              "category": "broccoli",
+              "prob": 0.214
+            },
+            {
+              "category": "trifle",
+              "prob": 0.074
+            }
+          ]
+        },
+        {
+          "image": "datasets/eval/smoke_test/rice_white_cooked_04.jpg",
+          "ground_truth": "rice_white_cooked",
+          "predicted": "broccoli_steamed",
+          "raw_imagenet_top1": "broccoli",
+          "confidence": 0.7115,
+          "top_predictions": [
+            {
+              "category": "broccoli",
+              "prob": 0.7115
+            },
+            {
+              "category": "plate",
+              "prob": 0.1907
+            },
+            {
+              "category": "mashed potato",
+              "prob": 0.0267
+            }
+          ]
+        },
+        {
+          "image": "datasets/eval/smoke_test/broccoli_steamed_01.jpg",
+          "ground_truth": "broccoli_steamed",
+          "predicted": "unrepresented_or_other",
+          "raw_imagenet_top1": "meat loaf",
+          "confidence": 0.6587,
+          "top_predictions": [
+            {
+              "category": "meat loaf",
+              "prob": 0.6587
+            },
+            {
+              "category": "mashed potato",
+              "prob": 0.2129
+            },
+            {
+              "category": "plate",
+              "prob": 0.1129
+            }
+          ]
+        },
+        {
+          "image": "datasets/eval/smoke_test/broccoli_steamed_02.jpg",
+          "ground_truth": "broccoli_steamed",
+          "predicted": "unrepresented_or_other",
+          "raw_imagenet_top1": "plate",
+          "confidence": 0.3368,
+          "top_predictions": [
+            {
+              "category": "plate",
+              "prob": 0.3368
+            },
+            {
+              "category": "carbonara",
+              "prob": 0.2448
+            },
+            {
+              "category": "broccoli",
+              "prob": 0.1184
+            }
+          ]
+        },
+        {
+          "image": "datasets/eval/smoke_test/broccoli_steamed_04.jpg",
+          "ground_truth": "broccoli_steamed",
+          "predicted": "unrepresented_or_other",
+          "raw_imagenet_top1": "plate",
+          "confidence": 0.3893,
+          "top_predictions": [
+            {
+              "category": "plate",
+              "prob": 0.3893
+            },
+            {
+              "category": "burrito",
+              "prob": 0.1597
+            },
+            {
+              "category": "mashed potato",
+              "prob": 0.0877
+            }
+          ]
+        },
+        {
+          "image": "datasets/eval/smoke_test/apple_fresh_raw_01.jpg",
+          "ground_truth": "apple_fresh_raw",
+          "predicted": "unrepresented_or_other",
+          "raw_imagenet_top1": "grocery store",
+          "confidence": 0.4623,
+          "top_predictions": [
+            {
+              "category": "grocery store",
+              "prob": 0.4623
+            },
+            {
+              "category": "cucumber",
+              "prob": 0.1667
+            },
+            {
+              "category": "bakery",
+              "prob": 0.0634
+            }
+          ]
+        },
+        {
+          "image": "datasets/eval/smoke_test/apple_fresh_raw_02.jpg",
+          "ground_truth": "apple_fresh_raw",
+          "predicted": "unrepresented_or_other",
+          "raw_imagenet_top1": "orange",
+          "confidence": 0.8616,
+          "top_predictions": [
+            {
+              "category": "orange",
+              "prob": 0.8616
+            },
+            {
+              "category": "banana",
+              "prob": 0.0344
+            },
+            {
+              "category": "lemon",
+              "prob": 0.0318
+            }
+          ]
+        },
+        {
+          "image": "datasets/eval/smoke_test/apple_fresh_raw_03.jpg",
+          "ground_truth": "apple_fresh_raw",
+          "predicted": "unrepresented_or_other",
+          "raw_imagenet_top1": "fig",
+          "confidence": 0.6966,
+          "top_predictions": [
+            {
+              "category": "fig",
+              "prob": 0.6966
+            },
+            {
+              "category": "Granny Smith",
+              "prob": 0.0749
+            },
+            {
+              "category": "orange",
+              "prob": 0.0695
+            }
+          ]
+        },
+        {
+          "image": "datasets/eval/smoke_test/chicken_breast_grilled_01.jpg",
+          "ground_truth": "chicken_breast_grilled",
+          "predicted": "unrepresented_or_other",
+          "raw_imagenet_top1": "rotisserie",
+          "confidence": 0.8811,
+          "top_predictions": [
+            {
+              "category": "rotisserie",
+              "prob": 0.8811
+            },
+            {
+              "category": "bakery",
+              "prob": 0.0618
+            },
+            {
+              "category": "meat loaf",
+              "prob": 0.0117
+            }
+          ]
+        },
+        {
+          "image": "datasets/eval/smoke_test/chicken_breast_grilled_02.jpg",
+          "ground_truth": "chicken_breast_grilled",
+          "predicted": "unrepresented_or_other",
+          "raw_imagenet_top1": "meat loaf",
+          "confidence": 0.3673,
+          "top_predictions": [
+            {
+              "category": "meat loaf",
+              "prob": 0.3673
+            },
+            {
+              "category": "cheeseburger",
+              "prob": 0.1355
+            },
+            {
+              "category": "mashed potato",
+              "prob": 0.1061
+            }
+          ]
+        },
+        {
+          "image": "datasets/eval/smoke_test/chicken_breast_grilled_03.jpg",
+          "ground_truth": "chicken_breast_grilled",
+          "predicted": "unrepresented_or_other",
+          "raw_imagenet_top1": "carbonara",
+          "confidence": 0.8368,
+          "top_predictions": [
+            {
+              "category": "carbonara",
+              "prob": 0.8368
+            },
+            {
+              "category": "mashed potato",
+              "prob": 0.079
+            },
+            {
+              "category": "plate",
+              "prob": 0.0275
+            }
+          ]
+        },
+        {
+          "image": "datasets/eval/smoke_test/banana_raw_01.jpg",
+          "ground_truth": "banana_raw",
+          "predicted": "unrepresented_or_other",
+          "raw_imagenet_top1": "tray",
+          "confidence": 0.7171,
+          "top_predictions": [
+            {
+              "category": "tray",
+              "prob": 0.7171
+            },
+            {
+              "category": "hair slide",
+              "prob": 0.0374
+            },
+            {
+              "category": "spindle",
+              "prob": 0.031
+            }
+          ]
+        },
+        {
+          "image": "datasets/eval/smoke_test/banana_raw_02.jpg",
+          "ground_truth": "banana_raw",
+          "predicted": "unrepresented_or_other",
+          "raw_imagenet_top1": "potter's wheel",
+          "confidence": 0.2938,
+          "top_predictions": [
+            {
+              "category": "potter's wheel",
+              "prob": 0.2938
+            },
+            {
+              "category": "dining table",
+              "prob": 0.2698
+            },
+            {
+              "category": "drum",
+              "prob": 0.0926
+            }
+          ]
+        }
+      ]
+    },
+    "Candidate_B_Existing_Head_Only": {
+      "total_images": 17,
+      "correct": 6,
+      "accuracy": 0.3529,
+      "macro_f1": 0.2727,
+      "mean_confidence_correct": 0.6074,
+      "mean_confidence_incorrect": 0.4773,
+      "kitchenware_bias_count": 0,
+      "per_class": {
+        "apple_fresh_raw": {
+          "support": 3,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "banana_raw": {
+          "support": 3,
+          "precision": 1.0,
+          "recall": 0.3333,
+          "f1": 0.5
+        },
+        "broccoli_steamed": {
+          "support": 4,
+          "precision": 0.375,
+          "recall": 0.75,
+          "f1": 0.5
+        },
+        "chicken_breast_grilled": {
+          "support": 3,
+          "precision": 0.25,
+          "recall": 0.6667,
+          "f1": 0.3636
+        },
+        "rice_white_cooked": {
+          "support": 4,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        }
+      },
+      "confusion_matrix": {
+        "apple_fresh_raw": {
+          "apple_fresh_raw": 0,
+          "banana_raw": 0,
+          "broccoli_steamed": 1,
+          "chicken_breast_grilled": 2,
+          "rice_white_cooked": 0
+        },
+        "banana_raw": {
+          "apple_fresh_raw": 0,
+          "banana_raw": 1,
+          "broccoli_steamed": 1,
+          "chicken_breast_grilled": 1,
+          "rice_white_cooked": 0
+        },
+        "broccoli_steamed": {
+          "apple_fresh_raw": 0,
+          "banana_raw": 0,
+          "broccoli_steamed": 3,
+          "chicken_breast_grilled": 1,
+          "rice_white_cooked": 0
+        },
+        "chicken_breast_grilled": {
+          "apple_fresh_raw": 0,
+          "banana_raw": 0,
+          "broccoli_steamed": 1,
+          "chicken_breast_grilled": 2,
+          "rice_white_cooked": 0
+        },
+        "rice_white_cooked": {
+          "apple_fresh_raw": 0,
+          "banana_raw": 0,
+          "broccoli_steamed": 2,
+          "chicken_breast_grilled": 2,
+          "rice_white_cooked": 0
+        }
+      },
+      "failures": [
+        {
+          "image": "datasets/eval/smoke_test/rice_white_cooked_01.jpg",
+          "ground_truth": "rice_white_cooked",
+          "predicted": "broccoli_steamed",
+          "confidence": 0.3849,
+          "top_predictions": [
+            {
+              "category": "broccoli_steamed",
+              "prob": 0.3849
+            },
+            {
+              "category": "chicken_breast_grilled",
+              "prob": 0.3315
+            },
+            {
+              "category": "rice_white_cooked",
+              "prob": 0.1646
+            }
+          ]
+        },
+        {
+          "image": "datasets/eval/smoke_test/rice_white_cooked_02.jpg",
+          "ground_truth": "rice_white_cooked",
+          "predicted": "chicken_breast_grilled",
+          "confidence": 0.5041,
+          "top_predictions": [
+            {
+              "category": "chicken_breast_grilled",
+              "prob": 0.5041
+            },
+            {
+              "category": "broccoli_steamed",
+              "prob": 0.2422
+            },
+            {
+              "category": "rice_white_cooked",
+              "prob": 0.1878
+            }
+          ]
+        },
+        {
+          "image": "datasets/eval/smoke_test/rice_white_cooked_03.jpg",
+          "ground_truth": "rice_white_cooked",
+          "predicted": "chicken_breast_grilled",
+          "confidence": 0.2974,
+          "top_predictions": [
+            {
+              "category": "chicken_breast_grilled",
+              "prob": 0.2974
+            },
+            {
+              "category": "broccoli_steamed",
+              "prob": 0.2705
+            },
+            {
+              "category": "rice_white_cooked",
+              "prob": 0.2037
+            }
+          ]
+        },
+        {
+          "image": "datasets/eval/smoke_test/rice_white_cooked_04.jpg",
+          "ground_truth": "rice_white_cooked",
+          "predicted": "broccoli_steamed",
+          "confidence": 0.6008,
+          "top_predictions": [
+            {
+              "category": "broccoli_steamed",
+              "prob": 0.6008
+            },
+            {
+              "category": "chicken_breast_grilled",
+              "prob": 0.178
+            },
+            {
+              "category": "rice_white_cooked",
+              "prob": 0.1674
+            }
+          ]
+        },
+        {
+          "image": "datasets/eval/smoke_test/broccoli_steamed_01.jpg",
+          "ground_truth": "broccoli_steamed",
+          "predicted": "chicken_breast_grilled",
+          "confidence": 0.6042,
+          "top_predictions": [
+            {
+              "category": "chicken_breast_grilled",
+              "prob": 0.6042
+            },
+            {
+              "category": "broccoli_steamed",
+              "prob": 0.2716
+            },
+            {
+              "category": "rice_white_cooked",
+              "prob": 0.0862
+            }
+          ]
+        },
+        {
+          "image": "datasets/eval/smoke_test/apple_fresh_raw_01.jpg",
+          "ground_truth": "apple_fresh_raw",
+          "predicted": "chicken_breast_grilled",
+          "confidence": 0.4622,
+          "top_predictions": [
+            {
+              "category": "chicken_breast_grilled",
+              "prob": 0.4622
+            },
+            {
+              "category": "apple_fresh_raw",
+              "prob": 0.2318
+            },
+            {
+              "category": "broccoli_steamed",
+              "prob": 0.1584
+            }
+          ]
+        },
+        {
+          "image": "datasets/eval/smoke_test/apple_fresh_raw_02.jpg",
+          "ground_truth": "apple_fresh_raw",
+          "predicted": "broccoli_steamed",
+          "confidence": 0.4349,
+          "top_predictions": [
+            {
+              "category": "broccoli_steamed",
+              "prob": 0.4349
+            },
+            {
+              "category": "apple_fresh_raw",
+              "prob": 0.2357
+            },
+            {
+              "category": "chicken_breast_grilled",
+              "prob": 0.1652
+            }
+          ]
+        },
+        {
+          "image": "datasets/eval/smoke_test/apple_fresh_raw_03.jpg",
+          "ground_truth": "apple_fresh_raw",
+          "predicted": "chicken_breast_grilled",
+          "confidence": 0.477,
+          "top_predictions": [
+            {
+              "category": "chicken_breast_grilled",
+              "prob": 0.477
+            },
+            {
+              "category": "broccoli_steamed",
+              "prob": 0.3375
+            },
+            {
+              "category": "rice_white_cooked",
+              "prob": 0.1142
+            }
+          ]
+        },
+        {
+          "image": "datasets/eval/smoke_test/chicken_breast_grilled_03.jpg",
+          "ground_truth": "chicken_breast_grilled",
+          "predicted": "broccoli_steamed",
+          "confidence": 0.5446,
+          "top_predictions": [
+            {
+              "category": "broccoli_steamed",
+              "prob": 0.5446
+            },
+            {
+              "category": "chicken_breast_grilled",
+              "prob": 0.3042
+            },
+            {
+              "category": "rice_white_cooked",
+              "prob": 0.0968
+            }
+          ]
+        },
+        {
+          "image": "datasets/eval/smoke_test/banana_raw_01.jpg",
+          "ground_truth": "banana_raw",
+          "predicted": "broccoli_steamed",
+          "confidence": 0.4023,
+          "top_predictions": [
+            {
+              "category": "broccoli_steamed",
+              "prob": 0.4023
+            },
+            {
+              "category": "chicken_breast_grilled",
+              "prob": 0.3219
+            },
+            {
+              "category": "apple_fresh_raw",
+              "prob": 0.1787
+            }
+          ]
+        },
+        {
+          "image": "datasets/eval/smoke_test/banana_raw_02.jpg",
+          "ground_truth": "banana_raw",
+          "predicted": "chicken_breast_grilled",
+          "confidence": 0.5383,
+          "top_predictions": [
+            {
+              "category": "chicken_breast_grilled",
+              "prob": 0.5383
+            },
+            {
+              "category": "apple_fresh_raw",
+              "prob": 0.2865
+            },
+            {
+              "category": "rice_white_cooked",
+              "prob": 0.0813
+            }
+          ]
+        }
+      ]
+    },
+    "Candidate_C_Improved_Head_Only": {
+      "total_images": 17,
+      "correct": 10,
+      "accuracy": 0.5882,
+      "macro_f1": 0.5578,
+      "mean_confidence_correct": 0.8975,
+      "mean_confidence_incorrect": 0.7539,
+      "kitchenware_bias_count": 0,
+      "per_class": {
+        "apple_fresh_raw": {
+          "support": 3,
+          "precision": 0.6667,
+          "recall": 0.6667,
+          "f1": 0.6667
+        },
+        "banana_raw": {
+          "support": 3,
+          "precision": 0.3333,
+          "recall": 0.3333,
+          "f1": 0.3333
+        },
+        "broccoli_steamed": {
+          "support": 4,
+          "precision": 0.8,
+          "recall": 1.0,
+          "f1": 0.8889
+        },
+        "chicken_breast_grilled": {
+          "support": 3,
+          "precision": 0.4,
+          "recall": 0.6667,
+          "f1": 0.5
+        },
+        "rice_white_cooked": {
+          "support": 4,
+          "precision": 1.0,
+          "recall": 0.25,
+          "f1": 0.4
+        }
+      },
+      "confusion_matrix": {
+        "apple_fresh_raw": {
+          "apple_fresh_raw": 2,
+          "banana_raw": 0,
+          "broccoli_steamed": 0,
+          "chicken_breast_grilled": 1,
+          "rice_white_cooked": 0
+        },
+        "banana_raw": {
+          "apple_fresh_raw": 1,
+          "banana_raw": 1,
+          "broccoli_steamed": 0,
+          "chicken_breast_grilled": 1,
+          "rice_white_cooked": 0
+        },
+        "broccoli_steamed": {
+          "apple_fresh_raw": 0,
+          "banana_raw": 0,
+          "broccoli_steamed": 4,
+          "chicken_breast_grilled": 0,
+          "rice_white_cooked": 0
+        },
+        "chicken_breast_grilled": {
+          "apple_fresh_raw": 0,
+          "banana_raw": 1,
+          "broccoli_steamed": 0,
+          "chicken_breast_grilled": 2,
+          "rice_white_cooked": 0
+        },
+        "rice_white_cooked": {
+          "apple_fresh_raw": 0,
+          "banana_raw": 1,
+          "broccoli_steamed": 1,
+          "chicken_breast_grilled": 1,
+          "rice_white_cooked": 1
+        }
+      },
+      "failures": [
+        {
+          "image": "datasets/eval/smoke_test/rice_white_cooked_02.jpg",
+          "ground_truth": "rice_white_cooked",
+          "predicted": "chicken_breast_grilled",
+          "confidence": 0.4731,
+          "top_predictions": [
+            {
+              "category": "chicken_breast_grilled",
+              "prob": 0.4731
+            },
+            {
+              "category": "rice_white_cooked",
+              "prob": 0.4626
+            },
+            {
+              "category": "broccoli_steamed",
+              "prob": 0.0602
+            }
+          ]
+        },
+        {
+          "image": "datasets/eval/smoke_test/rice_white_cooked_03.jpg",
+          "ground_truth": "rice_white_cooked",
+          "predicted": "banana_raw",
+          "confidence": 0.7395,
+          "top_predictions": [
+            {
+              "category": "banana_raw",
+              "prob": 0.7395
+            },
+            {
+              "category": "apple_fresh_raw",
+              "prob": 0.1355
+            },
+            {
+              "category": "chicken_breast_grilled",
+              "prob": 0.0683
+            }
+          ]
+        },
+        {
+          "image": "datasets/eval/smoke_test/rice_white_cooked_04.jpg",
+          "ground_truth": "rice_white_cooked",
+          "predicted": "broccoli_steamed",
+          "confidence": 0.9934,
+          "top_predictions": [
+            {
+              "category": "broccoli_steamed",
+              "prob": 0.9934
+            },
+            {
+              "category": "chicken_breast_grilled",
+              "prob": 0.003
+            },
+            {
+              "category": "apple_fresh_raw",
+              "prob": 0.0019
+            }
+          ]
+        },
+        {
+          "image": "datasets/eval/smoke_test/apple_fresh_raw_01.jpg",
+          "ground_truth": "apple_fresh_raw",
+          "predicted": "chicken_breast_grilled",
+          "confidence": 0.7331,
+          "top_predictions": [
+            {
+              "category": "chicken_breast_grilled",
+              "prob": 0.7331
+            },
+            {
+              "category": "apple_fresh_raw",
+              "prob": 0.2041
+            },
+            {
+              "category": "banana_raw",
+              "prob": 0.0486
+            }
+          ]
+        },
+        {
+          "image": "datasets/eval/smoke_test/chicken_breast_grilled_02.jpg",
+          "ground_truth": "chicken_breast_grilled",
+          "predicted": "banana_raw",
+          "confidence": 0.7801,
+          "top_predictions": [
+            {
+              "category": "banana_raw",
+              "prob": 0.7801
+            },
+            {
+              "category": "chicken_breast_grilled",
+              "prob": 0.1939
+            },
+            {
+              "category": "apple_fresh_raw",
+              "prob": 0.0124
+            }
+          ]
+        },
+        {
+          "image": "datasets/eval/smoke_test/banana_raw_01.jpg",
+          "ground_truth": "banana_raw",
+          "predicted": "apple_fresh_raw",
+          "confidence": 0.8135,
+          "top_predictions": [
+            {
+              "category": "apple_fresh_raw",
+              "prob": 0.8135
+            },
+            {
+              "category": "banana_raw",
+              "prob": 0.0839
+            },
+            {
+              "category": "chicken_breast_grilled",
+              "prob": 0.0794
+            }
+          ]
+        },
+        {
+          "image": "datasets/eval/smoke_test/banana_raw_02.jpg",
+          "ground_truth": "banana_raw",
+          "predicted": "chicken_breast_grilled",
+          "confidence": 0.7444,
+          "top_predictions": [
+            {
+              "category": "chicken_breast_grilled",
+              "prob": 0.7444
+            },
+            {
+              "category": "rice_white_cooked",
+              "prob": 0.1393
+            },
+            {
+              "category": "banana_raw",
+              "prob": 0.0597
+            }
+          ]
+        }
+      ]
+    },
+    "Candidate_D_Staged_Fine_Tuned": {
+      "total_images": 17,
+      "correct": 10,
+      "accuracy": 0.5882,
+      "macro_f1": 0.5578,
+      "mean_confidence_correct": 0.8955,
+      "mean_confidence_incorrect": 0.7812,
+      "kitchenware_bias_count": 0,
+      "per_class": {
+        "apple_fresh_raw": {
+          "support": 3,
+          "precision": 0.6667,
+          "recall": 0.6667,
+          "f1": 0.6667
+        },
+        "banana_raw": {
+          "support": 3,
+          "precision": 0.3333,
+          "recall": 0.3333,
+          "f1": 0.3333
+        },
+        "broccoli_steamed": {
+          "support": 4,
+          "precision": 0.8,
+          "recall": 1.0,
+          "f1": 0.8889
+        },
+        "chicken_breast_grilled": {
+          "support": 3,
+          "precision": 0.4,
+          "recall": 0.6667,
+          "f1": 0.5
+        },
+        "rice_white_cooked": {
+          "support": 4,
+          "precision": 1.0,
+          "recall": 0.25,
+          "f1": 0.4
+        }
+      },
+      "confusion_matrix": {
+        "apple_fresh_raw": {
+          "apple_fresh_raw": 2,
+          "banana_raw": 0,
+          "broccoli_steamed": 0,
+          "chicken_breast_grilled": 1,
+          "rice_white_cooked": 0
+        },
+        "banana_raw": {
+          "apple_fresh_raw": 1,
+          "banana_raw": 1,
+          "broccoli_steamed": 0,
+          "chicken_breast_grilled": 1,
+          "rice_white_cooked": 0
+        },
+        "broccoli_steamed": {
+          "apple_fresh_raw": 0,
+          "banana_raw": 0,
+          "broccoli_steamed": 4,
+          "chicken_breast_grilled": 0,
+          "rice_white_cooked": 0
+        },
+        "chicken_breast_grilled": {
+          "apple_fresh_raw": 0,
+          "banana_raw": 1,
+          "broccoli_steamed": 0,
+          "chicken_breast_grilled": 2,
+          "rice_white_cooked": 0
+        },
+        "rice_white_cooked": {
+          "apple_fresh_raw": 0,
+          "banana_raw": 1,
+          "broccoli_steamed": 1,
+          "chicken_breast_grilled": 1,
+          "rice_white_cooked": 1
+        }
+      },
+      "failures": [
+        {
+          "image": "datasets/eval/smoke_test/rice_white_cooked_02.jpg",
+          "ground_truth": "rice_white_cooked",
+          "predicted": "chicken_breast_grilled",
+          "confidence": 0.6089,
+          "top_predictions": [
+            {
+              "category": "chicken_breast_grilled",
+              "prob": 0.6089
+            },
+            {
+              "category": "rice_white_cooked",
+              "prob": 0.3468
+            },
+            {
+              "category": "broccoli_steamed",
+              "prob": 0.0421
+            }
+          ]
+        },
+        {
+          "image": "datasets/eval/smoke_test/rice_white_cooked_03.jpg",
+          "ground_truth": "rice_white_cooked",
+          "predicted": "banana_raw",
+          "confidence": 0.7124,
+          "top_predictions": [
+            {
+              "category": "banana_raw",
+              "prob": 0.7124
+            },
+            {
+              "category": "apple_fresh_raw",
+              "prob": 0.1314
+            },
+            {
+              "category": "chicken_breast_grilled",
+              "prob": 0.0933
+            }
+          ]
+        },
+        {
+          "image": "datasets/eval/smoke_test/rice_white_cooked_04.jpg",
+          "ground_truth": "rice_white_cooked",
+          "predicted": "broccoli_steamed",
+          "confidence": 0.9927,
+          "top_predictions": [
+            {
+              "category": "broccoli_steamed",
+              "prob": 0.9927
+            },
+            {
+              "category": "chicken_breast_grilled",
+              "prob": 0.0044
+            },
+            {
+              "category": "apple_fresh_raw",
+              "prob": 0.0016
+            }
+          ]
+        },
+        {
+          "image": "datasets/eval/smoke_test/apple_fresh_raw_01.jpg",
+          "ground_truth": "apple_fresh_raw",
+          "predicted": "chicken_breast_grilled",
+          "confidence": 0.8548,
+          "top_predictions": [
+            {
+              "category": "chicken_breast_grilled",
+              "prob": 0.8548
+            },
+            {
+              "category": "apple_fresh_raw",
+              "prob": 0.103
+            },
+            {
+              "category": "banana_raw",
+              "prob": 0.0301
+            }
+          ]
+        },
+        {
+          "image": "datasets/eval/smoke_test/chicken_breast_grilled_02.jpg",
+          "ground_truth": "chicken_breast_grilled",
+          "predicted": "banana_raw",
+          "confidence": 0.6924,
+          "top_predictions": [
+            {
+              "category": "banana_raw",
+              "prob": 0.6924
+            },
+            {
+              "category": "chicken_breast_grilled",
+              "prob": 0.2866
+            },
+            {
+              "category": "broccoli_steamed",
+              "prob": 0.0102
+            }
+          ]
+        },
+        {
+          "image": "datasets/eval/smoke_test/banana_raw_01.jpg",
+          "ground_truth": "banana_raw",
+          "predicted": "apple_fresh_raw",
+          "confidence": 0.7717,
+          "top_predictions": [
+            {
+              "category": "apple_fresh_raw",
+              "prob": 0.7717
+            },
+            {
+              "category": "chicken_breast_grilled",
+              "prob": 0.1387
+            },
+            {
+              "category": "banana_raw",
+              "prob": 0.0661
+            }
+          ]
+        },
+        {
+          "image": "datasets/eval/smoke_test/banana_raw_02.jpg",
+          "ground_truth": "banana_raw",
+          "predicted": "chicken_breast_grilled",
+          "confidence": 0.8354,
+          "top_predictions": [
+            {
+              "category": "chicken_breast_grilled",
+              "prob": 0.8354
+            },
+            {
+              "category": "rice_white_cooked",
+              "prob": 0.1004
+            },
+            {
+              "category": "apple_fresh_raw",
+              "prob": 0.0321
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

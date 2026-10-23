@@ -154,7 +154,68 @@
         "int8_quantization_supported": true,
         "fits_2gb_android_ram": true
       },
-      "status": "trained_experimental_checkpoint"
+    },
+    {
+      "id": "mobilenet_v3_food_head_only_v2",
+      "canonical_name": "MobileNetV3-Small (5-Class Food Classifier Head-Only V2)",
+      "official_source": "models/checkpoints/mobilenet_v3_food_head_only_v2.pth",
+      "task": "food_classification_5class_head_only_v2",
+      "license": "Apache-2.0 (Derived from Torchvision MobileNetV3-Small)",
+      "commercial_use_allowed": true,
+      "redistribution_allowed": true,
+      "parameters_count": 1523317,
+      "trainable_parameters": 595973,
+      "frozen_parameters": 927008,
+      "file_size_mb": 5.94,
+      "classes": [
+        "apple_fresh_raw",
+        "banana_raw",
+        "broccoli_steamed",
+        "chicken_breast_grilled",
+        "rice_white_cooked"
+      ],
+      "training_split": "train: 80 images, val: 20 images, test: 25 images (Food Dataset V2)",
+      "best_val_accuracy": 0.65,
+      "held_out_test_accuracy": 0.48,
+      "macro_f1": 0.460,
+      "mobile_target_compatibility": {
+        "onnx_exportable": true,
+        "litert_tflite_exportable": true,
+        "int8_quantization_supported": true,
+        "fits_2gb_android_ram": true
+      },
+      "status": "selected_best_performing_checkpoint"
+    },
+    {
+      "id": "mobilenet_v3_food_finetuned_v2",
+      "canonical_name": "MobileNetV3-Small (5-Class Food Classifier Staged Fine-Tuned V2)",
+      "official_source": "models/checkpoints/mobilenet_v3_food_finetuned_v2.pth",
+      "task": "food_classification_5class_staged_finetuned_v2",
+      "license": "Apache-2.0 (Derived from Torchvision MobileNetV3-Small)",
+      "commercial_use_allowed": true,
+      "redistribution_allowed": true,
+      "parameters_count": 1523317,
+      "trainable_parameters": 946517,
+      "frozen_parameters": 576464,
+      "file_size_mb": 5.94,
+      "classes": [
+        "apple_fresh_raw",
+        "banana_raw",
+        "broccoli_steamed",
+        "chicken_breast_grilled",
+        "rice_white_cooked"
+      ],
+      "training_split": "train: 80 images, val: 20 images, test: 25 images (Food Dataset V2)",
+      "best_val_accuracy": 0.60,
+      "held_out_test_accuracy": 0.48,
+      "macro_f1": 0.460,
+      "mobile_target_compatibility": {
+        "onnx_exportable": true,
+        "litert_tflite_exportable": true,
+        "int8_quantization_supported": true,
+        "fits_2gb_android_ram": true
+      },
+      "status": "trained_staged_checkpoint"
     }
   ]
 }

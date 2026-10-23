@@ -1,10 +1,10 @@
 {
-  "timestamp": "2026-10-22T22:11:51Z",
+  "timestamp": "2026-10-23T06:28:37Z",
   "model_evaluated": "MobileNetV3-Small (ImageNet-1k Pretrained Baseline)",
   "checkpoint_source": "torchvision.models.mobilenet_v3_small-047dcff4.pth",
   "dataset_name": "Real-Food Smoke Test Benchmark (Phase 0 Step A)",
   "total_images_evaluated": 17,
-  "mean_latency_ms": 644.04,
+  "mean_latency_ms": 116.02,
   "class_breakdown": {
     "rice_white_cooked": {
       "total": 4,
@@ -59,7 +59,7 @@
       "canonical_id": "rice_white_cooked",
       "food_type": "prepared_dish",
       "lighting": "indoor_ambient",
-      "latency_ms": 7755.73,
+      "latency_ms": 1559.89,
       "top1_category": "American lobster",
       "top1_probability": 0.3522,
       "top5_predictions": [
@@ -98,7 +98,7 @@
       "canonical_id": "rice_white_cooked",
       "food_type": "prepared_dish",
       "lighting": "bright_daylight",
-      "latency_ms": 115.3,
+      "latency_ms": 21.31,
       "top1_category": "guacamole",
       "top1_probability": 0.3084,
       "top5_predictions": [
@@ -137,7 +137,7 @@
       "canonical_id": "rice_white_cooked",
       "food_type": "prepared_dish",
       "lighting": "warm_artificial",
-      "latency_ms": 335.97,
+      "latency_ms": 16.06,
       "top1_category": "pot",
       "top1_probability": 0.3412,
       "top5_predictions": [
@@ -176,7 +176,7 @@
       "canonical_id": "rice_white_cooked",
       "food_type": "prepared_dish",
       "lighting": "dim_shadow",
-      "latency_ms": 424.17,
+      "latency_ms": 20.48,
       "top1_category": "broccoli",
       "top1_probability": 0.7115,
       "top5_predictions": [
@@ -215,7 +215,7 @@
       "canonical_id": "broccoli_steamed",
       "food_type": "prepared_dish",
       "lighting": "indoor_ambient",
-      "latency_ms": 355.85,
+      "latency_ms": 30.14,
       "top1_category": "meat loaf",
       "top1_probability": 0.6587,
       "top5_predictions": [
@@ -254,7 +254,7 @@
       "canonical_id": "broccoli_steamed",
       "food_type": "prepared_dish",
       "lighting": "bright_daylight",
-      "latency_ms": 288.26,
+      "latency_ms": 26.89,
       "top1_category": "plate",
       "top1_probability": 0.3368,
       "top5_predictions": [
@@ -293,7 +293,7 @@
       "canonical_id": "broccoli_steamed",
       "food_type": "prepared_dish",
       "lighting": "warm_artificial",
-      "latency_ms": 275.34,
+      "latency_ms": 24.55,
       "top1_category": "broccoli",
       "top1_probability": 0.7115,
       "top5_predictions": [
@@ -332,7 +332,7 @@
       "canonical_id": "broccoli_steamed",
       "food_type": "prepared_dish",
       "lighting": "overhead_soft",
-      "latency_ms": 169.24,
+      "latency_ms": 29.54,
       "top1_category": "plate",
       "top1_probability": 0.3893,
       "top5_predictions": [
@@ -371,7 +371,7 @@
       "canonical_id": "apple_fresh_raw",
       "food_type": "raw_produce",
       "lighting": "indoor_ambient",
-      "latency_ms": 136.51,
+      "latency_ms": 19.72,
       "top1_category": "grocery store",
       "top1_probability": 0.4623,
       "top5_predictions": [
@@ -410,7 +410,7 @@
       "canonical_id": "apple_fresh_raw",
       "food_type": "raw_produce",
       "lighting": "bright_daylight",
-      "latency_ms": 135.45,
+      "latency_ms": 31.1,
       "top1_category": "orange",
       "top1_probability": 0.8616,
       "top5_predictions": [
@@ -449,7 +449,7 @@
       "canonical_id": "apple_fresh_raw",
       "food_type": "raw_produce",
       "lighting": "diffuse_shadow",
-      "latency_ms": 108.16,
+      "latency_ms": 30.86,
       "top1_category": "fig",
       "top1_probability": 0.6966,
       "top5_predictions": [
@@ -488,7 +488,7 @@
       "canonical_id": "chicken_breast_grilled",
       "food_type": "prepared_dish",
       "lighting": "indoor_ambient",
-      "latency_ms": 141.28,
+      "latency_ms": 26.92,
       "top1_category": "rotisserie",
       "top1_probability": 0.8811,
       "top5_predictions": [
@@ -527,7 +527,7 @@
       "canonical_id": "chicken_breast_grilled",
       "food_type": "prepared_dish",
       "lighting": "bright_daylight",
-      "latency_ms": 125.33,
+      "latency_ms": 30.81,
       "top1_category": "meat loaf",
       "top1_probability": 0.3673,
       "top5_predictions": [
@@ -566,7 +566,7 @@
       "canonical_id": "chicken_breast_grilled",
       "food_type": "prepared_dish",
       "lighting": "indoor_ambient",
-      "latency_ms": 132.62,
+      "latency_ms": 17.13,
       "top1_category": "carbonara",
       "top1_probability": 0.8368,
       "top5_predictions": [
@@ -605,7 +605,7 @@
       "canonical_id": "banana_raw",
       "food_type": "raw_produce",
       "lighting": "indoor_ambient",
-      "latency_ms": 106.57,
+      "latency_ms": 30.04,
       "top1_category": "tray",
       "top1_probability": 0.7171,
       "top5_predictions": [
@@ -644,7 +644,7 @@
       "canonical_id": "banana_raw",
       "food_type": "raw_produce",
       "lighting": "bright_daylight",
-      "latency_ms": 157.57,
+      "latency_ms": 29.58,
       "top1_category": "potter's wheel",
       "top1_probability": 0.2938,
       "top5_predictions": [
@@ -683,7 +683,7 @@
       "canonical_id": "banana_raw",
       "food_type": "raw_produce",
       "lighting": "indoor_ambient",
-      "latency_ms": 185.25,
+      "latency_ms": 27.4,
       "top1_category": "banana",
       "top1_probability": 0.994,
       "top5_predictions": [

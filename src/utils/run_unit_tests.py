@@ -1,15 +1,24 @@
 """
-Standalone Test Runner for Phase 0 Verification
-Executes taxonomy, nutrition uncertainty, and synthetic geometry tests without third-party test runners.
+Standalone Test Runner for Verification
+Executes taxonomy, nutrition uncertainty, synthetic geometry, environment, and dataset V2 integrity tests.
 """
 
+import os
 import sys
 import traceback
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+if BASE_DIR not in sys.path:
+    sys.path.insert(0, BASE_DIR)
 
 def run_all_tests():
     from tests.test_taxonomy import test_canonical_resolution, test_density_retrieval
     from tests.test_nutrition import test_nutrition_mass_calculation, test_unknown_food_uncertainty
     from tests.test_reconstruction_synthetic import test_sphere_volume, test_plate_scale_estimation
+    from tests.test_env import TestEnvironment
+    from tests.test_dataset_v2 import test_model_head_adaptation, test_v2_manifest_and_leakage
+
+    env_tester = TestEnvironment()
 
     tests = [
         ("test_canonical_resolution", test_canonical_resolution),
@@ -18,13 +27,16 @@ def run_all_tests():
         ("test_unknown_food_uncertainty", test_unknown_food_uncertainty),
         ("test_sphere_volume", test_sphere_volume),
         ("test_plate_scale_estimation", test_plate_scale_estimation),
+        ("test_environment_structure", env_tester.test_environment_structure),
+        ("test_model_head_adaptation", test_model_head_adaptation),
+        ("test_v2_manifest_and_leakage", test_v2_manifest_and_leakage),
     ]
 
     passed = 0
     failed = 0
-    print("=" * 60)
-    print("RUNNING PHASE 0 UNIT TESTS")
-    print("=" * 60)
+    print("=" * 65)
+    print("RUNNING ALL UNIT & INTEGRITY TESTS")
+    print("=" * 65)
 
     for name, func in tests:
         try:
@@ -36,9 +48,9 @@ def run_all_tests():
             traceback.print_exc()
             failed += 1
 
-    print("=" * 60)
+    print("=" * 65)
     print(f"Results: {passed} passed, {failed} failed.")
-    print("=" * 60)
+    print("=" * 65)
     return failed == 0
 
 if __name__ == "__main__":
