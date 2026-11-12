@@ -1,5 +1,7 @@
 # Food 3D Scanning and Nutrition Estimation Research Pipeline
 
+[![Python](https://img.shields.io/badge/Python-PyTorch_%26_OpenCV-3776AB?style=flat-square&logo=python&logoColor=white)](https://github.com/VaibhavBajpaij/food-plat-scanner-ai-model) [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg?style=flat-square)](LICENSE)
+
 An end-to-end, scientifically rigorous research prototype for estimating food identity, segmentation, 3D volume, portion mass, and nutritional composition with analytical uncertainty bounds from smartphone imagery.
 
 ---
@@ -13,7 +15,7 @@ An end-to-end, scientifically rigorous research prototype for estimating food id
 
 ## Directory Organization
 ```
-d:\health app\plat scaning ml mode/
+food-3d-nutrition-pipeline/
 ├── configs/                  # Runtime, hardware budget, and training YAML configs
 ├── datasets/                 # Local datasets partitioned by dual-track licensing
 │   ├── raw/                  # Downloaded raw images / video frames
